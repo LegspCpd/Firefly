@@ -1,12 +1,12 @@
-import type { MusicPlayerConfig } from "@/types/config";
+import type { MusicPlayerConfig } from "../types/config";
 
 // 音乐播放器配置
-
 export const musicPlayerConfig: MusicPlayerConfig = {
 	// 禁用音乐播放器方法：
 	// 模板默认侧边栏和导航栏两个都显示
 	// 1. 侧边栏：在sidebarConfig.ts侧边栏配置把音乐组件enable设为false禁用即可
 	// 2. 导航栏：在本配置文件把showInNavbar设为false禁用即可
+
 	// 是否在导航栏显示音乐播放器入口
 	showInNavbar: true,
 
@@ -47,30 +47,6 @@ export const musicPlayerConfig: MusicPlayerConfig = {
 	// lrc: "/assets/music/lrc/使一颗心免于哀伤-哼唱.lrc",
 	// 2. 或者直接填入歌词字符串内容
 	// lrc: "[00:00.00]歌词内容...",
-	local: {
-		playlist: [
-			{
-				name: "使一颗心免于哀伤",
-				artist: "知更鸟 / HOYO-MiX / Chevy",
-				url: "/assets/music/使一颗心免于哀伤-哼唱.mp3",
-				cover: "/assets/music/cover/109951169585655912.webp",
-				lrc: "/assets/music/lrc/song.lrc",
-			},
-		],
-	},
-
-	local: {
-		playlist: [
-			{
-				name: "Give Me Something (for Arknights Endfield)",
-				artist: "OneRepublic",
-				url: "/assets/music/Give Me Something (for Arknights Endfield) - OneRepublic.flac",
-				cover: "/assets/music/cover/170474730.jpg",
-				lrc: "",
-			},
-		],
-	},
-
 	local: {
 		playlist: [
 			{
