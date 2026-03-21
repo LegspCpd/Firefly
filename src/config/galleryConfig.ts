@@ -21,6 +21,14 @@ export const galleryConfig: GalleryConfig = {
 			date: "2026-01-01",
 			tags: ["崩坏星穹铁道", "流萤"],
 		},
+		{
+			id: "LegspCpd-img",
+			name: "LegspCpd的头像",
+			description: "LegspCpd的头像",
+			location: "LegspCpd",
+			date: "2026-01-01",
+			tags: ["头像", "LegspCpd"],
+		},
 	],
 
 	// 瀑布流最小列宽(px)，浏览器根据容器宽度自动计算列数，默认 240
