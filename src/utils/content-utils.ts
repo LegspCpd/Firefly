@@ -22,7 +22,7 @@ async function getRawSortedPosts() {
 	return sorted;
 }
 
-export async function getSortedPosts() {
+export async function getSortedPosts(): Promise<CollectionEntry<"posts">[]> {
 	const sorted = await getRawSortedPosts();
 
 	for (let i = 1; i < sorted.length; i++) {
@@ -57,7 +57,7 @@ export type Tag = {
 };
 
 export async function getTagList(): Promise<Tag[]> {
-	const allBlogPosts = await getCollection<"posts">("posts", ({ data }) => {
+	const allBlogPosts = await getCollection("posts", ({ data }) => {
 		return import.meta.env.PROD ? data.draft !== true : true;
 	});
 
@@ -84,7 +84,7 @@ export type Category = {
 };
 
 export async function getCategoryList(): Promise<Category[]> {
-	const allBlogPosts = await getCollection<"posts">("posts", ({ data }) => {
+	const allBlogPosts = await getCollection("posts", ({ data }) => {
 		return import.meta.env.PROD ? data.draft !== true : true;
 	});
 	const count: { [key: string]: number } = {};
@@ -160,22 +160,20 @@ export async function getRelatedPosts(
 	currentPost: CollectionEntry<"posts">,
 	maxCount = 5,
 ): Promise<PostForList[]> {
-	const allPosts = await getCollection<"posts">("posts", ({ data }) => {
+	const allPosts = await getCollection("posts", ({ data }) => {
 		return import.meta.env.PROD ? data.draft !== true : true;
 	});
-
-	// 排除自身和加密文章
 	const candidates = allPosts.filter(
 		(p) => p.id !== currentPost.id && !p.data.password,
 	);
 
-	const currentTags = new Set(currentPost.data.tags || []);
+	const currentTags = new Set<string>(currentPost.data.tags || []);
 	const currentTokens = tokenizeTitle(currentPost.data.title);
 	const currentCategory = currentPost.data.category || "";
 	const now = Date.now();
 
 	const scored = candidates.map((post) => {
-		const postTags = new Set(post.data.tags || []);
+		const postTags = new Set<string>(post.data.tags || []);
 
 		// tagMatchScore (0-100)
 		const tagMatchScore = jaccardSimilarity(currentTags, postTags) * 100;

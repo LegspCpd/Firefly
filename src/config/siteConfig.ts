@@ -41,7 +41,7 @@ export const siteConfig: SiteConfig = {
 		"和顺第一初级中学",
 		"Heshun No.1 Junior High School",
 		"Heshun Yizhong",
-        "Bilibili LegspCpd",
+		"Bilibili LegspCpd",
 		"B站 LegspCpd",
 		"B站 LegspCpd 的个人博客",
 		"技术分享",

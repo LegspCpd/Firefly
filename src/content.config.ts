@@ -2,7 +2,7 @@ import { defineCollection } from "astro:content";
 import { glob } from "astro/loaders";
 import { z } from "astro/zod";
 
-const postsCollection = defineCollection({
+const postsCollection: ReturnType<typeof defineCollection> = defineCollection({
 	loader: glob({ pattern: "**/*.{md,mdx}", base: "./src/content/posts" }),
 	schema: z.object({
 		title: z.string(),
@@ -31,12 +31,15 @@ const postsCollection = defineCollection({
 	}),
 });
 
-const specCollection = defineCollection({
+const specCollection: ReturnType<typeof defineCollection> = defineCollection({
 	loader: glob({ pattern: "**/*.{md,mdx}", base: "./src/content/spec" }),
 	schema: z.object({}),
 });
 
-export const collections = {
+export const collections: {
+	posts: typeof postsCollection;
+	spec: typeof specCollection;
+} = {
 	posts: postsCollection,
 	spec: specCollection,
 };
