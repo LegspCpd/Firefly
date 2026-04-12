@@ -11,7 +11,7 @@ export const musicPlayerConfig: MusicPlayerConfig = {
 	showInNavbar: true,
 
 	// 使用方式："meting" 使用 Meting API，"local" 使用本地音乐列表
-	mode: "meting",
+	mode: "local",
 
 	// 默认音量 (0-1)
 	volume: 0.7,
@@ -54,6 +54,27 @@ export const musicPlayerConfig: MusicPlayerConfig = {
 				artist: "知更鸟 / HOYO-MiX / Chevy",
 				url: "/assets/music/使一颗心免于哀伤-哼唱.mp3",
 				cover: "/assets/music/cover/109951169585655912.webp",
+				lrc: "",
+			},
+			{
+				name: "Higher",
+				artist: "Tobu",
+				url: "/assets/music/Higher-Tobu.mp3",
+				cover: "/assets/music/cover/Higher-Tobu.jpg",
+				lrc: "",
+			},
+			{
+				name: "Give Me Something (for Arknights Endfield)",
+				artist: "OneRepublic",
+				url: "/assets/music/Give Me Something (for Arknights Endfield) - OneRepublic.mp3",
+				cover: "/assets/music/cover/170474730.jpg",
+				lrc: "",
+			},
+			{
+				name: "Numb",
+				artist: "Linkin Park",
+				url: "/assets/music/Numb.flac",
+				cover: "/assets/music/cover/Linkin_Park_-_Numb_CD_cover.jpg",
 				lrc: "",
 			},
 		],
