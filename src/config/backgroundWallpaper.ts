@@ -36,26 +36,16 @@ export const backgroundWallpaper: BackgroundWallpaperConfig = {
 	 * ],
 	 */
 	src: {
-		// 桌面背景图片（支持单张或多张随机）
-		// desktop: "assets/images/DesktopWallpaper/d1.avif",
-		desktop: [
-			"https://t.alcy.cc/pc",
-			"assets/images/DesktopWallpaper/d2.avif",
-			"assets/images/DesktopWallpaper/d3.avif",
-			"assets/images/DesktopWallpaper/d4.avif",
-			"assets/images/DesktopWallpaper/d5.avif",
-			"assets/images/DesktopWallpaper/d6.avif",
-		],
-		// 移动背景图片（支持单张或多张随机）
-		// mobile: "assets/images/MobileWallpaper/m1.avif",
-		mobile: [
-			"https://t.alcy.cc/mp",
-			"assets/images/MobileWallpaper/m2.avif",
-			"assets/images/MobileWallpaper/m3.avif",
-			"assets/images/MobileWallpaper/m4.avif",
-			"assets/images/MobileWallpaper/m5.avif",
-			"assets/images/MobileWallpaper/m6.avif",
-		],
+	desktop: [
+    "https://www.loliapi.com/acg/",
+	"https://eoimgapi.2xgh.qzz.io/pic?img=ua",
+    "https://t.alcy.cc/pc",
+  ],
+    mobile: [
+    "https://www.loliapi.com/acg/",
+    "https://eoimgapi.2xgh.qzz.io/pic?img=ua",
+    "https://t.alcy.cc/mp",
+  ],
 	},
 	// Banner模式特有配置
 	banner: {
@@ -114,9 +104,9 @@ export const backgroundWallpaper: BackgroundWallpaperConfig = {
 			},
 			url: {
 				// 桌面端原始艺术品或艺术家页面的 URL 链接
-				desktop: "https://www.pixiv.net/users/108801776",
+				desktop: "https://www.pixiv.net/",
 				// 移动端原始艺术品或艺术家页面的 URL 链接
-				mobile: "https://www.pixiv.net/users/42715864",
+				mobile: "https://www.pixiv.net/",
 			},
 		},
 		// 横幅导航栏配置

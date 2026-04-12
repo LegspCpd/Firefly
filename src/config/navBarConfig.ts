@@ -66,7 +66,7 @@ const getDynamicNavBarConfig = (): NavBarConfig => {
 		children: [
 			{
 				name: "GitHub",
-				url: "https://github.com/SYSTEM-LEGSP-CPD/Firefly",
+				url: "https://github.com/LegspCpd/Firefly",
 				external: true,
 				icon: "fa7-brands:github",
 			},
@@ -77,10 +77,10 @@ const getDynamicNavBarConfig = (): NavBarConfig => {
 				icon: "fa7-brands:gitee",
 			},
 			{
-				name: "QQ交流群",
-				url: "https://qm.qq.com/q/ZGsFa8qX2G",
+				name: "DisCord",
+				url: "https://discord.gg/legspcpd",
 				external: true,
-				icon: "fa7-brands:qq",
+				icon: "fa7-brands:discord",
 			},
 		],
 	});

@@ -56,20 +56,6 @@ export const musicPlayerConfig: MusicPlayerConfig = {
 				cover: "/assets/music/cover/109951169585655912.webp",
 				lrc: "",
 			},
-			{
-				name: "Higher",
-				artist: "知更鸟 / HOYO-MiX / Chevy",
-				url: "/assets/music/Higher-Tobu.mp3",
-				cover: "/assets/music/cover/Higher-Tobu.jpg",
-				lrc: "",
-			},
-			{
-				name: "Give Me Something (for Arknights Endfield)",
-				artist: "知更鸟 / HOYO-MiX / Chevy",
-				url: "/assets/music/Give Me Something (for Arknights Endfield) - OneRepublic.mp3",
-				cover: "/assets/music/cover/170474730.jpg",
-				lrc: "",
-			},
 		],
 	},
 };
