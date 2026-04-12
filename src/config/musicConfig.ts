@@ -94,7 +94,7 @@ export const musicPlayerConfig: MusicPlayerConfig = {
 			{
 				name: "Sky High",
 				artist: "Elektronomia",
-				url: "/assets/music/Sky High.flac",
+				url: "/assets/music/Sky High.mp3",
 				cover: "/assets/music/cover/artwork-440x440.jpg",
 				lrc: "",
 			},
@@ -103,6 +103,13 @@ export const musicPlayerConfig: MusicPlayerConfig = {
 				artist: "Elektronomia",
 				url: "/assets/music/Sky High pt.II.mp3",
 				cover: "/assets/music/cover/Sky High pt.II.jpg",
+				lrc: "",
+			},
+			{
+				name: "Heaven",
+				artist: "Avicii",
+				url: "/assets/music/Heaven.mp3",
+				cover: "/assets/music/cover/Avicii_Heaven_Single_Cover_Art.jpg",
 				lrc: "",
 			},
 		],
