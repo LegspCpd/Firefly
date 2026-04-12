@@ -28,7 +28,7 @@ export const musicPlayerConfig: MusicPlayerConfig = {
 		// 默认使用官方 API，也可以使用自定义 API
 		api: "https://api.i-meto.com/meting/api?server=:server&type=:type&id=:id&r=:r",
 		// 音乐平台：netease=网易云音乐, tencent=QQ音乐, kugou=酷狗音乐, xiami=虾米音乐, baidu=百度音乐
-		server: "netease",
+		server: "tencent",
 		// 类型：song=单曲, playlist=歌单, album=专辑, search=搜索, artist=艺术家
 		type: "playlist",
 		// 歌单/专辑/单曲 ID 或搜索关键词
@@ -54,6 +54,20 @@ export const musicPlayerConfig: MusicPlayerConfig = {
 				artist: "知更鸟 / HOYO-MiX / Chevy",
 				url: "/assets/music/使一颗心免于哀伤-哼唱.mp3",
 				cover: "/assets/music/cover/109951169585655912.webp",
+				lrc: "",
+			},
+			{
+				name: "Higher",
+				artist: "知更鸟 / HOYO-MiX / Chevy",
+				url: "/assets/music/Higher-Tobu.mp3",
+				cover: "/assets/music/cover/Higher-Tobu.jpg",
+				lrc: "",
+			},
+			{
+				name: "Give Me Something (for Arknights Endfield)",
+				artist: "知更鸟 / HOYO-MiX / Chevy",
+				url: "/assets/music/Give Me Something (for Arknights Endfield) - OneRepublic.mp3",
+				cover: "/assets/music/cover/170474730.jpg",
 				lrc: "",
 			},
 		],
