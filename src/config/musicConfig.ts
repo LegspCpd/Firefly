@@ -115,7 +115,7 @@ export const musicPlayerConfig: MusicPlayerConfig = {
 			{
 				name: "A Moment Apart",
 				artist: "Odesza",
-				url: "/assets/music/A Moment Apart-Odesza.flac",
+				url: "/assets/music/A Moment Apart-Odesza.mp3",
 				cover: "/assets/music/cover/A_Moment_Alone_Cover.jpg",
 				lrc: "",
 			},
