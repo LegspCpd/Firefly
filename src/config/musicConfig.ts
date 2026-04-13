@@ -112,6 +112,13 @@ export const musicPlayerConfig: MusicPlayerConfig = {
 				cover: "/assets/music/cover/Avicii_Heaven_Single_Cover_Art.jpg",
 				lrc: "",
 			},
+			{
+				name: "End of Time",
+				artist: "Alan Walker",
+				url: "/assets/music/End of Time-Alan Walker,K-391,Ahrix.flac",
+				cover: "/assets/music/cover/K-391_-_End_of_Time.webp.png",
+				lrc: "",
+			},
 		],
 	},
 };
