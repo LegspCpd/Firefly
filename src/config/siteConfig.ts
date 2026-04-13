@@ -13,7 +13,7 @@ export const siteConfig: SiteConfig = {
 	subtitle: "LegspCpd 的个人博客",
 
 	// 站点 URL
-	site_url: "https://blog.2xgh.qzz.io",
+	site_url: "https://blog.legspcpd.indevs.in",
 
 	// 站点描述
 	description:
