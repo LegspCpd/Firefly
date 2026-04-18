@@ -1,6 +1,6 @@
 ---
 title: Cloudflare优选教程，让Cloudflare在国内不再是减速器
-published: 2026-4-19
+published: 2026-04-19
 tags: [CloudFlare, CloudFlare优选, CloudFlare优选教程, 教程]
 category: CloudFlare
 draft: true
