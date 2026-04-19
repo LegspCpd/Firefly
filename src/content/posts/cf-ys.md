@@ -12,11 +12,11 @@ draft: false
 
 #### 作者的优选域名
 ###### CF: [cf.legspcpd.furry.bz](cf.legspcpd.furry.bz)
-![cf.png](https://imghub.legspcpd.indevs.in/file/image/cf.png)
+![](https://imghub.legspcpd.indevs.in/file/image/cf.png)
 真 移动优化: [cmcc.legspcpd.furry.bz](cmcc.legspcpd.furry.bz)
-![cf-cmcc.png](https://imghub.legspcpd.indevs.in/file/image/cf-cmcc.png)
+![](https://imghub.legspcpd.indevs.in/file/image/cf-cmcc.png)
 ###### EO: [eo.legspcpd.furry.bz](eo.legspcpd.furry.bz)
-![eo.png](https://imghub.legspcpd.indevs.in/file/image/eo.png)
+![](https://imghub.legspcpd.indevs.in/file/image/eo.png)
 
 
 ---
@@ -159,9 +159,9 @@ function getProxyPrefix(hostname) {
 }
 ```
 创建路由:
-![cf-ly.png](https://imghub.legspcpd.indevs.in/file/image/cf-ly.png)
+![](https://imghub.legspcpd.indevs.in/file/image/cf-ly.png)
 像这样
-![cf-lytx.png](https://imghub.legspcpd.indevs.in/file/image/cf-lytx.png)
+![](https://imghub.legspcpd.indevs.in/file/image/cf-lytx.png)
 
 ---
 
