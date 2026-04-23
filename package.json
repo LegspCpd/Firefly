@@ -6,7 +6,7 @@
     "dev": "astro dev",
     "start": "astro dev",
     "check": "astro check",
-  "build": "node scripts/generate-icons.js && astro build && pagefind --site dist --lang en,zh-CN,zh-TW,ja,ko,fr,de,es,it,pt,ru,ar,hi,tr,vi,th,id,ms,nl,pl,sv,no,da,fi,cs,hu",
+    "build": "node scripts/generate-icons.js && astro build && pagefind --site dist --force-language auto",
     "preview": "astro preview",
     "astro": "astro",
     "type-check": "tsc --noEmit --isolatedDeclarations",
