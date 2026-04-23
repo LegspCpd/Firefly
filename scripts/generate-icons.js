@@ -1,26 +1,34 @@
 /**
- * 图标预处理脚本（全量图标集版）
+ * 图标预处理脚本（本地版）
  * 在构建时自动扫描 Svelte 组件中使用的图标，并生成内联 SVG 数据
- * 支持所有 Iconify 图标集，无需单独安装 @iconify-json/* 包
  *
  * 使用方法：node scripts/generate-icons.js
- * 前置依赖：pnpm add @iconify/json
  */
 
 import { readFileSync, writeFileSync, readdirSync, statSync } from "fs";
 import { join, dirname } from "path";
 import { fileURLToPath } from "url";
 import { getIconData, iconToSVG, iconToHTML, replaceIDs } from "@iconify/utils";
-// 引入全量图标集数据包
-import { icons } from "@iconify/json";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT_DIR = join(__dirname, "..");
 const SRC_DIR = join(ROOT_DIR, "src");
 const OUTPUT_FILE = join(SRC_DIR, "constants", "icons.ts");
 
-// 【已移除】不再限制图标集，支持所有 Iconify 图标集
-// const ICON_SETS = { ... };
+// 【已修正】支持的图标集及其包名（全部有效，无404）
+const ICON_SETS = {
+	"material-symbols": "@iconify-json/material-symbols",
+	"fa7-solid": "@iconify-json/fa7-solid",
+	"fa7-brands": "@iconify-json/fa7-brands",
+	"fa7-regular": "@iconify-json/fa7-regular",
+	mdi: "@iconify-json/mdi",
+	"simple-icons": "@iconify-json/simple-icons",
+	"svg-spinners": "@iconify-json/svg-spinners",
+	ic: "@iconify-json/ic",
+	ri: "@iconify-json/ri",
+	tabler: "@iconify-json/tabler",
+	logos: "@iconify-json/logos",
+};
 
 // 图标集数据缓存
 const iconSetCache = new Map();
@@ -81,21 +89,29 @@ function extractIconNames(content) {
 }
 
 /**
- * 加载图标集数据（从全量数据包加载）
+ * 加载图标集数据
  */
 async function loadIconSet(prefix) {
 	if (iconSetCache.has(prefix)) {
 		return iconSetCache.get(prefix);
 	}
 
-	// 直接从 @iconify/json 获取图标集数据
-	if (icons[prefix]) {
-		iconSetCache.set(prefix, icons[prefix]);
-		return icons[prefix];
+	const packageName = ICON_SETS[prefix];
+	if (!packageName) {
+		console.warn(`⚠️  未知图标集: ${prefix}`);
+		return null;
 	}
 
-	console.warn(`⚠️  未知图标集: ${prefix}`);
-	return null;
+	try {
+		// 动态导入图标集 JSON
+		const iconSetPath = join(ROOT_DIR, "node_modules", packageName, "icons.json");
+		const data = JSON.parse(readFileSync(iconSetPath, "utf-8"));
+		iconSetCache.set(prefix, data);
+		return data;
+	} catch (error) {
+		console.warn(`⚠️  无法加载图标集 ${packageName}: ${error.message}`);
+		return null;
+	}
 }
 
 /**
