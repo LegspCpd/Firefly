@@ -274,19 +274,3 @@ export default defineConfig({
 		},
 	},
 });
-
-import { defineConfig } from 'astro/config';
-import sitemap from '@astrojs/sitemap'; // 引入sitemap插件
-// 你原本的其他引入（比如tailwind、图标等）保持不变
-
-export default defineConfig({
-  // 【关键】必须改成你的新域名，带https://，结尾不要加/
-  site: 'https://blog.legspcpd.indevs.in',
-  
-  integrations: [
-    sitemap(), // 启用sitemap插件
-    // 你原本的其他integrations（比如tailwind、react等）全部保持不变
-  ],
-  
-  // 你原本的其他配置（adapter、output等）全部保持不变
-});
