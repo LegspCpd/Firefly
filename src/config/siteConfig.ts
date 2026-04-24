@@ -10,7 +10,7 @@ export const siteConfig: SiteConfig = {
 	title: "LegspCpd Blog",
 
 	// 站点副标题
-	subtitle: "LegspCpd 的个人博客",
+	subtitle: "blog.legspcpd.indevs.in",
 
 	// 站点 URL
 	site_url: "https://blog.legspcpd.indevs.in",
