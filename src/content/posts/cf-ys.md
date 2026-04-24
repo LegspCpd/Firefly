@@ -6,9 +6,6 @@ category: CloudFlare
 draft: false
 ---
 
-看了一会二叉树树的视频，感觉开智了一样...
-
----
 
 #### 作者的优选域名
 ###### CF: [cf.legspcpd.furry.bz](cf.legspcpd.furry.bz)
