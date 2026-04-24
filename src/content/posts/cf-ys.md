@@ -8,9 +8,9 @@ draft: false
 
 
 #### 作者的优选域名
-###### CF: [https://cf.legspcpd.furry.bz](https://cf.legspcpd.furry.bz)
+CF: [https://cf.legspcpd.furry.bz/](https://cf.legspcpd.furry.bz/)
 ![](https://imghub.legspcpd.indevs.in/file/image/cf.png)
-真 移动优化: [https://cmcc.legspcpd.furry.bz](https://cmcc.legspcpd.furry.bz)
+真 移动优化: [https://cmcc.legspcpd.furry.bz/](https://cmcc.legspcpd.furry.bz/)
 ![](https://imghub.legspcpd.indevs.in/file/image/cf-cmcc.png)
 
 ---
