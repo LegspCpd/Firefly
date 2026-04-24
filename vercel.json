@@ -35,5 +35,11 @@
       ]
     }
   ],
-  "cleanUrls": true
+  "cleanUrls": true,
+  "rewrites": [
+    {
+      "source": "/yandex_8100d571090b9d7d.html",
+      "destination": "/yandex_8100d571090b9d7d"
+    }
+  ]
 }
