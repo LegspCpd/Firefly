@@ -1,0 +1,34 @@
+---
+export const prerender = false;
+export const runtime = 'edge';
+
+const YOUR_DOMAIN = 'blog.legspcpd.indevs.in';
+const GITHUB_BASE = 'https://github.com';
+
+const pathSegments = Astro.params.path;
+const fullPath = Array.isArray(pathSegments) ? pathSegments.join('/') : pathSegments || '';
+const targetUrl = new URL(`/${fullPath}`, GITHUB_BASE);
+targetUrl.search = Astro.url.search;
+
+try {
+  const githubResponse = await fetch(targetUrl.toString(), {
+    method: Astro.request.method,
+    headers: {
+      'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36',
+      'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8'
+    },
+    redirect: 'follow'
+  });
+
+  let pageContent = await githubResponse.text();
+  pageContent = pageContent.replaceAll('https://github.com', `https://${YOUR_DOMAIN}/gh`);
+  pageContent = pageContent.replaceAll('https://raw.githubusercontent.com', `https://${YOUR_DOMAIN}/gh/raw`);
+
+  Astro.response.status = githubResponse.status;
+  Astro.response.headers.set('Content-Type', githubResponse.headers.get('content-type') || 'text/html; charset=utf-8');
+} catch (e) {
+  Astro.response.status = 500;
+}
+---
+
+<html set:html={pageContent}></html>
