@@ -40,7 +40,7 @@ import vercel from "@astrojs/vercel";
 export default defineConfig({
   site: 'https://blog.legspcpd.indevs.in',
   base: "/",
-  trailingSlash: "ignore",
+  trailingSlash: "always",
 
   
   // 图像优化配置
