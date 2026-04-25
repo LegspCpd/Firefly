@@ -41,7 +41,7 @@ export default defineConfig({
   site: 'https://blog.legspcpd.indevs.in',
   base: "/",
   trailingSlash: "ignore",
-   output: 'hybrid',
+
   
   // 图像优化配置
   image: {
