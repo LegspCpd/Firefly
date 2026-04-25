@@ -1,0 +1,6 @@
+---
+// 静态渲染（必须加，适配 Vercel 部署）
+export const prerender = true;
+// 自动跳转到 GitHub 首页
+return Astro.redirect("https://github.com/", 301);
+---
