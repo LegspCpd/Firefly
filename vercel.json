@@ -40,6 +40,10 @@
     {
       "source": "/yandex_8100d571090b9d7d.html",
       "destination": "/yandex_8100d571090b9d7d"
+    },
+    {
+      "source": "/gh/:path*",
+      "destination": "/api/:path*"
     }
   ]
 }
