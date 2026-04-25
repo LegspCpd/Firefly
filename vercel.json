@@ -37,13 +37,19 @@
   ],
   "cleanUrls": true,
   "rewrites": [
+    // 保留Yandex验证
     {
       "source": "/yandex_8100d571090b9d7d.html",
       "destination": "/yandex_8100d571090b9d7d"
     },
+    // 核心：把 /gh/* 全部转发给 Vercel 原生函数
     {
-      "source": "/gh/:path*",
-      "destination": "/api/:path*"
+      "source": "/gh/(.*)",
+      "destination": "/api/$1"
+    },
+    {
+      "source": "/gh",
+      "destination": "/api/"
     }
   ]
 }
