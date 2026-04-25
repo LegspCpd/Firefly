@@ -40,8 +40,9 @@ import vercel from "@astrojs/vercel";
 export default defineConfig({
   site: 'https://blog.legspcpd.indevs.in',
   base: "/",
-  trailingSlash: "always",
-
+  trailingSlash: "ignore",
+   output: 'hybrid',
+  
   // 图像优化配置
   image: {
       // 全局响应式布局
