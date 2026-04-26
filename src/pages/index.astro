@@ -1,18 +1,16 @@
 ---
-// src/pages/index.astro
-// 在这里配置你的文件，外观会和第一版自动扫描的一样
-const files = [
+// ==========================================
+// 📝 在这里加文件！只需要改这里！
+// 格式：一行一个文件名，用英文引号包起来，最后加个逗号
+// ==========================================
+const fileList = [
   "MaaEnd-win-x86_64-v2.7.0.zip",
-  // 你以后有新文件，只需要在这里加文件名，一行一个
-  // "app-new.apk",
-  // "music.flac",
+  // "下一个文件.apk",
+  // "再下一个文件.zip",
 ];
 
-// 链接映射：把文件名对应到你的 GitHub Release 直链
-function getDownloadUrl(filename) {
-  const baseUrl = "https://github.com/LegspCpd/files-01.github.io/releases/download/end/";
-  return baseUrl + encodeURIComponent(filename);
-}
+// 🔧 固定配置（不用改）
+const RELEASE_BASE = "https://github.com/LegspCpd/files-01.github.io/releases/download/end/";
 ---
 
 <!DOCTYPE html>
@@ -23,11 +21,10 @@ function getDownloadUrl(filename) {
 </head>
 <body>
   <h1>文件列表</h1>
-  ${files.length === 0 
-    ? '<p>当前目录没有找到符合条件的文件。</p>' 
-    : '<ul>' + files.map(file => 
-        `<li><a href="${getDownloadUrl(file)}" download="${file}">${file}</a></li>`
-      ).join('') + '</ul>'
-  }
+  <ul>
+    {fileList.map((name) => (
+      <li><a href={RELEASE_BASE + name} download={name}>{name}</a></li>
+    ))}
+  </ul>
 </body>
 </html>
