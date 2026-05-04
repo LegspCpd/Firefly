@@ -3,7 +3,7 @@ title: EdgeOne优选
 published: 2026-05-04
 tags: [EdgeOne, EdgeOne优选, EdgeOne优选教程, 教程]
 category: EdgeOne
-draft: ture
+draft: true
 ---
 
 #### 作者的优选域名
