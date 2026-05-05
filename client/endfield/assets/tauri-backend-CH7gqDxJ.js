@@ -1,0 +1,1 @@
+import{_ as r}from"./index-B4Wbw9Je.js";function c(){let e=null;async function n(){return e||(e=r(()=>import("./core-DhEqZVGG.js"),[]).then(o=>o.invoke)),e}return{async loadBootstrap(o){return(await n())("cmd_bootstrap",{lang:o})},async solveScenario(o,t){return(await n())("cmd_solve",{lang:o,aicToml:t})},async warmup(){}}}export{c as createTauriBackend};
