@@ -281,7 +281,6 @@ function modelV1BuildPlugin(): PluginOption {
   };
 }
 
-// Material Symbols Plugin - generates font subset from icon registry
 function materialSymbolsPlugin(): PluginOption {
   return {
     name: 'material-symbols-generator',
@@ -295,12 +294,10 @@ function materialSymbolsPlugin(): PluginOption {
       this.info('[material-symbols] generating...');
       
       try {
-        // Import icon registry to get REGISTERED_ICONS
         const registryUrl = 'file://' + join(webRoot, 'src/lib/icon-registry.ts');
         const registry = await import(registryUrl);
         const icons = (registry.REGISTERED_ICONS as readonly string[]).slice().sort((a, b) => a.localeCompare(b));
         
-        // Parse cmap from font
         const cmapXml = execFileSync(
           'uv',
           ['run', '--with', 'fonttools', '--with', 'brotli', 'ttx', '-q', '-t', 'cmap', '-o', '-', sourceFont],
@@ -321,7 +318,6 @@ function materialSymbolsPlugin(): PluginOption {
           }
         }
         
-        // Build codepoint map
         const codepoints = new Map<string, number>();
         for (const icon of icons) {
           const values: number[] = (codepointsByName.get(icon) ?? []).sort((a: number, b: number) => a - b);
@@ -330,12 +326,10 @@ function materialSymbolsPlugin(): PluginOption {
           }
         }
         
-        // Create output directories
         mkdirSync(dirname(outputFont), { recursive: true });
         mkdirSync(dirname(cssPath), { recursive: true });
         mkdirSync(dirname(codepointsTsPath), { recursive: true });
         
-        // Write TypeScript codepoints file
         const entries = icons
           .filter((icon) => codepoints.has(icon))
           .map((icon) => `  "${icon}": 0x${codepoints.get(icon)!.toString(16).toUpperCase()},`)
@@ -351,7 +345,6 @@ ${entries}
 export type MaterialSymbolIconName = keyof typeof MATERIAL_SYMBOLS_CODEPOINTS;
 `, 'utf8');
         
-        // Write CSS file
         writeFileSync(cssPath, `@font-face {
   font-family: "Material Symbols Outlined";
   font-style: normal;
@@ -378,7 +371,6 @@ export type MaterialSymbolIconName = keyof typeof MATERIAL_SYMBOLS_CODEPOINTS;
 }
 `, 'utf8');
         
-        // Subset font
         const unicodes = [...codepoints.values()]
           .sort((a, b) => a - b)
           .map((cp) => `U+${cp.toString(16).toUpperCase()}`)
@@ -420,7 +412,9 @@ export default defineConfig(({ mode }) => {
 
   return {
     plugins,
-    base: normalizeBasePath(basePath),
+    // === 已修改为子路径适配 ===
+    base: '/endfield/',
+    
     define: {
       global: 'globalThis'
     },
