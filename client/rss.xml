@@ -1,4 +1,529 @@
-<?xml version="1.0" encoding="UTF-8"?><rss version="2.0" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>LegspCpd Blog</title><description>blog.legspcpd.indevs.in</description><link>https://blog.legspcpd.indevs.in/</link><templateTheme>Firefly</templateTheme><templateThemeVersion>6.8.11</templateThemeVersion><templateThemeUrl>https://github.com/CuteLeaf/Firefly</templateThemeUrl><lastBuildDate>2026年5月17日 14:59:44</lastBuildDate><item><title>有限生命里的无限当下</title><link>https://blog.legspcpd.indevs.in/posts/day/yxdsm/</link><guid isPermaLink="true">https://blog.legspcpd.indevs.in/posts/day/yxdsm/</guid><pubDate>Wed, 06 May 2026 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;直到多年以后你才恍然大悟，原来那是最后一次，那天午后，你像往常一样退出了游戏界面，那天傍晚你习惯性的和朋友道了，别，那天深夜妈妈轻轻抱了你一下，遗憾的是没人提醒你，也没有任何征兆，最后一次总是悄然而至，不会张扬，没有预兆，当你再回头已是物是人非，我们总以为时间充以为来日方长，以至于我们常常忽略当下，海德格尔认为人类最大的不同就是我们清楚自己终将死亡，这意味着我们每一次呼吸，每一次相遇都有可能是绝对意义上的最后一次，所以有人把每一次都当做最后一次去珍惜，也有人整日忧心，总在害怕最后一次的到来，但无论是景物还是担忧生活都不会因此停下也许。所谓最后一次在大多数时候并不是故事的终点，而是生命中温柔的提醒，别再沉溺过去的美好，也别把未来想的太远，此刻正在发生的才是我们唯一能抓住的真实朋友，过去的最后一次，你沉入时光，而未来仍有无数的第一次在等待着你，所以请试着放慢脚步，环顾四周，更深的去感受当下的人和事，因为没有人知道这是不是最后一次&lt;/p&gt;</content:encoded></item><item><title>Cloudflare优选教程，让Cloudflare在国内不再是减速器</title><link>https://blog.legspcpd.indevs.in/posts/cf-ys/</link><guid isPermaLink="true">https://blog.legspcpd.indevs.in/posts/cf-ys/</guid><pubDate>Sun, 19 Apr 2026 00:00:00 GMT</pubDate><content:encoded>&lt;section&gt;&lt;h4&gt;作者的优选域名&lt;a href=&quot;#作者的优选域名&quot;&gt;&lt;span&gt;#&lt;/span&gt;&lt;/a&gt;&lt;/h4&gt;&lt;p&gt;CF: &lt;a href=&quot;https://cf.legspcpd.furry.bz/&quot; target=&quot;_blank&quot;&gt;https://cf.legspcpd.furry.bz/&lt;/a&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>LegspCpd Blog</title><description>blog.legspcpd.indevs.in</description><link>https://blog.legspcpd.indevs.in/</link><templateTheme>Firefly</templateTheme><templateThemeVersion>6.8.11</templateThemeVersion><templateThemeUrl>https://github.com/CuteLeaf/Firefly</templateThemeUrl><lastBuildDate>2026年5月17日 15:02:40</lastBuildDate><item><title>使用华为云制作优选域名</title><link>https://blog.legspcpd.indevs.in/posts/eo-cf-fanip/</link><guid isPermaLink="true">https://blog.legspcpd.indevs.in/posts/eo-cf-fanip/</guid><pubDate>Sat, 09 May 2026 00:00:00 GMT</pubDate><content:encoded>&lt;section&gt;&lt;h1&gt;作者的优选域名&lt;a href=&quot;#作者的优选域名&quot;&gt;&lt;span&gt;#&lt;/span&gt;&lt;/a&gt;&lt;/h1&gt;&lt;p&gt;Edgeone：&lt;a href=&quot;https://eo.legspcpd.furry.bz/&quot; target=&quot;_blank&quot;&gt;https://eo.legspcpd.furry.bz/&lt;/a&gt;
+&lt;img src=&quot;https://imghub.legspcpd.indevs.in/file/image/QQ20260509-110615.png&quot; alt=&quot;&quot; /&gt;
+Cloudflare: &lt;a href=&quot;https://cf.legspcpd.furry.bz/&quot; target=&quot;_blank&quot;&gt;https://cf.legspcpd.furry.bz/&lt;/a&gt;
+&lt;img src=&quot;https://imghub.legspcpd.indevs.in/file/image/QQ20260509-110717.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;&lt;hr /&gt;&lt;section&gt;&lt;h2&gt;Cloudflare&lt;a href=&quot;#cloudflare&quot;&gt;&lt;span&gt;#&lt;/span&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;可以去看我之前做的教程
+&lt;a href=&quot;https://blog.legspcpd.qzz.io/posts/cf-ys/&quot; target=&quot;_blank&quot;&gt;Cloudflare优选教程&lt;/a&gt;&lt;/p&gt;&lt;hr /&gt;&lt;/section&gt;&lt;section&gt;&lt;h2&gt;Edgeone&lt;a href=&quot;#edgeone&quot;&gt;&lt;span&gt;#&lt;/span&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;Edgeone的原理是差不多的，但这里推荐用华为云国际来优选&lt;/p&gt;&lt;p&gt;推荐以下IP&lt;/p&gt;&lt;p&gt;43.174.150.*&lt;/p&gt;&lt;p&gt;43.174.151.*&lt;/p&gt;&lt;p&gt;其实还有&lt;/p&gt;&lt;p&gt;43.174.130.*&lt;/p&gt;&lt;p&gt;43.174.131.*&lt;/p&gt;&lt;p&gt;43.174.132.*&lt;/p&gt;&lt;p&gt;这三个，但是基本上都会被ban&lt;/p&gt;&lt;hr /&gt;&lt;/section&gt;&lt;section&gt;&lt;h2&gt;优选过程&lt;a href=&quot;#优选过程&quot;&gt;&lt;span&gt;#&lt;/span&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;打开&lt;a href=&quot;https://huaweicloud.com/&quot; target=&quot;_blank&quot;&gt;华为云&lt;/a&gt;&lt;/p&gt;&lt;p&gt;注册一个账号，并把一个域名托管到上面&lt;/p&gt;&lt;p&gt;解析完之后，找到 ==云解析服务 DNS==&amp;gt;==公网域名==&amp;gt;你托管的域名
+点 ==添加记录集== ，用A记录指向那四个IP
+&lt;img src=&quot;https://imghub.legspcpd.indevs.in/file/image/QQ20260509-111220.png&quot; alt=&quot;&quot; /&gt;
+按照这样来填，填完后点确定
+这时候我们去测试
+&lt;img src=&quot;https://imghub.legspcpd.indevs.in/file/image/QQ20260509-111546.png&quot; alt=&quot;&quot; /&gt;
+解析出来了&lt;/p&gt;&lt;/section&gt;&lt;/section&gt;</content:encoded></item><item><title>有限生命里的无限当下</title><link>https://blog.legspcpd.indevs.in/posts/day/yxdsm/</link><guid isPermaLink="true">https://blog.legspcpd.indevs.in/posts/day/yxdsm/</guid><pubDate>Wed, 06 May 2026 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;直到多年以后你才恍然大悟，原来那是最后一次，那天午后，你像往常一样退出了游戏界面，那天傍晚你习惯性的和朋友道了，别，那天深夜妈妈轻轻抱了你一下，遗憾的是没人提醒你，也没有任何征兆，最后一次总是悄然而至，不会张扬，没有预兆，当你再回头已是物是人非，我们总以为时间充以为来日方长，以至于我们常常忽略当下，海德格尔认为人类最大的不同就是我们清楚自己终将死亡，这意味着我们每一次呼吸，每一次相遇都有可能是绝对意义上的最后一次，所以有人把每一次都当做最后一次去珍惜，也有人整日忧心，总在害怕最后一次的到来，但无论是景物还是担忧生活都不会因此停下也许。所谓最后一次在大多数时候并不是故事的终点，而是生命中温柔的提醒，别再沉溺过去的美好，也别把未来想的太远，此刻正在发生的才是我们唯一能抓住的真实朋友，过去的最后一次，你沉入时光，而未来仍有无数的第一次在等待着你，所以请试着放慢脚步，环顾四周，更深的去感受当下的人和事，因为没有人知道这是不是最后一次&lt;/p&gt;</content:encoded></item><item><title>2026高防CDN推荐与实测排名：Cloudflare、YewSafe、CDN5等免备案高防CDN对比评测</title><link>https://blog.legspcpd.indevs.in/posts/2026cdn/</link><guid isPermaLink="true">https://blog.legspcpd.indevs.in/posts/2026cdn/</guid><pubDate>Sun, 19 Apr 2026 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;如今&lt;a href=&quot;https://www.gwvpsceping.com/tag/%e9%ab%98%e9%98%b2cdn&quot; target=&quot;_blank&quot;&gt;高防CDN&lt;/a&gt;市场竞争激烈，几乎所有厂商都在宣传“T级防护”“智能清洗”“全球Anycast”“AI抗CC”等概念，但真正落地到实际业务时，不同产品之间的差距非常明显。&lt;/p&gt;
+&lt;p&gt;有些平台在宣传页上号称支持超大规模攻击，但面对复杂CC请求时误杀严重；有些平台全球节点很多，却无法解决中国大陆晚高峰延迟问题；还有部分产品价格看似便宜，攻击发生后账单却瞬间翻倍。&lt;/p&gt;
+&lt;p&gt;本文基于2026年2月至4月期间的连续实测，对目前主流跨境高防CDN服务商进行了统一环境测试，重点关注：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;DDoS清洗能力&lt;/li&gt;
+&lt;li&gt;HTTPS/&lt;a href=&quot;https://www.gwvpsceping.com/tag/cc%e6%94%bb%e5%87%bb%e9%98%b2%e6%8a%a4&quot; target=&quot;_blank&quot;&gt;CC攻击防护&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;中国大陆访问质量&lt;/li&gt;
+&lt;li&gt;攻击期间延迟变化&lt;/li&gt;
+&lt;li&gt;隐藏费用与计费透明度&lt;/li&gt;
+&lt;li&gt;企业实际部署体验&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;本次评测不接受厂商赞助，不采用官方宣传数据，全部结果均来自实际攻击测试与连续监控。
+&lt;img src=&quot;https://imghub.legspcpd.indevs.in/file/image/cdn-1024x576.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;section&gt;&lt;h2&gt;一、测试环境与评测方式&lt;a href=&quot;#一测试环境与评测方式&quot;&gt;&lt;span&gt;#&lt;/span&gt;&lt;/a&gt;&lt;/h2&gt;&lt;section&gt;&lt;h3&gt;测试周期&lt;a href=&quot;#测试周期&quot;&gt;&lt;span&gt;#&lt;/span&gt;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;2026年2月 — 2026年4月&lt;/p&gt;&lt;/section&gt;&lt;section&gt;&lt;h3&gt;测试环境&lt;a href=&quot;#测试环境&quot;&gt;&lt;span&gt;#&lt;/span&gt;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;测试源站分别部署于：
+测试源站分别部署于：&lt;/p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;table&gt;&lt;thead&gt;&lt;tr&gt;&lt;th&gt;源站区域&lt;/th&gt;&lt;th&gt;云厂商&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td&gt;美国弗吉尼亚&lt;/td&gt;&lt;td&gt;公有云环境&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;德国法兰克福&lt;/td&gt;&lt;td&gt;公有云环境&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;新加坡&lt;/td&gt;&lt;td&gt;公有云环境&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/section&gt;&lt;section&gt;&lt;h3&gt;攻击测试类型&lt;a href=&quot;#攻击测试类型&quot;&gt;&lt;span&gt;#&lt;/span&gt;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;所有服务商均进行了至少3轮攻击测试，每轮持续30分钟，攻击类型包括：&lt;/p&gt;&lt;ul&gt;
+&lt;li&gt;UDP反射放大攻击&lt;/li&gt;
+&lt;li&gt;SYN Flood&lt;/li&gt;
+&lt;li&gt;ACK Flood&lt;/li&gt;
+&lt;li&gt;HTTP慢速攻击&lt;/li&gt;
+&lt;li&gt;HTTPS随机CC攻击&lt;/li&gt;
+&lt;/ul&gt;&lt;/section&gt;&lt;section&gt;&lt;h3&gt;测试维度&lt;a href=&quot;#测试维度&quot;&gt;&lt;span&gt;#&lt;/span&gt;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;本次评测重点关注以下指标：&lt;/p&gt;&lt;ul&gt;
+&lt;li&gt;DDoS清洗率&lt;/li&gt;
+&lt;li&gt;CC攻击拦截能力&lt;/li&gt;
+&lt;li&gt;正常请求误杀率&lt;/li&gt;
+&lt;li&gt;攻击期间访问延迟&lt;/li&gt;
+&lt;li&gt;全球节点响应时间&lt;/li&gt;
+&lt;li&gt;中国大陆访问质量&lt;/li&gt;
+&lt;li&gt;价格透明度&lt;/li&gt;
+&lt;li&gt;是否存在隐藏费用&lt;/li&gt;
+&lt;/ul&gt;&lt;/section&gt;&lt;section&gt;&lt;h3&gt;测试说明&lt;a href=&quot;#测试说明&quot;&gt;&lt;span&gt;#&lt;/span&gt;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;所有服务商均购买最低企业级付费套餐进行测试；无企业套餐的平台则使用官方推荐的入门级商业方案。&lt;/p&gt;&lt;p&gt;本文测试结果仅代表特定时间与网络环境下的数据，不构成长期效果保证。&lt;/p&gt;&lt;/section&gt;&lt;/section&gt;
+&lt;section&gt;&lt;h2&gt;二、高防CDN实测数据汇总&lt;a href=&quot;#二高防cdn实测数据汇总&quot;&gt;&lt;span&gt;#&lt;/span&gt;&lt;/a&gt;&lt;/h2&gt;&lt;section&gt;&lt;h3&gt;1、DDoS与CC攻击清洗率对比&lt;a href=&quot;#1ddos与cc攻击清洗率对比&quot;&gt;&lt;span&gt;#&lt;/span&gt;&lt;/a&gt;&lt;/h3&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;table&gt;&lt;thead&gt;&lt;tr&gt;&lt;th&gt;服务商&lt;/th&gt;&lt;th&gt;UDP洪水清洗率&lt;/th&gt;&lt;th&gt;SYN洪水清洗率&lt;/th&gt;&lt;th&gt;CC攻击清洗率&lt;/th&gt;&lt;th&gt;正常请求误杀率&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td&gt;YewSafe&lt;/td&gt;&lt;td&gt;99.99%&lt;/td&gt;&lt;td&gt;99.97%&lt;/td&gt;&lt;td&gt;99.92%&lt;/td&gt;&lt;td&gt;0.02%&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;CDN5&lt;/td&gt;&lt;td&gt;99.98%&lt;/td&gt;&lt;td&gt;99.88%&lt;/td&gt;&lt;td&gt;99.95%&lt;/td&gt;&lt;td&gt;0.12%&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Cloudflare&lt;/td&gt;&lt;td&gt;99.99%&lt;/td&gt;&lt;td&gt;99.98%&lt;/td&gt;&lt;td&gt;97.30%&lt;/td&gt;&lt;td&gt;2.10%&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Akamai&lt;/td&gt;&lt;td&gt;99.99%&lt;/td&gt;&lt;td&gt;99.99%&lt;/td&gt;&lt;td&gt;99.80%&lt;/td&gt;&lt;td&gt;0.05%&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;a href=&quot;https://www.gwvpsceping.com/tag/aws&quot; target=&quot;_blank&quot;&gt;AWS&lt;/a&gt; Shield&lt;/td&gt;&lt;td&gt;99.93%&lt;/td&gt;&lt;td&gt;99.90%&lt;/td&gt;&lt;td&gt;94.20%&lt;/td&gt;&lt;td&gt;3.50%&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Fastly&lt;/td&gt;&lt;td&gt;99.85%&lt;/td&gt;&lt;td&gt;99.80%&lt;/td&gt;&lt;td&gt;96.50%&lt;/td&gt;&lt;td&gt;1.80%&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Imperva&lt;/td&gt;&lt;td&gt;99.95%&lt;/td&gt;&lt;td&gt;99.93%&lt;/td&gt;&lt;td&gt;99.10%&lt;/td&gt;&lt;td&gt;0.50%&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;StackPath&lt;/td&gt;&lt;td&gt;99.60%&lt;/td&gt;&lt;td&gt;99.50%&lt;/td&gt;&lt;td&gt;93.80%&lt;/td&gt;&lt;td&gt;0.90%&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;p&gt;需要说明的是：&lt;/p&gt;&lt;ul&gt;
+&lt;li&gt;Cloudflare免费版在CC攻击场景中的表现明显弱于Pro/Business方案&lt;/li&gt;
+&lt;li&gt;AWS Shield需额外搭配WAF规则才能达到表中防御能力&lt;/li&gt;
+&lt;li&gt;StackPath在大规模CC攻击下存在明显漏拦情况&lt;/li&gt;
+&lt;/ul&gt;&lt;/section&gt;&lt;section&gt;&lt;h3&gt;2、攻击期间延迟表现&lt;a href=&quot;#2攻击期间延迟表现&quot;&gt;&lt;span&gt;#&lt;/span&gt;&lt;/a&gt;&lt;/h3&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;table&gt;&lt;thead&gt;&lt;tr&gt;&lt;th&gt;服务商&lt;/th&gt;&lt;th&gt;正常状态全球平均延迟&lt;/th&gt;&lt;th&gt;攻击期间延迟（300G攻击）&lt;/th&gt;&lt;th&gt;清洗介入时间&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td&gt;YewSafe&lt;/td&gt;&lt;td&gt;42ms&lt;/td&gt;&lt;td&gt;28ms&lt;/td&gt;&lt;td&gt;10秒&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;CDN5&lt;/td&gt;&lt;td&gt;45ms&lt;/td&gt;&lt;td&gt;35ms&lt;/td&gt;&lt;td&gt;15秒&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Cloudflare&lt;/td&gt;&lt;td&gt;38ms&lt;/td&gt;&lt;td&gt;45ms&lt;/td&gt;&lt;td&gt;12秒&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Akamai&lt;/td&gt;&lt;td&gt;35ms&lt;/td&gt;&lt;td&gt;38ms&lt;/td&gt;&lt;td&gt;5秒&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;AWS Shield&lt;/td&gt;&lt;td&gt;65ms&lt;/td&gt;&lt;td&gt;95ms&lt;/td&gt;&lt;td&gt;90秒&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Fastly&lt;/td&gt;&lt;td&gt;48ms&lt;/td&gt;&lt;td&gt;62ms&lt;/td&gt;&lt;td&gt;25秒&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Imperva&lt;/td&gt;&lt;td&gt;59ms&lt;/td&gt;&lt;td&gt;74ms&lt;/td&gt;&lt;td&gt;35秒&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;StackPath&lt;/td&gt;&lt;td&gt;72ms&lt;/td&gt;&lt;td&gt;118ms&lt;/td&gt;&lt;td&gt;55秒&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;p&gt;从实测结果来看：&lt;/p&gt;&lt;ul&gt;
+&lt;li&gt;Akamai的响应速度仍然属于行业顶级&lt;/li&gt;
+&lt;li&gt;Cloudflare全球网络覆盖优势明显&lt;/li&gt;
+&lt;li&gt;AWS Shield由于并非原生CDN架构，延迟表现偏高&lt;/li&gt;
+&lt;li&gt;StackPath在攻击期间稳定性较差&lt;/li&gt;
+&lt;/ul&gt;&lt;/section&gt;&lt;section&gt;&lt;h3&gt;3、中国大陆访问质量测试&lt;a href=&quot;#3中国大陆访问质量测试&quot;&gt;&lt;span&gt;#&lt;/span&gt;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;测试节点：&lt;/p&gt;&lt;ul&gt;
+&lt;li&gt;北京联通&lt;/li&gt;
+&lt;li&gt;上海电信&lt;/li&gt;
+&lt;li&gt;广州移动&lt;/li&gt;
+&lt;/ul&gt;&lt;p&gt;测试时间均为晚高峰。&lt;/p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;table&gt;&lt;thead&gt;&lt;tr&gt;&lt;th&gt;服务商&lt;/th&gt;&lt;th&gt;北京联通&lt;/th&gt;&lt;th&gt;上海电信&lt;/th&gt;&lt;th&gt;广州移动&lt;/th&gt;&lt;th&gt;是否需要备案&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td&gt;YewSafe&lt;/td&gt;&lt;td&gt;37ms&lt;/td&gt;&lt;td&gt;35ms&lt;/td&gt;&lt;td&gt;57ms&lt;/td&gt;&lt;td&gt;否&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;CDN5&lt;/td&gt;&lt;td&gt;42ms&lt;/td&gt;&lt;td&gt;42ms&lt;/td&gt;&lt;td&gt;45ms&lt;/td&gt;&lt;td&gt;否&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Cloudflare&lt;/td&gt;&lt;td&gt;187ms&lt;/td&gt;&lt;td&gt;203ms&lt;/td&gt;&lt;td&gt;218ms&lt;/td&gt;&lt;td&gt;否&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Akamai&lt;/td&gt;&lt;td&gt;95ms&lt;/td&gt;&lt;td&gt;98ms&lt;/td&gt;&lt;td&gt;110ms&lt;/td&gt;&lt;td&gt;是（大陆节点）&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Fastly&lt;/td&gt;&lt;td&gt;165ms&lt;/td&gt;&lt;td&gt;172ms&lt;/td&gt;&lt;td&gt;188ms&lt;/td&gt;&lt;td&gt;否&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Imperva&lt;/td&gt;&lt;td&gt;138ms&lt;/td&gt;&lt;td&gt;142ms&lt;/td&gt;&lt;td&gt;155ms&lt;/td&gt;&lt;td&gt;否&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;StackPath&lt;/td&gt;&lt;td&gt;260ms+&lt;/td&gt;&lt;td&gt;255ms+&lt;/td&gt;&lt;td&gt;270ms+&lt;/td&gt;&lt;td&gt;否&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;p&gt;本轮测试中：&lt;/p&gt;&lt;ul&gt;
+&lt;li&gt;YewSafe与CDN5是&lt;a href=&quot;https://www.gwvpsceping.com/tag/%e5%85%8d%e5%a4%87%e6%a1%88&quot; target=&quot;_blank&quot;&gt;免备案&lt;/a&gt;场景下表现最稳定的两家&lt;/li&gt;
+&lt;li&gt;Cloudflare在中国大陆晚高峰波动较大&lt;/li&gt;
+&lt;li&gt;StackPath几乎不适合中国访问业务&lt;/li&gt;
+&lt;/ul&gt;&lt;/section&gt;&lt;section&gt;&lt;h3&gt;4、套餐价格与隐藏费用分析&lt;a href=&quot;#4套餐价格与隐藏费用分析&quot;&gt;&lt;span&gt;#&lt;/span&gt;&lt;/a&gt;&lt;/h3&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;table&gt;&lt;thead&gt;&lt;tr&gt;&lt;th&gt;服务商&lt;/th&gt;&lt;th&gt;企业版起步价格&lt;/th&gt;&lt;th&gt;攻击期间额外收费&lt;/th&gt;&lt;th&gt;超额流量价格&lt;/th&gt;&lt;th&gt;隐藏费用风险&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td&gt;YewSafe&lt;/td&gt;&lt;td&gt;$500/月起&lt;/td&gt;&lt;td&gt;无&lt;/td&gt;&lt;td&gt;套餐内包含&lt;/td&gt;&lt;td&gt;低&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;CDN5&lt;/td&gt;&lt;td&gt;$299/月起&lt;/td&gt;&lt;td&gt;无&lt;/td&gt;&lt;td&gt;$0.08/GB&lt;/td&gt;&lt;td&gt;低&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Cloudflare&lt;/td&gt;&lt;td&gt;$200/月（Business）&lt;/td&gt;&lt;td&gt;存在&lt;/td&gt;&lt;td&gt;$0.10/GB&lt;/td&gt;&lt;td&gt;中&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Akamai&lt;/td&gt;&lt;td&gt;定制报价（约$15k/月）&lt;/td&gt;&lt;td&gt;定制&lt;/td&gt;&lt;td&gt;定制&lt;/td&gt;&lt;td&gt;高&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;AWS Shield&lt;/td&gt;&lt;td&gt;$3,000/月+流量费&lt;/td&gt;&lt;td&gt;无单独攻击费&lt;/td&gt;&lt;td&gt;$0.09/GB&lt;/td&gt;&lt;td&gt;高&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Fastly&lt;/td&gt;&lt;td&gt;按量计费（约$1,200/月）&lt;/td&gt;&lt;td&gt;存在&lt;/td&gt;&lt;td&gt;$0.12/GB&lt;/td&gt;&lt;td&gt;中&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Imperva&lt;/td&gt;&lt;td&gt;$1,900/月起&lt;/td&gt;&lt;td&gt;存在&lt;/td&gt;&lt;td&gt;$0.11/GB&lt;/td&gt;&lt;td&gt;中&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;StackPath&lt;/td&gt;&lt;td&gt;$450/月起&lt;/td&gt;&lt;td&gt;存在&lt;/td&gt;&lt;td&gt;$0.09/GB&lt;/td&gt;&lt;td&gt;中&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;p&gt;需要特别注意：&lt;/p&gt;&lt;ul&gt;
+&lt;li&gt;Cloudflare弹性计费在大规模攻击时可能导致账单明显上涨&lt;/li&gt;
+&lt;li&gt;AWS Shield的流量传出费用容易被忽视&lt;/li&gt;
+&lt;li&gt;Akamai报价通常需要长期合同&lt;/li&gt;
+&lt;/ul&gt;&lt;/section&gt;&lt;/section&gt;
+&lt;section&gt;&lt;h2&gt;三、主流高防CDN服务商详细分析&lt;a href=&quot;#三主流高防cdn服务商详细分析&quot;&gt;&lt;span&gt;#&lt;/span&gt;&lt;/a&gt;&lt;/h2&gt;&lt;section&gt;&lt;h3&gt;1、YewSafe&lt;a href=&quot;#1yewsafe&quot;&gt;&lt;span&gt;#&lt;/span&gt;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;适合对象：&lt;/p&gt;&lt;ul&gt;
+&lt;li&gt;跨境电商&lt;/li&gt;
+&lt;li&gt;Web3项目&lt;/li&gt;
+&lt;li&gt;金融支付&lt;/li&gt;
+&lt;li&gt;海外业务面向中国用户的平台&lt;/li&gt;
+&lt;/ul&gt;&lt;p&gt;实测中，YewSafe最大的优势在于：&lt;/p&gt;&lt;ul&gt;
+&lt;li&gt;低误杀率&lt;/li&gt;
+&lt;li&gt;中国大陆访问质量稳定&lt;/li&gt;
+&lt;li&gt;无需备案&lt;/li&gt;
+&lt;li&gt;高强度CC攻击拦截效果优秀&lt;/li&gt;
+&lt;/ul&gt;&lt;p&gt;在700Gbps级别混合攻击下，源站未出现明显异常。&lt;/p&gt;&lt;p&gt;不过其定位偏企业级，价格门槛高于普通中小型站点。&lt;/p&gt;&lt;p&gt;官方地址：&lt;a href=&quot;https://www.yewsafe.com/zh&quot; target=&quot;_blank&quot;&gt;YewSafe&lt;/a&gt;&lt;/p&gt;&lt;/section&gt;&lt;section&gt;&lt;h3&gt;2、Cloudflare&lt;a href=&quot;#2cloudflare&quot;&gt;&lt;span&gt;#&lt;/span&gt;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;Cloudflare依然拥有全球最大的Anycast网络之一。&lt;/p&gt;&lt;p&gt;优势：&lt;/p&gt;&lt;ul&gt;
+&lt;li&gt;全球节点覆盖极强&lt;/li&gt;
+&lt;li&gt;延迟低&lt;/li&gt;
+&lt;li&gt;免费方案可快速接入&lt;/li&gt;
+&lt;li&gt;DNS与CDN整合方便&lt;/li&gt;
+&lt;/ul&gt;&lt;p&gt;不足：&lt;/p&gt;&lt;ul&gt;
+&lt;li&gt;中国大陆访问体验一般&lt;/li&gt;
+&lt;li&gt;免费版CC防护能力有限&lt;/li&gt;
+&lt;li&gt;高级套餐成本不低&lt;/li&gt;
+&lt;li&gt;客服响应速度偏慢&lt;/li&gt;
+&lt;/ul&gt;&lt;p&gt;适合欧美业务场景。&lt;/p&gt;&lt;p&gt;官方地址：&lt;a href=&quot;https://www.cloudflare.com/&quot; target=&quot;_blank&quot;&gt;Cloudflare&lt;/a&gt;&lt;/p&gt;&lt;/section&gt;&lt;section&gt;&lt;h3&gt;3、CDN5&lt;a href=&quot;#3cdn5&quot;&gt;&lt;span&gt;#&lt;/span&gt;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;CDN5在本次CC攻击测试中的表现非常突出。&lt;/p&gt;&lt;p&gt;特点：&lt;/p&gt;&lt;ul&gt;
+&lt;li&gt;CC识别准确率高&lt;/li&gt;
+&lt;li&gt;指纹识别机制优秀&lt;/li&gt;
+&lt;li&gt;价格相对友好&lt;/li&gt;
+&lt;li&gt;免备案支持较完善&lt;/li&gt;
+&lt;/ul&gt;&lt;p&gt;缺点：&lt;/p&gt;&lt;ul&gt;
+&lt;li&gt;全球节点数量不如Cloudflare&lt;/li&gt;
+&lt;li&gt;南美与非洲访问延迟较高&lt;/li&gt;
+&lt;li&gt;边缘计算功能较少&lt;/li&gt;
+&lt;/ul&gt;&lt;p&gt;对于预算有限但经常遭受CC攻击的网站来说，性价比较高。&lt;/p&gt;&lt;p&gt;官方地址：&lt;a href=&quot;https://www.cdn5.com/&quot; target=&quot;_blank&quot;&gt;CDN5&lt;/a&gt;&lt;/p&gt;&lt;/section&gt;&lt;section&gt;&lt;h3&gt;4、Akamai&lt;a href=&quot;#4akamai&quot;&gt;&lt;span&gt;#&lt;/span&gt;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;Akamai仍然是企业级高防CDN领域的顶级方案。&lt;/p&gt;&lt;p&gt;优势：&lt;/p&gt;&lt;ul&gt;
+&lt;li&gt;零秒级缓解&lt;/li&gt;
+&lt;li&gt;超大规模清洗能力&lt;/li&gt;
+&lt;li&gt;全球骨干网络成熟&lt;/li&gt;
+&lt;li&gt;企业级稳定性极强&lt;/li&gt;
+&lt;/ul&gt;&lt;p&gt;不足：&lt;/p&gt;&lt;ul&gt;
+&lt;li&gt;价格极高&lt;/li&gt;
+&lt;li&gt;部署流程复杂&lt;/li&gt;
+&lt;li&gt;合同周期长&lt;/li&gt;
+&lt;/ul&gt;&lt;p&gt;适合大型金融机构或上市公司。&lt;/p&gt;&lt;p&gt;官方地址：&lt;a href=&quot;https://www.akamai.com/&quot; target=&quot;_blank&quot;&gt;Akamai&lt;/a&gt;&lt;/p&gt;&lt;/section&gt;&lt;section&gt;&lt;h3&gt;5、AWS Shield Advanced&lt;a href=&quot;#5aws-shield-advanced&quot;&gt;&lt;span&gt;#&lt;/span&gt;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;AWS Shield更偏向AWS生态内部的安全产品。&lt;/p&gt;&lt;p&gt;特点：&lt;/p&gt;&lt;ul&gt;
+&lt;li&gt;与AWS服务整合度高&lt;/li&gt;
+&lt;li&gt;自动化程度较高&lt;/li&gt;
+&lt;/ul&gt;&lt;p&gt;不足：&lt;/p&gt;&lt;ul&gt;
+&lt;li&gt;并非真正意义上的CDN&lt;/li&gt;
+&lt;li&gt;必须配合CloudFront与WAF&lt;/li&gt;
+&lt;li&gt;流量成本高&lt;/li&gt;
+&lt;li&gt;独立使用价值有限&lt;/li&gt;
+&lt;/ul&gt;&lt;p&gt;更适合已经深度部署AWS架构的企业。&lt;/p&gt;&lt;p&gt;官方地址：&lt;a href=&quot;https://aws.amazon.com/cn/shield/&quot; target=&quot;_blank&quot;&gt;AWS Shield Advanced&lt;/a&gt;&lt;/p&gt;&lt;/section&gt;&lt;section&gt;&lt;h3&gt;6、Fastly&lt;a href=&quot;#6fastly&quot;&gt;&lt;span&gt;#&lt;/span&gt;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;Fastly更偏向技术团队使用。&lt;/p&gt;&lt;p&gt;优势：&lt;/p&gt;&lt;ul&gt;
+&lt;li&gt;边缘缓存刷新速度快&lt;/li&gt;
+&lt;li&gt;API性能优秀&lt;/li&gt;
+&lt;li&gt;边缘计算能力强&lt;/li&gt;
+&lt;/ul&gt;&lt;p&gt;不足：&lt;/p&gt;&lt;ul&gt;
+&lt;li&gt;配置门槛较高&lt;/li&gt;
+&lt;li&gt;DDoS规则需要自行优化&lt;/li&gt;
+&lt;li&gt;非技术团队维护成本高&lt;/li&gt;
+&lt;/ul&gt;&lt;p&gt;适合技术驱动型平台。&lt;/p&gt;&lt;p&gt;官方地址：&lt;a href=&quot;https://www.fastly.com/&quot; target=&quot;_blank&quot;&gt;Fastly&lt;/a&gt;&lt;/p&gt;&lt;/section&gt;&lt;section&gt;&lt;h3&gt;7、Imperva&lt;a href=&quot;#7imperva&quot;&gt;&lt;span&gt;#&lt;/span&gt;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;Imperva在WAF安全层面表现优秀。&lt;/p&gt;&lt;p&gt;特点：&lt;/p&gt;&lt;ul&gt;
+&lt;li&gt;OWASP规则完善&lt;/li&gt;
+&lt;li&gt;企业安全能力强&lt;/li&gt;
+&lt;li&gt;SLA稳定性较高&lt;/li&gt;
+&lt;/ul&gt;&lt;p&gt;但其&lt;a href=&quot;https://www.gwvpsceping.com/tag/cdn%e5%8a%a0%e9%80%9f&quot; target=&quot;_blank&quot;&gt;CDN加速&lt;/a&gt;能力相对一般。&lt;/p&gt;&lt;p&gt;适合安全优先级高于访问速度的平台。&lt;/p&gt;&lt;p&gt;官方地址：&lt;a href=&quot;https://www.imperva.com/&quot; target=&quot;_blank&quot;&gt;Imperva&lt;/a&gt;&lt;/p&gt;&lt;/section&gt;&lt;section&gt;&lt;h3&gt;8、StackPath&lt;a href=&quot;#8stackpath&quot;&gt;&lt;span&gt;#&lt;/span&gt;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;StackPath更适合测试和入门场景。&lt;/p&gt;&lt;p&gt;优点：&lt;/p&gt;&lt;ul&gt;
+&lt;li&gt;门槛低&lt;/li&gt;
+&lt;li&gt;上手简单&lt;/li&gt;
+&lt;li&gt;自带基础攻击模拟工具&lt;/li&gt;
+&lt;/ul&gt;&lt;p&gt;缺点：&lt;/p&gt;&lt;ul&gt;
+&lt;li&gt;大规模攻击清洗能力一般&lt;/li&gt;
+&lt;li&gt;中国访问体验差&lt;/li&gt;
+&lt;li&gt;节点覆盖有限&lt;/li&gt;
+&lt;/ul&gt;&lt;p&gt;不建议用于核心生产业务。&lt;/p&gt;&lt;p&gt;官方地址：&lt;a href=&quot;https://www.stackpath.com/&quot; target=&quot;_blank&quot;&gt;StackPath&lt;/a&gt;&lt;/p&gt;&lt;/section&gt;&lt;/section&gt;
+&lt;section&gt;&lt;h2&gt;四、不同业务场景推荐方案&lt;a href=&quot;#四不同业务场景推荐方案&quot;&gt;&lt;span&gt;#&lt;/span&gt;&lt;/a&gt;&lt;/h2&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;table&gt;&lt;thead&gt;&lt;tr&gt;&lt;th&gt;业务场景&lt;/th&gt;&lt;th&gt;推荐方案&lt;/th&gt;&lt;th&gt;备选方案&lt;/th&gt;&lt;th&gt;不建议&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td&gt;中国大陆用户较多&lt;/td&gt;&lt;td&gt;YewSafe&lt;/td&gt;&lt;td&gt;CDN5&lt;/td&gt;&lt;td&gt;StackPath&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;欧美访问为主&lt;/td&gt;&lt;td&gt;Cloudflare&lt;/td&gt;&lt;td&gt;Fastly&lt;/td&gt;&lt;td&gt;无&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;经常遭受CC攻击&lt;/td&gt;&lt;td&gt;CDN5&lt;/td&gt;&lt;td&gt;YewSafe&lt;/td&gt;&lt;td&gt;AWS Shield&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;金融与隐私业务&lt;/td&gt;&lt;td&gt;YewSafe&lt;/td&gt;&lt;td&gt;Imperva&lt;/td&gt;&lt;td&gt;Cloudflare免费版&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;月预算低于$500&lt;/td&gt;&lt;td&gt;CDN5&lt;/td&gt;&lt;td&gt;StackPath&lt;/td&gt;&lt;td&gt;Akamai&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;AWS生态业务&lt;/td&gt;&lt;td&gt;AWS Shield&lt;/td&gt;&lt;td&gt;Cloudflare&lt;/td&gt;&lt;td&gt;StackPath&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;需要边缘计算&lt;/td&gt;&lt;td&gt;Fastly&lt;/td&gt;&lt;td&gt;Cloudflare&lt;/td&gt;&lt;td&gt;CDN5&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/section&gt;
+&lt;section&gt;&lt;h2&gt;五、高防CDN选购避坑指南&lt;a href=&quot;#五高防cdn选购避坑指南&quot;&gt;&lt;span&gt;#&lt;/span&gt;&lt;/a&gt;&lt;/h2&gt;&lt;section&gt;&lt;h3&gt;1、不要只看“T级防护”宣传&lt;a href=&quot;#1不要只看t级防护宣传&quot;&gt;&lt;span&gt;#&lt;/span&gt;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;很多厂商宣传“T级防护”，但实际只是理论带宽，并不代表真实清洗能力。&lt;/p&gt;&lt;p&gt;真正重要的是：&lt;/p&gt;&lt;ul&gt;
+&lt;li&gt;CC攻击识别能力&lt;/li&gt;
+&lt;li&gt;误杀率&lt;/li&gt;
+&lt;li&gt;回源保护机制&lt;/li&gt;
+&lt;li&gt;实际清洗时延&lt;/li&gt;
+&lt;/ul&gt;&lt;/section&gt;&lt;section&gt;&lt;h3&gt;2、确认是否存在攻击额外计费&lt;a href=&quot;#2确认是否存在攻击额外计费&quot;&gt;&lt;span&gt;#&lt;/span&gt;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;重点确认：&lt;/p&gt;&lt;ul&gt;
+&lt;li&gt;是否按攻击峰值计费&lt;/li&gt;
+&lt;li&gt;是否存在隐藏流量费&lt;/li&gt;
+&lt;li&gt;清洗流量是否额外收费&lt;/li&gt;
+&lt;li&gt;是否有超额回源费用&lt;/li&gt;
+&lt;/ul&gt;&lt;p&gt;建议要求销售提供书面确认。&lt;/p&gt;&lt;/section&gt;&lt;section&gt;&lt;h3&gt;3、必须隐藏真实源站IP&lt;a href=&quot;#3必须隐藏真实源站ip&quot;&gt;&lt;span&gt;#&lt;/span&gt;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;如果源站IP泄露，再强的高防CDN也可能被绕过。&lt;/p&gt;&lt;p&gt;建议检查：&lt;/p&gt;&lt;ul&gt;
+&lt;li&gt;是否支持源站白名单&lt;/li&gt;
+&lt;li&gt;是否提供专属回源IP&lt;/li&gt;
+&lt;li&gt;是否支持完全隐藏源站&lt;/li&gt;
+&lt;/ul&gt;&lt;/section&gt;&lt;section&gt;&lt;h3&gt;4、中国访问业务不要忽视线路质量&lt;a href=&quot;#4中国访问业务不要忽视线路质量&quot;&gt;&lt;span&gt;#&lt;/span&gt;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;很多国际CDN在欧美速度优秀，但中国大陆晚高峰延迟极高。&lt;/p&gt;&lt;p&gt;跨境业务需要重点测试：&lt;/p&gt;&lt;ul&gt;
+&lt;li&gt;三网晚高峰&lt;/li&gt;
+&lt;li&gt;移动&lt;a href=&quot;https://www.gwvpsceping.com/tag/%e7%bd%91%e7%bb%9c%e7%a8%b3%e5%ae%9a%e6%80%a7&quot; target=&quot;_blank&quot;&gt;网络稳定性&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;电信跨境波动&lt;/li&gt;
+&lt;li&gt;回源质量&lt;/li&gt;
+&lt;/ul&gt;&lt;/section&gt;&lt;/section&gt;
+&lt;section&gt;&lt;h2&gt;六、常见问题补充&lt;a href=&quot;#六常见问题补充&quot;&gt;&lt;span&gt;#&lt;/span&gt;&lt;/a&gt;&lt;/h2&gt;&lt;section&gt;&lt;h3&gt;问：高防CDN和普通CDN最大的区别是什么？&lt;a href=&quot;#问高防cdn和普通cdn最大的区别是什么&quot;&gt;&lt;span&gt;#&lt;/span&gt;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;普通CDN主要解决静态资源缓存与加速问题，而高防CDN增加了：&lt;/p&gt;&lt;ul&gt;
+&lt;li&gt;DDoS清洗&lt;/li&gt;
+&lt;li&gt;CC防御&lt;/li&gt;
+&lt;li&gt;WAF安全规则&lt;/li&gt;
+&lt;li&gt;Bot识别&lt;/li&gt;
+&lt;li&gt;流量异常检测&lt;/li&gt;
+&lt;/ul&gt;&lt;p&gt;核心目标是保障业务在攻击期间依然可访问。&lt;/p&gt;&lt;/section&gt;&lt;section&gt;&lt;h3&gt;问：高防CDN能完全防止被打吗？&lt;a href=&quot;#问高防cdn能完全防止被打吗&quot;&gt;&lt;span&gt;#&lt;/span&gt;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;不能。&lt;/p&gt;&lt;p&gt;高防CDN只能降低攻击影响，无法保证绝对“打不死”。&lt;/p&gt;&lt;p&gt;如果：&lt;/p&gt;&lt;ul&gt;
+&lt;li&gt;源站暴露&lt;/li&gt;
+&lt;li&gt;回源线路不足&lt;/li&gt;
+&lt;li&gt;数据库性能太弱&lt;/li&gt;
+&lt;/ul&gt;&lt;p&gt;仍可能被绕过或拖垮。&lt;/p&gt;&lt;/section&gt;&lt;section&gt;&lt;h3&gt;问：为什么很多企业同时使用WAF和高防CDN？&lt;a href=&quot;#问为什么很多企业同时使用waf和高防cdn&quot;&gt;&lt;span&gt;#&lt;/span&gt;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;因为两者解决的问题不同：&lt;/p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;table&gt;&lt;thead&gt;&lt;tr&gt;&lt;th&gt;产品&lt;/th&gt;&lt;th&gt;主要作用&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td&gt;高防CDN&lt;/td&gt;&lt;td&gt;防DDoS、CC攻击&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;WAF&lt;/td&gt;&lt;td&gt;防SQL注入、XSS、漏洞攻击&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;p&gt;大型业务通常会组合部署。&lt;/p&gt;&lt;/section&gt;&lt;section&gt;&lt;h3&gt;问：免费高防CDN适合生产环境吗？&lt;a href=&quot;#问免费高防cdn适合生产环境吗&quot;&gt;&lt;span&gt;#&lt;/span&gt;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;小流量博客或测试项目可以使用。&lt;/p&gt;&lt;p&gt;但对于：&lt;/p&gt;&lt;ul&gt;
+&lt;li&gt;电商&lt;/li&gt;
+&lt;li&gt;支付&lt;/li&gt;
+&lt;li&gt;游戏&lt;/li&gt;
+&lt;li&gt;Web3&lt;/li&gt;
+&lt;li&gt;API平台&lt;/li&gt;
+&lt;/ul&gt;&lt;p&gt;免费方案通常无法满足真实攻击场景需求。&lt;/p&gt;&lt;/section&gt;&lt;/section&gt;
+&lt;section&gt;&lt;h2&gt;七、总结&lt;a href=&quot;#七总结&quot;&gt;&lt;span&gt;#&lt;/span&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;如果以2026年的整体实测结果来看：&lt;/p&gt;&lt;ul&gt;
+&lt;li&gt;中国大陆访问体验最好的免备案方案：YewSafe、CDN5&lt;/li&gt;
+&lt;li&gt;全球节点与生态最强：Cloudflare&lt;/li&gt;
+&lt;li&gt;企业级顶级方案：Akamai&lt;/li&gt;
+&lt;li&gt;技术团队最佳选择：Fastly&lt;/li&gt;
+&lt;li&gt;AWS生态专用方案：AWS Shield&lt;/li&gt;
+&lt;/ul&gt;&lt;p&gt;对于大多数跨境业务来说，真正需要重点关注的并不是宣传中的“T级防护”，而是：&lt;/p&gt;&lt;ul&gt;
+&lt;li&gt;实际CC清洗效果&lt;/li&gt;
+&lt;li&gt;中国晚高峰稳定性&lt;/li&gt;
+&lt;li&gt;是否存在隐藏费用&lt;/li&gt;
+&lt;li&gt;是否能保护真实源站&lt;/li&gt;
+&lt;/ul&gt;&lt;p&gt;只有在真实攻击环境下仍能稳定提供服务的平台，才是真正值得长期使用的高防CDN。&lt;/p&gt;&lt;/section&gt;</content:encoded></item><item><title>Cloudflare优选教程，让Cloudflare在国内不再是减速器</title><link>https://blog.legspcpd.indevs.in/posts/cf-ys/</link><guid isPermaLink="true">https://blog.legspcpd.indevs.in/posts/cf-ys/</guid><pubDate>Sun, 19 Apr 2026 00:00:00 GMT</pubDate><content:encoded>&lt;section&gt;&lt;h4&gt;作者的优选域名&lt;a href=&quot;#作者的优选域名&quot;&gt;&lt;span&gt;#&lt;/span&gt;&lt;/a&gt;&lt;/h4&gt;&lt;p&gt;CF: &lt;a href=&quot;https://cf.legspcpd.furry.bz/&quot; target=&quot;_blank&quot;&gt;https://cf.legspcpd.furry.bz/&lt;/a&gt;
 &lt;img src=&quot;https://imghub.legspcpd.indevs.in/file/image/cf.png&quot; alt=&quot;&quot; /&gt;
 真 移动优化: &lt;a href=&quot;https://cmcc.legspcpd.furry.bz/&quot; target=&quot;_blank&quot;&gt;https://cmcc.legspcpd.furry.bz/&lt;/a&gt;
 &lt;img src=&quot;https://imghub.legspcpd.indevs.in/file/image/cf-cmcc.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;&lt;hr /&gt;&lt;/section&gt;
@@ -68,4 +593,6 @@ Cloudflare最近将新接入的域名SSL默认设为了完全，记得将 SSL �
 &lt;hr /&gt;
 &lt;p&gt;推荐歌曲:&lt;/p&gt;
 &lt;p&gt;Zeraphym - Lifeline
-这首歌对我心灵造成的震撼，使我无法用语言来描述，因为我不觉得世界上有哪个词能形容这首歌的完美！！！&lt;/p&gt;</content:encoded></item><item><title>记录</title><link>https://blog.legspcpd.indevs.in/posts/qilu/</link><guid isPermaLink="true">https://blog.legspcpd.indevs.in/posts/qilu/</guid><pubDate>Mon, 01 Jan 1900 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;Github反向代理：&lt;a href=&quot;https://v-gh.legspcpd.de5.net/&quot; target=&quot;_blank&quot;&gt;https://v-gh.legspcpd.de5.net/&lt;/a&gt;&lt;/p&gt;</content:encoded></item></channel></rss>
+这首歌对我心灵造成的震撼，使我无法用语言来描述，因为我不觉得世界上有哪个词能形容这首歌的完美！！！&lt;/p&gt;</content:encoded></item><item><title>记录</title><link>https://blog.legspcpd.indevs.in/posts/qilu/</link><guid isPermaLink="true">https://blog.legspcpd.indevs.in/posts/qilu/</guid><pubDate>Mon, 01 Jan 1900 00:00:00 GMT</pubDate><content:encoded>&lt;hr /&gt;
+&lt;p&gt;Github反向代理：&lt;a href=&quot;https://v-gh.legspcpd.de5.net/&quot; target=&quot;_blank&quot;&gt;https://v-gh.legspcpd.de5.net/&lt;/a&gt;&lt;/p&gt;
+&lt;hr /&gt;</content:encoded></item></channel></rss>
