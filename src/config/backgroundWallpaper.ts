@@ -57,9 +57,9 @@ export const backgroundWallpaper: BackgroundWallpaperConfig = {
 		// 主页横幅文字
 		homeText: {
 			// 是否启用主页横幅文字
-			enable: true,
+			enable: false,
 			// 是否允许用户通过控制面板切换横幅标题显示
-			switchable: true,
+			switchable: false
 			// 主页横幅主标题
 			title: "Lovely firefly!",
 			// 主页横幅主标题字体大小
@@ -98,9 +98,9 @@ export const backgroundWallpaper: BackgroundWallpaperConfig = {
 			},
 			text: {
 				// 桌面端要显示的来源文本
-				desktop: "Pixiv - 晚晚喵",
+				desktop: "Pixiv",
 				// 移动端要显示的来源文本
-				mobile: "Pixiv - KiraraShss",
+				mobile: "Pixiv",
 			},
 			url: {
 				// 桌面端原始艺术品或艺术家页面的 URL 链接
@@ -111,8 +111,8 @@ export const backgroundWallpaper: BackgroundWallpaperConfig = {
 		},
 		// 横幅导航栏配置
 		navbar: {
-			// 横幅导航栏透明模式："semi" 半透明，"full" 完全透明，"semifull" 动态透明
-			transparentMode: "semifull",
+			// 横幅导航栏透明模式："semi明，"full" 完全透明，"semifull" 动态透明
+			transparentMode: "semi",
 			// 是否开启毛玻璃模糊效果，开启可能会影响页面性能，如果不开启则是半透明，请根据自己的喜好开启
 			enableBlur: true,
 			// 毛玻璃模糊度
@@ -131,9 +131,9 @@ export const backgroundWallpaper: BackgroundWallpaperConfig = {
 		waves: {
 			enable: {
 				// 桌面端是否启用水波纹动画效果
-				desktop: true,
+				desktop: false,
 				// 移动端是否启用水波纹动画效果
-				mobile: true,
+				mobile: false
 			},
 			// 是否允许用户通过控制面板切换水波纹动画
 			switchable: true,
