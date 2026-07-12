@@ -17,11 +17,11 @@ import type { CoverImageConfig } from "../types/config";
  */
 export const coverImageConfig: CoverImageConfig = {
 	// 是否在文章详情页显示封面图
-	enableInPost: true,
+	enableInPost: false,
 
 	randomCoverImage: {
 		// 随机封面图功能开关
-		enable: true,
+		enable: false,
 		// 封面图API列表
 		apis: [
 			"https://eoimgapi.2xgh.qzz.io/pic?img=ua",

@@ -12,7 +12,7 @@ export const profileConfig: ProfileConfig = {
 	name: "LegspCpd",
 
 	// 个人签名
-	bio: "你不能只在赢时,才爱自己国家",
+	bio: "I Love You",
 
 	// 链接配置
 	// 已经预装的图标集：fa7-brands，fa7-regular，fa7-solid，material-symbols，simple-icons
