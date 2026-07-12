@@ -91,6 +91,49 @@ if (!lang) {
 }
 const siteLang = lang.replace("_", "-");
 
+const toExternalOrigin = (value?: string) => {
+	if (!value) return null;
+	try {
+		return new URL(value).origin;
+	} catch {
+		return null;
+	}
+};
+
+const selectedFontIds = siteConfig.font.enable
+	? Array.isArray(siteConfig.font.selected)
+		? siteConfig.font.selected
+		: [siteConfig.font.selected]
+	: [];
+
+const connectionHintOrigins = Array.from(
+	new Set(
+		[
+			...(siteConfig.analytics?.googleAnalyticsId
+				? [
+					"https://www.googletagmanager.com",
+					"https://www.google-analytics.com",
+				]
+				: []),
+			...(siteConfig.analytics?.microsoftClarityId
+				? ["https://www.clarity.ms"]
+				: []),
+			siteConfig.analytics?.umamiAnalytics?.websiteId
+				? toExternalOrigin(siteConfig.analytics.umamiAnalytics.scriptUrl)
+				: null,
+			siteConfig.analytics?.la51Analytics?.Id
+				? toExternalOrigin(
+						siteConfig.analytics.la51Analytics.sdkUrl ||
+							"https://sdk.51.la/js-sdk-pro.min.js"
+					)
+				: null,
+			...selectedFontIds
+				.map((fontId) => siteConfig.font.fonts[fontId]?.src)
+				.map((src) => toExternalOrigin(src))
+		].filter((origin): origin is string => Boolean(origin))
+	)
+);
+
 // 使用固定的banner偏移量，position配置用于图片定位
 ---
 

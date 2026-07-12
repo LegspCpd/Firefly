@@ -13,7 +13,7 @@ export const siteConfig: SiteConfig = {
 	subtitle: "blog.legspcpd.indevs.in",
 
 	// 站点 URL
-	site_url: "https://blog.legspcpd.indevs.in",
+	site_url: "https://blog.legspcpd.top",
 
 	// 站点描述
 	description:

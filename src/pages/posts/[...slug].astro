@@ -300,7 +300,7 @@ const relatedPosts = await getRelatedPosts(entry, 5);
                       {
                         siteConfig.sharePoster && (
                           <SharePoster
-                            client:load
+                            client:visible
                             title={entry.data.title}
                             author={profileConfig.name}
                             description={entry.data.description || entry.data.title}
@@ -388,7 +388,7 @@ const relatedPosts = await getRelatedPosts(entry, 5);
                       {
                         siteConfig.sharePoster && (
                           <SharePoster
-                            client:load
+                            client:visible
                             title={entry.data.title}
                             author={profileConfig.name}
                             description={entry.data.description || entry.data.title}

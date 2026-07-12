@@ -139,35 +139,14 @@ const fontFamilyStyle = generateFontFamilyStyle();
   )
 }
 
-<script>
-  // 字体加载优化和错误处理
-  if (document.fonts && typeof document.fonts.ready !== "undefined") {
+<script is:inline define:vars={{ hasCustomFonts: fontConfig.enable && selectedFonts.length > 0 }}>
+  if (hasCustomFonts && document.fonts && typeof document.fonts.ready !== "undefined") {
     document.fonts.ready
       .then(() => {
-        console.log("All fonts have been loaded");
-
-        // 触发自定义事件，通知字体加载完成
         document.dispatchEvent(new CustomEvent("fontsLoaded"));
       })
-      .catch((error: Error) => {
-        console.warn("Font loading failed:", error);
+      .catch(() => {
+        // 字体加载失败时静默回退到系统字体
       });
-  }
-
-  // 字体加载性能监控
-  if (typeof PerformanceObserver !== "undefined") {
-    const observer = new PerformanceObserver((list) => {
-      list.getEntries().forEach((entry) => {
-        if (entry.entryType === "resource") {
-          // console.log(`Font resource loaded: ${entry.name} (${entry.duration.toFixed(2)}ms)`);
-        }
-      });
-    });
-
-    try {
-      observer.observe({ entryTypes: ["resource"] });
-    } catch (e) {
-      // 浏览器不支持时静默失败
-    }
   }
 </script>

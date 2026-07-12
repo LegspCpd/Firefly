@@ -38,7 +38,7 @@ import vercel from "@astrojs/vercel";
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://blog.legspcpd.indevs.in',
+  site: 'https://blog.legspcpd.top',
   base: "/",
   trailingSlash: "always",
 
@@ -274,7 +274,12 @@ export default defineConfig({
           // CSS 优化
           cssCodeSplit: true,
           cssMinify: "esbuild",
-          assetsInlineLimit: 4096,
+          // 提高内联资源阈值，减少小文件请求
+          assetsInlineLimit: 8192,
+          // 禁用 sourcemap 以减少构建体积
+          sourcemap: false,
+          // 提高 chunk 大小警告阈值
+          chunkSizeWarningLimit: 1000,
       },
 	},
 

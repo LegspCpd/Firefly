@@ -37,14 +37,10 @@ export const backgroundWallpaper: BackgroundWallpaperConfig = {
 	 */
 	src: {
 	desktop: [
-    "https://www.loliapi.com/acg/",
-	"https://eoimgapi.2xgh.qzz.io/pic?img=ua",
-    "https://t.alcy.cc/pc",
+    
   ],
     mobile: [
-    "https://www.loliapi.com/acg/",
-    "https://eoimgapi.2xgh.qzz.io/pic?img=ua",
-    "https://t.alcy.cc/mp",
+    
   ],
 	},
 	// Banner模式特有配置
