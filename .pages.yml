@@ -1,0 +1,80 @@
+media:
+  input: public/images
+  output: /images
+
+content:
+  - name: posts
+    label: 博客文章
+    type: collection
+    path: src/content/posts
+    extension: md
+    format: yaml-frontmatter
+    view:
+      fields: [title, published, draft]
+      primary: title
+    fields:
+      - name: title
+        label: 文章标题
+        type: string
+        required: true
+
+      - name: published
+        label: 发布时间
+        type: date
+        required: true
+
+      - name: description
+        label: 文章摘要
+        type: text
+
+      - name: image
+        label: 封面图片
+        type: image
+
+      - name: tags
+        label: 标签
+        type: list
+        field:
+          type: string
+
+      - name: category
+        label: 分类
+        type: string
+
+      - name: draft
+        label: 是否草稿
+        type: boolean
+        default: false
+
+      - name: body
+        label: 正文内容
+        type: rich-text
+
+  - name: spec_pages
+    label: 特殊页面
+    type: collection
+    path: src/content/spec
+    extension: md
+    format: yaml-frontmatter
+    fields:
+      - name: title
+        label: 页面标题
+        type: string
+        required: true
+
+      - name: description
+        label: 页面描述
+        type: text
+
+      - name: body
+        label: 页面正文
+        type: rich-text
+
+  - name: public_files
+    label: 静态文件上传
+    type: collection
+    path: public
+    fields:
+      - name: file
+        label: 选择上传文件
+        type: file
