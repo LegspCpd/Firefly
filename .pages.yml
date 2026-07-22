@@ -1,6 +1,6 @@
 settings:
   git:
-    branch: master
+    branch: master  # 如果你的默认分支是 main，请改成 main
 
 media:
   input: public/images
@@ -11,8 +11,8 @@ content:
     label: 博客文章
     type: collection
     path: src/content/posts
-    subfolders: true  # 👈 允许扫描子文件夹内的文章
-    extension: md
+    subfolders: true
+    # 删掉 extension: md，Pages CMS 会自动扫描该目录下所有 .md 和 .mdx 文件
     format: yaml-frontmatter
     view:
       fields: [title, published, draft]
@@ -60,7 +60,6 @@ content:
     type: collection
     path: src/content/spec
     subfolders: true
-    extension: md
     format: yaml-frontmatter
     fields:
       - name: title
