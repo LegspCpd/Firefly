@@ -180,8 +180,65 @@ export default defineConfig({
               if (pathname === "/gallery/" && !siteConfig.pages.gallery) {
                   return false;
               }
+              // 排除无需索引的页面
+              if (pathname.startsWith("/api/") || pathname.startsWith("/og/")) {
+                  return false;
+              }
 
               return true;
+          },
+          // 自定义 sitemap 条目，为关键页面设置更高的优先级和更频繁的更新频率
+          serialize: (item) => {
+              const url = new URL(item.url);
+              const pathname = url.pathname;
+
+              // 首页 - 最高优先级
+              if (pathname === "/" || pathname === "") {
+                  return {
+                      ...item,
+                      changefreq: "daily",
+                      priority: 1.0,
+                      lastmod: new Date().toISOString(),
+                  };
+              }
+
+              // 博客列表和归档 - 高优先级
+              if (pathname === "/posts/" || pathname === "/archive/") {
+                  return {
+                      ...item,
+                      changefreq: "daily",
+                      priority: 0.9,
+                  };
+              }
+
+              // 博客文章详情页 - 较高优先级
+              if (pathname.startsWith("/posts/") && pathname !== "/posts/") {
+                  return {
+                      ...item,
+                      changefreq: "weekly",
+                      priority: 0.8,
+                  };
+              }
+
+              // 其他主要页面
+              if (["/about/", "/friends/", "/sponsor/", "/guestbook/"].includes(pathname)) {
+                  return {
+                      ...item,
+                      changefreq: "monthly",
+                      priority: 0.6,
+                  };
+              }
+
+              // 分页页面 - 较低优先级
+              if (/\/\d+\/$/.test(pathname)) {
+                  return {
+                      ...item,
+                      changefreq: "weekly",
+                      priority: 0.5,
+                  };
+              }
+
+              return item;
           },
       }),
       mdx(),

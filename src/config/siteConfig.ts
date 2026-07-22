@@ -231,8 +231,8 @@ export const siteConfig: SiteConfig = {
 			//  Hash路由模式, 项目使用History API路由, 所以不必开启默认false
 			hashMode: false,
 			// 是否开启网站录屏功能
-			screenRecord: false,
-		},	
+			screenRecord: true,
+		},
 	},
 
 	// 图像优化及响应式配置

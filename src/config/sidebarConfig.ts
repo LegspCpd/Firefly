@@ -48,7 +48,7 @@ export const sidebarLayoutConfig: SidebarLayoutConfig = {
 			// 组件类型：公告组件
 			type: "announcement",
 			// 是否启用该组件
-			enable: false,
+			enable: true,
 			// 组件位置
 			position: "top",
 			// 是否在文章详情页显示
@@ -171,9 +171,9 @@ export const sidebarLayoutConfig: SidebarLayoutConfig = {
 			// 组件类型：公告组件
 			type: "announcement",
 			// 是否启用该组件
-			enable: false,
+			enable: true,
 			// 是否在文章详情页显示
-			showOnPostPage: false,
+			showOnPostPage: true,
 		},
 		{
 			// 组件类型：音乐播放器

@@ -21,6 +21,12 @@ import {
 	BANNER_HEIGHT_EXTEND,
 	MAIN_PANEL_OVERLAPS_BANNER_HEIGHT,
 } from "@/constants/constants";
+import {
+	getBreadcrumbStructuredData,
+	getCanonicalUrl,
+	getSiteStructuredData,
+} from "@/lib/seo/json-ld";
+import { resolveRouteMeta } from "@/lib/seo/route-meta";
 import I18nKey from "@/i18n/i18nKey";
 import { i18n } from "@/i18n/translation";
 import { formatDateToYYYYMMDD } from "@/utils/date-utils";
@@ -84,7 +90,15 @@ const fullPageTitle = title
 // ========== 【SEO核心修改3】生成规范的canonical链接 ==========
 // 告诉搜索引擎当前页面的唯一正确URL，避免根域名和子域名重复收录
 const currentPath = Astro.url.pathname;
-const canonicalUrl = new URL(currentPath, SITE_BASE_URL).href;
+const canonicalUrl = getCanonicalUrl(currentPath);
+
+// ========== 【SEO核心修改3.1】解析路由元数据 ==========
+// 从集中式路由表中获取当前页面的元数据（与客户端共享同一份数据源）
+const routeMeta = resolveRouteMeta(currentPath);
+
+// ========== 【SEO核心修改3.2】生成结构化数据 ==========
+const siteStructuredData = getSiteStructuredData();
+const breadcrumbStructuredData = getBreadcrumbStructuredData(currentPath);
 
 // 原有的业务逻辑保持不变
 const isBannerMode = backgroundWallpaper.mode === "banner";
@@ -259,12 +273,13 @@ const bannerCarouselInterval = Math.max(
 );
 ---
 <!-- ========== 【SEO核心修改4】传递正确的title给Layout组件 ========== -->
+<!-- 注意：只传递原始页面标题（不含站点名），Layout.astro 会自动拼接 " - 站点名" -->
 <Layout 
-  title={fullPageTitle} 
+  title={title || siteConfig.title} 
   banner={banner} 
-  description={description || siteConfig.description} 
+  description={description || siteConfig.description || routeMeta.description} 
   lang={lang} 
-  setOGTypeArticle={setOGTypeArticle} 
+  setOGTypeArticle={setOGTypeArticle || routeMeta.ogType === "article"} 
   postSlug={postSlug}
 >
 <!-- ========== 【SEO核心修改5】注入规范的SEO头部标签 ========== -->
@@ -278,6 +293,15 @@ const bannerCarouselInterval = Math.max(
   <link rel="canonical" href={canonicalUrl} />
   <meta property="og:url" content={canonicalUrl} />
   <meta name="twitter:url" content={canonicalUrl} />
+
+  <!-- 根据路由元数据设置索引策略 -->
+  {routeMeta.indexable === false && <meta name="robots" content="noindex, nofollow" />}
+
+  <!-- ========== WebSite + Person 结构化数据（整站知识图谱） ========== -->
+  <script slot="head" is:inline type="application/ld+json" set:html={siteStructuredData} />
+
+  <!-- ========== BreadcrumbList 结构化数据（搜索面包屑） ========== -->
+  <script slot="head" is:inline type="application/ld+json" set:html={breadcrumbStructuredData} />
 </slot>
 
 <!-- 原有代码完全保留，不破坏任何主题功能 -->
