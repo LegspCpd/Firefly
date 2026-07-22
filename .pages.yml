@@ -11,11 +11,10 @@ content:
     label: 博客文章
     type: collection
     path: src/content/posts
-    filename: "{slug}"
-    extension: md
+    subfolders: true
     format: yaml-frontmatter
     view:
-      fields: [title, published, draft]
+      fields: [title]
       primary: title
     fields:
       - name: title
@@ -26,7 +25,10 @@ content:
       - name: published
         label: 发布时间
         type: date
-        required: true
+
+      - name: date
+        label: 日期(备用)
+        type: date
 
       - name: description
         label: 文章摘要
@@ -59,18 +61,16 @@ content:
     label: 特殊页面
     type: collection
     path: src/content/spec
-    filename: "{slug}"
-    extension: md
+    subfolders: true
     format: yaml-frontmatter
+    view:
+      fields: [title]
+      primary: title
     fields:
       - name: title
         label: 页面标题
         type: string
         required: true
-
-      - name: description
-        label: 页面描述
-        type: text
 
       - name: body
         label: 页面正文
