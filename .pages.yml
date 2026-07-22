@@ -1,16 +1,18 @@
-# 1. 全局 Git 提交策略：强制提交到你自己的 master 分支
+# 1. 强制提交到你自己的 master 分支
 settings:
   git:
     branch: master
 
-# 2. 静态媒体文件存储配置
+# 2. 图片/媒体文件上传路径
 media:
   input: public/images
   output: /images
 
-# 3. 内容与文件结构映射
+# 3. 内容与配置映射
 content:
-  # 博客文章列表 (对应 src/content/posts)
+  # --------------------------------------------------
+  # A. 博客文章 (对应 src/content/posts 目录)
+  # --------------------------------------------------
   - name: posts
     label: 📝 博客文章
     type: collection
@@ -18,7 +20,7 @@ content:
     extension: md
     format: yaml-frontmatter
     view:
-      fields: [title, published, draft]
+      fields: [title, published, draft, category]
       primary: title
       sort: [published]
       order: desc
@@ -29,7 +31,7 @@ content:
         required: true
 
       - name: published
-        label: 发布时间
+        label: 发布日期
         type: date
         required: true
 
@@ -38,7 +40,7 @@ content:
         type: text
 
       - name: image
-        label: 封面图片
+        label: 文章封面图
         type: image
 
       - name: tags
@@ -60,33 +62,25 @@ content:
         label: 正文内容
         type: rich-text
 
-  # 特殊独立页面 (对应 src/content/spec，如 about、links 等)
-  - name: spec_pages
-    label: 📄 特殊/独立页面
-    type: collection
-    path: src/content/spec
-    extension: md
-    format: yaml-frontmatter
+  # --------------------------------------------------
+  # B. 站点配置文件 (对应 src/config 目录)
+  # --------------------------------------------------
+  - name: site_config
+    label: ⚙️ 站点基本配置 (siteConfig.ts)
+    type: file
+    path: src/config/siteConfig.ts
+    format: raw
     fields:
-      - name: title
-        label: 页面标题
-        type: string
-        required: true
-
-      - name: description
-        label: 页面描述
-        type: text
-
       - name: body
-        label: 页面正文
-        type: rich-text
+        label: siteConfig.ts 代码内容
+        type: code
 
-  # Public 目录文件上传 (可以直接向 public/ 目录上传 PDF、Zip、附件等)
-  - name: public_files
-    label: 📁 Public 静态文件上传
-    type: collection
-    path: public
+  - name: profile_config
+    label: 👤 个人与社交配置 (profileConfig.ts)
+    type: file
+    path: src/config/profileConfig.ts
+    format: raw
     fields:
-      - name: file
-        label: 上传文件到 public 根目录
-        type: file
+      - name: body
+        label: profileConfig.ts 代码内容
+        type: code
