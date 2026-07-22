@@ -11,19 +11,39 @@ content:
     label: 博客文章
     type: collection
     path: src/content/posts
-    filename: "{slug}"
+    match: "**/*.md" # 👈 极其关键！递归匹配该目录下所有 .md 文件（包含子目录）
     extension: md
     format: yaml-frontmatter
     view:
+      fields: [title, published, category, draft]
       primary: title
+      sort: [published]
+      order: desc
     fields:
       - name: title
         label: 文章标题
         type: string
+        required: true
 
       - name: published
-        label: 发布时间
+        label: 发布日期
         type: date
+        required: true
+
+      - name: category
+        label: 文章分类
+        type: string
+
+      - name: tags
+        label: 文章标签
+        type: list
+        field:
+          type: string
+
+      - name: draft
+        label: 是否草稿
+        type: boolean
+        default: false
 
       - name: description
         label: 文章摘要
@@ -33,21 +53,6 @@ content:
         label: 封面图片
         type: image
 
-      - name: tags
-        label: 标签
-        type: list
-        field:
-          type: string
-
-      - name: category
-        label: 分类
-        type: string
-
-      - name: draft
-        label: 是否草稿
-        type: boolean
-        default: false
-
       - name: body
         label: 正文内容
         type: rich-text
@@ -56,17 +61,17 @@ content:
     label: 特殊页面
     type: collection
     path: src/content/spec
-    filename: "{slug}"
+    match: "**/*.md"
     extension: md
     format: yaml-frontmatter
+    view:
+      fields: [title]
+      primary: title
     fields:
       - name: title
         label: 页面标题
         type: string
-
-      - name: description
-        label: 页面描述
-        type: text
+        required: true
 
       - name: body
         label: 页面正文
