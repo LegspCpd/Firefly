@@ -1,10 +1,18 @@
+# 1. 全局 Git 提交策略：强制提交到你自己的 master 分支
+settings:
+  git:
+    branch: master
+
+# 2. 静态媒体文件存储配置
 media:
   input: public/images
   output: /images
 
+# 3. 内容与文件结构映射
 content:
+  # 博客文章列表 (对应 src/content/posts)
   - name: posts
-    label: 博客文章
+    label: 📝 博客文章
     type: collection
     path: src/content/posts
     extension: md
@@ -12,6 +20,8 @@ content:
     view:
       fields: [title, published, draft]
       primary: title
+      sort: [published]
+      order: desc
     fields:
       - name: title
         label: 文章标题
@@ -50,8 +60,9 @@ content:
         label: 正文内容
         type: rich-text
 
+  # 特殊独立页面 (对应 src/content/spec，如 about、links 等)
   - name: spec_pages
-    label: 特殊页面
+    label: 📄 特殊/独立页面
     type: collection
     path: src/content/spec
     extension: md
@@ -70,11 +81,12 @@ content:
         label: 页面正文
         type: rich-text
 
+  # Public 目录文件上传 (可以直接向 public/ 目录上传 PDF、Zip、附件等)
   - name: public_files
-    label: 静态文件上传
+    label: 📁 Public 静态文件上传
     type: collection
     path: public
     fields:
       - name: file
-        label: 选择上传文件
+        label: 上传文件到 public 根目录
         type: file
