@@ -1,29 +1,22 @@
-# 1. 强制提交到你自己的 master 分支
 settings:
   git:
     branch: master
 
-# 2. 图片/媒体文件上传路径
 media:
   input: public/images
   output: /images
 
-# 3. 内容与配置映射
 content:
-  # --------------------------------------------------
-  # A. 博客文章 (对应 src/content/posts 目录)
-  # --------------------------------------------------
   - name: posts
-    label: 📝 博客文章
+    label: 博客文章
     type: collection
     path: src/content/posts
+    subfolders: true  # 👈 允许扫描子文件夹内的文章
     extension: md
     format: yaml-frontmatter
     view:
-      fields: [title, published, draft, category]
+      fields: [title, published, draft]
       primary: title
-      sort: [published]
-      order: desc
     fields:
       - name: title
         label: 文章标题
@@ -31,7 +24,7 @@ content:
         required: true
 
       - name: published
-        label: 发布日期
+        label: 发布时间
         type: date
         required: true
 
@@ -40,7 +33,7 @@ content:
         type: text
 
       - name: image
-        label: 文章封面图
+        label: 封面图片
         type: image
 
       - name: tags
@@ -62,25 +55,32 @@ content:
         label: 正文内容
         type: rich-text
 
-  # --------------------------------------------------
-  # B. 站点配置文件 (对应 src/config 目录)
-  # --------------------------------------------------
-  - name: site_config
-    label: ⚙️ 站点基本配置 (siteConfig.ts)
-    type: file
-    path: src/config/siteConfig.ts
-    format: raw
+  - name: spec_pages
+    label: 特殊页面
+    type: collection
+    path: src/content/spec
+    subfolders: true
+    extension: md
+    format: yaml-frontmatter
     fields:
-      - name: body
-        label: siteConfig.ts 代码内容
-        type: code
+      - name: title
+        label: 页面标题
+        type: string
+        required: true
 
-  - name: profile_config
-    label: 👤 个人与社交配置 (profileConfig.ts)
-    type: file
-    path: src/config/profileConfig.ts
-    format: raw
-    fields:
+      - name: description
+        label: 页面描述
+        type: text
+
       - name: body
-        label: profileConfig.ts 代码内容
-        type: code
+        label: 页面正文
+        type: rich-text
+
+  - name: public_files
+    label: 静态文件上传
+    type: collection
+    path: public
+    fields:
+      - name: file
+        label: 选择上传文件
+        type: file
