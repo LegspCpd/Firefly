@@ -216,36 +216,6 @@
       "source": "/posts/:path*/:file((?!index\\.html$)[^/]+\\.html)",
       "destination": "/posts/:path*/:file",
       "permanent": true
-    },
-    {
-      "source": "/yandex_8100d571090b9d7d",
-      "destination": "/yandex_8100d571090b9d7d.html",
-      "permanent": true
-    },
-    {
-      "source": "/baidu_verify_codeva-c6BGWLznvm",
-      "destination": "/baidu_verify_codeva-c6BGWLznvm.html",
-      "permanent": true
-    },
-    {
-      "source": "/baidu_verify_codeva-lvaCPPAXmk",
-      "destination": "/baidu_verify_codeva-lvaCPPAXmk.html",
-      "permanent": true
-    }
-  ],
-  "cleanUrls": true,
-  "rewrites": [
-    {
-      "source": "/yandex_8100d571090b9d7d.html",
-      "destination": "/yandex_8100d571090b9d7d"
-    },
-    {
-      "source": "/baidu_verify_codeva-c6BGWLznvm.html",
-      "destination": "/baidu_verify_codeva-c6BGWLznvm"
-    },
-    {
-      "source": "/baidu_verify_codeva-lvaCPPAXmk.html",
-      "destination": "/baidu_verify_codeva-lvaCPPAXmk"
     }
   ]
 }

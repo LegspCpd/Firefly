@@ -164,6 +164,13 @@ export type SiteConfig = {
 		 * Yandex Webmaster 验证代码
 		 */
 		yandex?: string;
+		/**
+		 * 文件验证配置
+		 * key: 文件名（如 "baidu_verify_codeva-xxx"）
+		 * value: 文件内容（如验证码字符串）
+		 * 路由会自动添加 .html 后缀
+		 */
+		files?: Record<string, string>;
 	};
 
 	// 图片优化配置

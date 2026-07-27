@@ -205,6 +205,12 @@ export const siteConfig: SiteConfig = {
 		baidu: "",
 		// Yandex Webmaster: 在 Yandex Webmaster 中添加站点后获取 meta 标签的 content 值
 		yandex: "",
+		// 文件验证: key=文件名, value=文件内容, 自动在 /{key}.html 路由输出
+		files: {
+			"baidu_verify_codeva-c6BGWLznvm": "6e88638317ee7601beb7322f583b149d",
+			"baidu_verify_codeva-lvaCPPAXmk": "6afe8bc6bdd87aa34a69ce3b3cbeb5aa",
+			"yandex_8100d571090b9d7d": "Verification: 8100d571090b9d7d",
+		},
 	},
 
 	// 统计分析
