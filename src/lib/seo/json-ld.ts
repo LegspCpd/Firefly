@@ -19,8 +19,13 @@ const AUTHOR_NAME = profileConfig.name;
 const AUTHOR_AVATAR = profileConfig.avatar;
 
 /**
- * WebSite + Person 结构化数据
+ * WebSite + Person + WebPage 结构化数据
  * 用于整站布局，帮助搜索引擎建立品牌知识图谱
+ *
+ * 根据 Bing Webmaster Guidelines 建议:
+ * - 清晰定义实体（人、组织、网站）
+ * - 使用规范的 @id 引用关系
+ * - 保持结构化数据与可见内容一致
  */
 export function getSiteStructuredData(): string {
 	const website = {
@@ -31,10 +36,19 @@ export function getSiteStructuredData(): string {
 				"@id": `${SITE_URL}/#website`,
 				url: SITE_URL,
 				name: SITE_NAME,
+				alternateName: siteConfig.subtitle || undefined,
 				description: siteConfig.description,
 				inLanguage: siteConfig.lang?.replace("_", "-") || "zh-CN",
 				publisher: {
 					"@id": `${SITE_URL}/#person`,
+				},
+				potentialAction: {
+					"@type": "SearchAction",
+					target: {
+						"@type": "EntryPoint",
+						urlTemplate: `${SITE_URL}/search/?q={search_term_string}`,
+					},
+					"query-input": "required name=search_term_string",
 				},
 			},
 			{
@@ -46,6 +60,17 @@ export function getSiteStructuredData(): string {
 					? AUTHOR_AVATAR
 					: `${SITE_URL}/${AUTHOR_AVATAR}`,
 				description: profileConfig.bio,
+				sameAs: profileConfig.links
+					?.filter((link: { url: string; external?: boolean }) => {
+						try {
+							const parsed = new URL(link.url);
+							return parsed.protocol === "http:" || parsed.protocol === "https:";
+						} catch {
+							return false;
+						}
+					})
+					.map((link: { url: string }) => link.url)
+					.filter(Boolean) || undefined,
 			},
 		],
 	};
@@ -138,7 +163,7 @@ export function getBlogPostStructuredData(params: {
 
 	const blogPosting: Record<string, unknown> = {
 		"@context": "https://schema.org",
-		"@type": "BlogPosting",
+		"@type": ["BlogPosting", "Article"],
 		"@id": `${postUrl}#article`,
 		headline: params.title,
 		description: params.description || params.title,
@@ -150,15 +175,22 @@ export function getBlogPostStructuredData(params: {
 		datePublished: params.publishedDate,
 		author: {
 			"@type": "Person",
+			"@id": `${SITE_URL}/#person`,
 			name: params.authorName || AUTHOR_NAME,
 			url: SITE_URL,
 		},
 		publisher: {
 			"@type": "Person",
+			"@id": `${SITE_URL}/#person`,
 			name: AUTHOR_NAME,
 			url: SITE_URL,
 		},
 		inLanguage: params.inLanguage || "zh-CN",
+		// 明确引用站点知识图谱中定义的实体
+		isPartOf: {
+			"@type": "WebSite",
+			"@id": `${SITE_URL}/#website`,
+		},
 	};
 
 	if (params.updatedDate) {
@@ -167,13 +199,19 @@ export function getBlogPostStructuredData(params: {
 
 	if (params.tags && params.tags.length > 0) {
 		blogPosting.keywords = params.tags.join(", ");
+		blogPosting.articleSection = params.tags[0];
 	}
 
 	if (params.coverImage) {
 		const imageUrl = params.coverImage.startsWith("http")
 			? params.coverImage
 			: `${SITE_URL}${params.coverImage}`;
-		blogPosting.image = imageUrl;
+		blogPosting.image = {
+			"@type": "ImageObject",
+			url: imageUrl,
+			// 图片作为文章的主要内容之一
+			representativeOfPage: true,
+		};
 	}
 
 	return JSON.stringify(blogPosting);

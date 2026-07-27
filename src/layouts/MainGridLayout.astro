@@ -26,6 +26,7 @@ import {
 	getCanonicalUrl,
 	getSiteStructuredData,
 } from "@/lib/seo/json-ld";
+import { getHreflangTags } from "@/lib/seo/hreflang";
 import { resolveRouteMeta } from "@/lib/seo/route-meta";
 import I18nKey from "@/i18n/i18nKey";
 import { i18n } from "@/i18n/translation";
@@ -63,9 +64,9 @@ interface Props {
 }
 
 // ========== 【SEO核心修改1】定义站点基础信息 ==========
-// 确保站点主域名、名称正确，优先读取配置，兜底写死正确值
-const SITE_BASE_URL = siteConfig.siteUrl || "https://blog.legspcpd.indevs.in";
-const SITE_NAME = "blog.legspcpd.indevs.in";
+// 确保站点主域名、名称正确，优先读取配置，兜底使用 siteConfig.site_url
+const SITE_BASE_URL = siteConfig.siteUrl || siteConfig.site_url || "https://blog.legspcpd.top";
+const SITE_NAME = new URL(SITE_BASE_URL).hostname;
 const SITE_FULL_TITLE = siteConfig.title || "LegspCpd Blog";
 
 // 处理props
@@ -296,6 +297,13 @@ const bannerCarouselInterval = Math.max(
 
   <!-- 根据路由元数据设置索引策略 -->
   {routeMeta.indexable === false && <meta name="robots" content="noindex, nofollow" />}
+
+  <!-- ========== hreflang 标签 - 多语言内容定位 ========== -->
+  {
+    getHreflangTags(canonicalUrl).map((tag) => (
+      <link rel={tag.rel} hreflang={tag.hreflang} href={tag.href} />
+    ))
+  }
 
   <!-- ========== WebSite + Person 结构化数据（整站知识图谱） ========== -->
   <script slot="head" is:inline type="application/ld+json" set:html={siteStructuredData} />

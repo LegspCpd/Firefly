@@ -188,6 +188,25 @@ export const siteConfig: SiteConfig = {
 		postsPerPage: 10,
 	},
 
+	// IndexNow 配置
+	// 用于在内容变更时快速通知搜索引擎，详见 https://www.indexnow.org/
+	// 生成 key 后请放置在 public/{key}.txt 以便搜索引擎验证
+	indexnow: {
+		key: "",
+	},
+
+	// 搜索引擎站长验证（用于各大搜索平台的站点所有权验证）
+	webmasterVerification: {
+		// Bing Webmaster Tools: 在 Bing Webmaster Tools 中添加站点后获取 meta 标签的 content 值
+		bing: "",
+		// Google Search Console: 在 Google Search Console 中添加站点后获取 meta 标签的 content 值
+		google: "",
+		// 百度搜索资源平台: 在百度搜索资源平台中添加站点后获取 meta 标签的 content 值
+		baidu: "",
+		// Yandex Webmaster: 在 Yandex Webmaster 中添加站点后获取 meta 标签的 content 值
+		yandex: "",
+	},
+
 	// 统计分析
 	analytics: {
 		// Google Analytics ID

@@ -177,7 +177,7 @@ const descriptionText = description || remarkPluginFrontmatter.excerpt || "";
         <CoverImage
           src={processedImage}
           basePath={getFileDirFromPath(entry.filePath || "")}
-          alt="Cover Image of the Post"
+          alt={`${title} - ${siteConfig.title}`}
           class="w-full h-full transition-transform duration-300 group-hover:scale-110 group-active:scale-115"
           preview={true}
           loading={loading}

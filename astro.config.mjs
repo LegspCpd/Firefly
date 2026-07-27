@@ -181,7 +181,15 @@ export default defineConfig({
                   return false;
               }
               // 排除无需索引的页面
-              if (pathname.startsWith("/api/") || pathname.startsWith("/og/")) {
+              if (
+                  pathname.startsWith("/api/") ||
+                  pathname.startsWith("/og/") ||
+                  pathname.startsWith("/gh/") ||
+                  pathname.startsWith("/ftp/") ||
+                  pathname.startsWith("/yandex_") ||
+                  pathname === "/search/" ||
+                  pathname === "/404"
+              ) {
                   return false;
               }
 

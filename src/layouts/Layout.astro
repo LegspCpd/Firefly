@@ -141,6 +141,19 @@ const connectionHintOrigins = Array.from(
 <html lang={siteLang} class="bg-(--page-bg) text-[14px] md:text-[16px]" data-wallpaper-mode={backgroundWallpaper.mode}>
   <head>
     <meta charset="UTF-8" />
+
+    <!-- DNS 预取和预连接 - 提升外部资源加载性能 -->
+    {
+      connectionHintOrigins.map((origin) => (
+        <>
+          <link rel="dns-prefetch" href={origin} />
+          <link rel="preconnect" href={origin} crossorigin="anonymous" />
+        </>
+      ))
+    }
+    <link rel="dns-prefetch" href={new URL(siteConfig.site_url).origin} />
+    <link rel="preconnect" href={new URL(siteConfig.site_url).origin} />
+
     {siteConfig.analytics?.googleAnalyticsId && (
             <GoogleAnalytics analyticsId={siteConfig.analytics.googleAnalyticsId} />
     )}
@@ -178,6 +191,27 @@ const connectionHintOrigins = Array.from(
       )
     }
     <meta name="author" content={profileConfig.name} />
+
+    {
+      siteConfig.webmasterVerification?.bing && (
+        <meta name="msvalidate.01" content={siteConfig.webmasterVerification.bing} />
+      )
+    }
+    {
+      siteConfig.webmasterVerification?.google && (
+        <meta name="google-site-verification" content={siteConfig.webmasterVerification.google} />
+      )
+    }
+    {
+      siteConfig.webmasterVerification?.baidu && (
+        <meta name="baidu-site-verification" content={siteConfig.webmasterVerification.baidu} />
+      )
+    }
+    {
+      siteConfig.webmasterVerification?.yandex && (
+        <meta name="yandex-verification" content={siteConfig.webmasterVerification.yandex} />
+      )
+    }
 
     <meta property="og:site_name" content={siteConfig.title} />
     <meta property="og:title" content={pageTitle} />

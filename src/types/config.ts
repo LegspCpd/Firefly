@@ -138,6 +138,34 @@ export type SiteConfig = {
 		};
 	};
 
+	// IndexNow 配置
+	// 用于在内容变更时快速通知搜索引擎（Bing、Yandex 等）
+	// 需要先生成 IndexNow key 并放置在 public/{key}.txt
+	indexnow?: {
+		key: string;
+	};
+
+	// 搜索引擎站长验证
+	webmasterVerification?: {
+		/**
+		 * Bing Webmaster Tools 验证代码 (msvalidate.01)
+		 * 从 Bing Webmaster Tools 站点设置中获取
+		 */
+		bing?: string;
+		/**
+		 * Google Search Console 验证代码
+		 */
+		google?: string;
+		/**
+		 * 百度搜索资源平台验证代码
+		 */
+		baidu?: string;
+		/**
+		 * Yandex Webmaster 验证代码
+		 */
+		yandex?: string;
+	};
+
 	// 图片优化配置
 	imageOptimization?: {
 		/**
