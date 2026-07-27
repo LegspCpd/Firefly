@@ -128,7 +128,11 @@ const columnWidth = galleryConfig.columnWidth || 240;
           style={`column-count: 2; column-gap: 0.75rem; --col-width: ${columnWidth}px;`}
         >
           {photos.map((photo) => (
-            <PhotoCard src={photo} albumId={albumMeta.id} />
+            <PhotoCard
+              src={photo}
+              albumId={albumMeta.id}
+              alt={decodeURIComponent(photo.split('/').pop()?.replace(/\.[^.]+$/, '')?.replace(/[_-]/g, ' ') || albumMeta.name)}
+            />
           ))}
         </div>
       ) : (

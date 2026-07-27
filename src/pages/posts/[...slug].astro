@@ -248,6 +248,7 @@ const relatedPosts = await getRelatedPosts(entry, 5);
               id="post-cover"
               src={processedImage}
               basePath={getFileDirFromPath(entry.filePath || '')}
+              alt={`${entry.data.title} - ${siteConfig.title}`}
               class="mb-8 rounded-xl banner-container onload-animation"
               preview={false}
               apiUrls={apiUrls}
