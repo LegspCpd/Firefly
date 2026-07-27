@@ -238,6 +238,14 @@
     {
       "source": "/yandex_8100d571090b9d7d.html",
       "destination": "/yandex_8100d571090b9d7d"
+    },
+    {
+      "source": "/baidu_verify_codeva-c6BGWLznvm.html",
+      "destination": "/baidu_verify_codeva-c6BGWLznvm"
+    },
+    {
+      "source": "/baidu_verify_codeva-lvaCPPAXmk.html",
+      "destination": "/baidu_verify_codeva-lvaCPPAXmk"
     }
   ]
 }
