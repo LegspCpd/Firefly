@@ -191,6 +191,24 @@
           "value": "noindex, nofollow"
         }
       ]
+    },
+    {
+      "source": "/baidu_verify_(.*)",
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex, nofollow"
+        }
+      ]
+    },
+    {
+      "source": "/baidu_verify_(.*).html",
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex, nofollow"
+        }
+      ]
     }
   ],
   "redirects": [
@@ -202,6 +220,16 @@
     {
       "source": "/yandex_8100d571090b9d7d",
       "destination": "/yandex_8100d571090b9d7d.html",
+      "permanent": true
+    },
+    {
+      "source": "/baidu_verify_codeva-c6BGWLznvm",
+      "destination": "/baidu_verify_codeva-c6BGWLznvm.html",
+      "permanent": true
+    },
+    {
+      "source": "/baidu_verify_codeva-lvaCPPAXmk",
+      "destination": "/baidu_verify_codeva-lvaCPPAXmk.html",
       "permanent": true
     }
   ],

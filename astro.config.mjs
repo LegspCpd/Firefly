@@ -187,6 +187,7 @@ export default defineConfig({
                   pathname.startsWith("/gh/") ||
                   pathname.startsWith("/ftp/") ||
                   pathname.startsWith("/yandex_") ||
+                  pathname.startsWith("/baidu_verify_") ||
                   pathname === "/search/" ||
                   pathname === "/404"
               ) {

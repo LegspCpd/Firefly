@@ -99,6 +99,7 @@ export const NOINDEX_PREFIXES: string[] = [
 	"/gh/",
 	"/ftp/",
 	"/yandex_",
+	"/baidu_verify_",
 	"/404",
 ];
 
