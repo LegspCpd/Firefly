@@ -26,6 +26,10 @@ import type { Favicon } from "@/types/config";
 import { getDefaultBackground, isHomePage } from "@/utils/layout-utils";
 import { url } from "@/utils/url-utils";
 
+import { getCanonicalUrl, getSiteStructuredData, getBreadcrumbStructuredData } from "@/lib/seo/json-ld";
+import { getHreflangTags } from "@/lib/seo/hreflang";
+import { resolveRouteMeta } from "@/lib/seo/route-meta";
+
 import "@/styles/main.css";
 import "@/styles/variables.styl";
 import "@/styles/markdown-extend.styl";
@@ -99,6 +103,14 @@ const toExternalOrigin = (value?: string) => {
 		return null;
 	}
 };
+
+// ========== SEO: 生成规范 URL 和相关结构化数据 ==========
+const currentPath = Astro.url.pathname;
+const canonicalUrl = getCanonicalUrl(currentPath);
+const siteStructuredData = getSiteStructuredData();
+const breadcrumbStructuredData = getBreadcrumbStructuredData(currentPath);
+const routeMeta = resolveRouteMeta(currentPath);
+const hreflangTags = getHreflangTags(canonicalUrl);
 
 const selectedFontIds = siteConfig.font.enable
 	? Array.isArray(siteConfig.font.selected)
@@ -570,6 +582,23 @@ const connectionHintOrigins = Array.from(
       }}
     ></style>
     <!-- defines global css variables. This will be applied to <html> <body> and some other elements idk why -->
+
+    <!-- ========== 规范 canonical 链接，避免重复收录 ========== -->
+    <link rel="canonical" href={canonicalUrl} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta name="twitter:url" content={canonicalUrl} />
+
+    <!-- ========== 根据路由元数据设置索引策略 ========== -->
+    {routeMeta.indexable === false && <meta name="robots" content="noindex, nofollow" />}
+
+    <!-- ========== hreflang 标签 - 多语言内容定位 ========== -->
+    {hreflangTags.map((tag) => <link rel={tag.rel} hreflang={tag.hreflang} href={tag.href} />)}
+
+    <!-- ========== WebSite + Person 结构化数据（整站知识图谱） ========== -->
+    <script is:inline type="application/ld+json" set:html={siteStructuredData} />
+
+    <!-- ========== BreadcrumbList 结构化数据（搜索面包屑） ========== -->
+    <script is:inline type="application/ld+json" set:html={breadcrumbStructuredData} />
 
     <slot name="head" />
 

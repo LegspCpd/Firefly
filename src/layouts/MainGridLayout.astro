@@ -21,12 +21,6 @@ import {
 	BANNER_HEIGHT_EXTEND,
 	MAIN_PANEL_OVERLAPS_BANNER_HEIGHT,
 } from "@/constants/constants";
-import {
-	getBreadcrumbStructuredData,
-	getCanonicalUrl,
-	getSiteStructuredData,
-} from "@/lib/seo/json-ld";
-import { getHreflangTags } from "@/lib/seo/hreflang";
 import { resolveRouteMeta } from "@/lib/seo/route-meta";
 import I18nKey from "@/i18n/i18nKey";
 import { i18n } from "@/i18n/translation";
@@ -63,8 +57,7 @@ interface Props {
 	};
 }
 
-// ========== 【SEO核心修改1】定义站点基础信息 ==========
-// 确保站点主域名、名称正确，优先读取配置，兜底使用 siteConfig.site_url
+// ========== 定义站点基础信息 ==========
 const SITE_BASE_URL = siteConfig.siteUrl || siteConfig.site_url || "https://blog.legspcpd.top";
 const SITE_NAME = new URL(SITE_BASE_URL).hostname;
 const SITE_FULL_TITLE = siteConfig.title || "LegspCpd Blog";
@@ -82,24 +75,14 @@ const {
 	bannerPostMeta,
 } = Astro.props;
 
-// ========== 【SEO核心修改2】生成规范的页面标题 ==========
-// 首页用完整站点标题，内页用「页面标题 | 站点名称」格式，符合搜索引擎规范
+// ========== 生成规范的页面标题 ==========
 const fullPageTitle = title
   ? `${title} | ${SITE_FULL_TITLE} - ${SITE_NAME}`
   : `${SITE_FULL_TITLE} - ${SITE_NAME} | ${siteConfig.description || "LegspCpd 的个人博客"}`;
 
-// ========== 【SEO核心修改3】生成规范的canonical链接 ==========
-// 告诉搜索引擎当前页面的唯一正确URL，避免根域名和子域名重复收录
+// ========== 解析路由元数据（用于Layout props） ==========
 const currentPath = Astro.url.pathname;
-const canonicalUrl = getCanonicalUrl(currentPath);
-
-// ========== 【SEO核心修改3.1】解析路由元数据 ==========
-// 从集中式路由表中获取当前页面的元数据（与客户端共享同一份数据源）
 const routeMeta = resolveRouteMeta(currentPath);
-
-// ========== 【SEO核心修改3.2】生成结构化数据 ==========
-const siteStructuredData = getSiteStructuredData();
-const breadcrumbStructuredData = getBreadcrumbStructuredData(currentPath);
 
 // 原有的业务逻辑保持不变
 const isBannerMode = backgroundWallpaper.mode === "banner";
@@ -273,8 +256,7 @@ const bannerCarouselInterval = Math.max(
 	3000,
 );
 ---
-<!-- ========== 【SEO核心修改4】传递正确的title给Layout组件 ========== -->
-<!-- 注意：只传递原始页面标题（不含站点名），Layout.astro 会自动拼接 " - 站点名" -->
+<!-- 传递title等信息给Layout组件 -->
 <Layout 
   title={title || siteConfig.title} 
   banner={banner} 
@@ -283,36 +265,10 @@ const bannerCarouselInterval = Math.max(
   setOGTypeArticle={setOGTypeArticle || routeMeta.ogType === "article"} 
   postSlug={postSlug}
 >
-<!-- ========== 【SEO核心修改5】注入规范的SEO头部标签 ========== -->
-<slot slot="head" name="head">
-  <!-- 规范站点名称，告诉Google正确的站点标识 -->
-  <meta property="og:site_name" content={SITE_NAME} />
-  <meta name="application-name" content={SITE_FULL_TITLE} />
-  <meta name="twitter:site" content={SITE_NAME} />
-  
-  <!-- 规范canonical链接，避免重复收录，锁定子域名 -->
-  <link rel="canonical" href={canonicalUrl} />
-  <meta property="og:url" content={canonicalUrl} />
-  <meta name="twitter:url" content={canonicalUrl} />
+<!-- ========== 传递head插槽内容给Layout ========== -->
+<slot slot="head" name="head" />
 
-  <!-- 根据路由元数据设置索引策略 -->
-  {routeMeta.indexable === false && <meta name="robots" content="noindex, nofollow" />}
-
-  <!-- ========== hreflang 标签 - 多语言内容定位 ========== -->
-  {
-    getHreflangTags(canonicalUrl).map((tag) => (
-      <link rel={tag.rel} hreflang={tag.hreflang} href={tag.href} />
-    ))
-  }
-
-  <!-- ========== WebSite + Person 结构化数据（整站知识图谱） ========== -->
-  <script slot="head" is:inline type="application/ld+json" set:html={siteStructuredData} />
-
-  <!-- ========== BreadcrumbList 结构化数据（搜索面包屑） ========== -->
-  <script slot="head" is:inline type="application/ld+json" set:html={breadcrumbStructuredData} />
-</slot>
-
-<!-- 原有代码完全保留，不破坏任何主题功能 -->
+<!-- ========== 传递页面默认内容 ========== -->
 {shouldEnableTransparency && (
 	<script>
 		document.body.classList.add('wallpaper-transparent');
