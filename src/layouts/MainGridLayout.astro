@@ -763,7 +763,7 @@ const bannerCarouselInterval = Math.max(
                 {shouldRenderCategoryBar && <div id="category-bar-wrapper" style={!(isHomeRoute || isHomePaginationRoute || isArchiveRoute) ? "display:none" : undefined}><CategoryBar /></div>}
                 <main id="swup-container" class="transition-main">
                 <div id="grid-class-carrier" data-grid-class={gridCols} class="hidden"></div>
-                <h1 class="sr-only">{fullPageTitle}</h1>
+                <h2 class="sr-only">{fullPageTitle}</h2>
                 <div id="content-wrapper" class="onload-animation transition-leaving">
                     <slot></slot>
                 </div>
