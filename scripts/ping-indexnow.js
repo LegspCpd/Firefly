@@ -13,21 +13,52 @@
  *   node scripts/ping-indexnow.js https://blog.legspcpd.top/sitemap-index.xml
  */
 
+import fs from "node:fs";
+import path from "node:path";
+import { fileURLToPath } from "node:url";
+
 const BING_INDEXNOW_URL = "https://www.bing.com/indexnow";
+const SITE_URL = process.env.SITE_URL || "https://blog.legspcpd.top";
+
+/** 从 public 目录中查找 IndexNow key 文件 */
+function discoverIndexNowKey() {
+	// 1. 优先使用环境变量
+	if (process.env.INDEXNOW_KEY) {
+		return process.env.INDEXNOW_KEY.trim();
+	}
+
+	// 2. 从 public 目录扫描 {32位hex}.txt 文件
+	const scriptDir = path.dirname(fileURLToPath(import.meta.url));
+	const publicDir = path.join(scriptDir, "..", "public");
+	try {
+		const files = fs.readdirSync(publicDir);
+		const keyFile = files.find(
+			(file) => /^[0-9a-f]{32}\.txt$/i.test(file) && !file.startsWith("."),
+		);
+		if (keyFile) {
+			const key = fs.readFileSync(path.join(publicDir, keyFile), "utf8").trim();
+			if (key) {
+				console.log(`[IndexNow] 🔑 从 public/${keyFile} 读取 key`);
+				return key;
+			}
+		}
+	} catch (err) {
+		console.log(`[IndexNow] ⚠️  读取 public 目录失败: ${err.message}`);
+	}
+
+	return "";
+}
 
 async function main() {
 	const sitemapUrl =
-		process.argv[2] || "https://blog.legspcpd.top/sitemap-index.xml";
+		process.argv[2] || `${SITE_URL}/sitemap-index.xml`;
 
-	// 从 siteConfig 或环境变量读取 IndexNow key
-	const indexnowKey = process.env.INDEXNOW_KEY || "";
+	// 从环境变量或 public 目录中的 key 文件读取 IndexNow key
+	const indexnowKey = discoverIndexNowKey();
 
 	if (!indexnowKey) {
 		console.log(
-			"[IndexNow] ⚠️  INDEXNOW_KEY 环境变量未设置，跳过 IndexNow 推送。",
-		);
-		console.log(
-			"[IndexNow] 💡 设置 INDEXNOW_KEY 环境变量以启用自动推送。",
+			"[IndexNow] ⚠️  未找到 IndexNow key（缺少 INDEXNOW_KEY 环境变量或 public/{key}.txt 文件），跳过 IndexNow 推送。",
 		);
 		process.exit(0);
 	}

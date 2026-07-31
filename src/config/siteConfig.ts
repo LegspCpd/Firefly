@@ -133,6 +133,10 @@ export const siteConfig: SiteConfig = {
 	// OpenGraph图片功能,注意开启后要渲染很长时间，不建议本地调试的时候开启
 	generateOgImages: false,
 
+	// 默认 OpenGraph 图片（用于无封面图文章和普通页面社交分享时的兜底）
+	// 建议使用 1200x630 比例的图片以获得最佳分享效果
+	defaultOgImage: "/assets/images/firefly.png",
+
 	// bangumi配置
 	bangumi: {
 		// Bangumi用户ID
@@ -192,7 +196,7 @@ export const siteConfig: SiteConfig = {
 	// 用于在内容变更时快速通知搜索引擎，详见 https://www.indexnow.org/
 	// 生成 key 后请放置在 public/{key}.txt 以便搜索引擎验证
 	indexnow: {
-		key: "",
+		key: "5f124721eb672b47360d00676083cecb",
 	},
 
 	// 搜索引擎站长验证（用于各大搜索平台的站点所有权验证）

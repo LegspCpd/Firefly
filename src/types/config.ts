@@ -54,6 +54,8 @@ export type SiteConfig = {
 	};
 
 	generateOgImages: boolean;
+	/** 默认 OpenGraph 图片（用于无封面图时社交分享/引用的兜底） */
+	defaultOgImage?: string;
 	favicon: Array<{
 		src: string;
 		theme?: "light" | "dark";

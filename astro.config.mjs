@@ -37,6 +37,39 @@ import rehypeHeadingLevel from "./src/plugins/rehype-heading-level.mjs";
 import rehypeImageAlt from "./src/plugins/rehype-image-alt.mjs";
 
 import vercel from "@astrojs/vercel";
+import fs from "node:fs";
+import path from "node:path";
+import { fileURLToPath } from "node:url";
+import grayMatter from "gray-matter";
+
+// ========== SEO: 构建文章 URL -> lastmod 映射（用于 sitemap 新鲜度信号） ==========
+const postLastmodMap = new Map();
+(function buildPostLastmodMap() {
+  const configDir = path.dirname(fileURLToPath(import.meta.url));
+  const postsDir = path.join(configDir, "src/content/posts");
+  if (!fs.existsSync(postsDir)) return;
+  const walk = (dir) => {
+    for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
+      const full = path.join(dir, entry.name);
+      if (entry.isDirectory()) {
+        walk(full);
+      } else if (/\.(md|mdx)$/.test(entry.name)) {
+        try {
+          const { data } = grayMatter(fs.readFileSync(full, "utf8"));
+          if (data.draft === true) continue;
+          const rel = path.relative(postsDir, full).replace(/\\/g, "/").replace(/\.(md|mdx)$/i, "");
+          const lastmod = (data.updated || data.published);
+          if (lastmod) {
+            postLastmodMap.set(`/posts/${rel}/`, new Date(lastmod).toISOString());
+          }
+        } catch {
+          /* 忽略无法解析的文件 */
+        }
+      }
+    }
+  };
+  walk(postsDir);
+})();
 
 // https://astro.build/config
 export default defineConfig({
@@ -224,10 +257,12 @@ export default defineConfig({
 
               // 博客文章详情页 - 较高优先级
               if (pathname.startsWith("/posts/") && pathname !== "/posts/") {
+                  const postLastmod = postLastmodMap.get(pathname);
                   return {
                       ...item,
                       changefreq: "weekly",
                       priority: 0.8,
+                      ...(postLastmod ? { lastmod: postLastmod } : {}),
                   };
               }
 

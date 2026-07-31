@@ -42,9 +42,10 @@ interface Props {
 	lang?: string;
 	setOGTypeArticle?: boolean;
 	postSlug?: string;
+	ogImage?: string;
 }
 
-let { title, banner, description, lang, setOGTypeArticle, postSlug } =
+let { title, banner, description, lang, setOGTypeArticle, postSlug, ogImage } =
 	Astro.props;
 
 // apply a class to the body element to decide the height of the banner, only used for initial page load
@@ -82,8 +83,18 @@ if (title) {
 }
 
 let ogImageUrl: string | undefined;
-if (siteConfig.generateOgImages && postSlug) {
+if (ogImage) {
+	// 优先使用页面传入的 OG 图片（如文章封面图）
+	ogImageUrl = ogImage.startsWith("http")
+		? ogImage
+		: new URL(ogImage, Astro.site).toString();
+} else if (siteConfig.generateOgImages && postSlug) {
 	ogImageUrl = new URL(`/og/${postSlug}.png`, Astro.site).toString();
+} else if (siteConfig.defaultOgImage) {
+	// 使用配置的默认 OG 图片兜底
+	ogImageUrl = siteConfig.defaultOgImage.startsWith("http")
+		? siteConfig.defaultOgImage
+		: new URL(siteConfig.defaultOgImage, Astro.site).toString();
 }
 
 const favicons: Favicon[] =

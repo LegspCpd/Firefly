@@ -47,6 +47,7 @@ interface Props {
 	lang?: string;
 	setOGTypeArticle?: boolean;
 	postSlug?: string;
+	ogImage?: string;
 	headings?: MarkdownHeading[];
 	bannerPostMeta?: {
 		title: string;
@@ -71,6 +72,7 @@ const {
 	lang,
 	setOGTypeArticle,
 	postSlug,
+	ogImage,
 	headings = [],
 	bannerPostMeta,
 } = Astro.props;
@@ -264,6 +266,7 @@ const bannerCarouselInterval = Math.max(
   lang={lang} 
   setOGTypeArticle={setOGTypeArticle || routeMeta.ogType === "article"} 
   postSlug={postSlug}
+  ogImage={ogImage}
 >
 <!-- ========== 传递head插槽内容给Layout ========== -->
 <slot slot="head" name="head" />

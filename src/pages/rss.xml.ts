@@ -47,7 +47,7 @@ export async function GET(context: APIContext): Promise<Response> {
 			});
 			continue;
 		}
-		const { Content } = await render(post);
+		const { Content, remarkPluginFrontmatter } = await render(post);
 		const rawContent = await container.renderToString(Content);
 		const cleanedContent = stripInvalidXmlChars(rawContent);
 		const postImage = processCoverImageSync(post.data.image, post.id);
@@ -55,10 +55,16 @@ export async function GET(context: APIContext): Promise<Response> {
 			Boolean,
 		) as string[];
 
+		// 描述优先使用 frontmatter，否则使用文章摘要，保证 RSS 有完整描述
+		const postDescription =
+			post.data.description?.trim() ||
+			remarkPluginFrontmatter.excerpt?.trim() ||
+			post.data.title;
+
 		feedItems.push({
 			title: post.data.title,
 			pubDate: post.data.published,
-			description: post.data.description || "",
+			description: postDescription,
 			link: url(`/posts/${post.id}/`),
 			content: sanitizeHtml(cleanedContent, {
 				allowedTags: sanitizeHtml.defaults.allowedTags.concat(["img"]),
