@@ -18,6 +18,7 @@ const fullPath = Array.isArray(Astro.params.path)
 const targetUrl = new URL(`/${fullPath}`, GITHUB_BASE);
 targetUrl.search = Astro.url.search;
 
+let pageHtml = '';
 try {
   // 转发请求到GitHub
   const githubResponse = await fetch(targetUrl.toString(), {
@@ -30,7 +31,7 @@ try {
   });
 
   // 处理页面内容，替换链接，保证点击后还在你的域名下
-  let pageHtml = await githubResponse.text();
+  pageHtml = await githubResponse.text();
   pageHtml = pageHtml.replaceAll('https://github.com', `https://${YOUR_DOMAIN}/gh`);
   pageHtml = pageHtml.replaceAll('https://raw.githubusercontent.com', `https://${YOUR_DOMAIN}/gh/raw`);
 

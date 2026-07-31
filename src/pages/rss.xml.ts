@@ -23,7 +23,7 @@ function stripInvalidXmlChars(str: string): string {
 }
 
 // 生成完整的文章封面 URL
-function getPostImageUrl(postId: string, imagePath: string): string | undefined {
+function getPostImageUrl(imagePath: string): string | undefined {
 	if (!imagePath) return undefined;
 	if (imagePath.startsWith("http")) return imagePath;
 	if (imagePath.startsWith("/")) return `${siteConfig.site_url}${imagePath}`;
@@ -73,7 +73,7 @@ export async function GET(context: APIContext): Promise<Response> {
 			author: `${profileConfig.name}`,
 			...((postImage
 				? {
-						customData: `<media:content xmlns:media="http://search.yahoo.com/mrss/" url="${getPostImageUrl(post.id, postImage) || ""}" medium="image"/>`,
+						customData: `<media:content xmlns:media="http://search.yahoo.com/mrss/" url="${getPostImageUrl(postImage) || ""}" medium="image"/>`,
 					}
 				: {}) as Record<string, string>),
 		});
