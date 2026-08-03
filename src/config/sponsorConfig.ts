@@ -25,7 +25,7 @@ export const sponsorConfig: SponsorConfig = {
 			name: "支付宝",
 			icon: "fa7-brands:alipay",
 			// 收款码图片路径（需要放在 public 目录下）
-			qrCode: "/assets/images/sponsor/alipay.png",
+			qrCode: "",
 			link: "",
 			description: "使用 支付宝 扫码赞助",
 			enabled: true,
