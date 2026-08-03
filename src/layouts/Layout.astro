@@ -1,4 +1,5 @@
 ---
+import GoogleAdsense from "@components/analytics/GoogleAdsense.astro";
 import GoogleAnalytics from "@components/analytics/GoogleAnalytics.astro";
 import La51Analytics from "@components/analytics/La51Analytics.astro";
 import MicrosoftClarity from "@components/analytics/MicrosoftClarity.astro";
@@ -138,6 +139,12 @@ const connectionHintOrigins = Array.from(
 					"https://www.google-analytics.com",
 				]
 				: []),
+			...(siteConfig.analytics?.googleAdsenseClientId
+				? [
+					"https://pagead2.googlesyndication.com",
+					"https://googleads.g.doubleclick.net",
+				]
+				: []),
 			...(siteConfig.analytics?.microsoftClarityId
 				? ["https://www.clarity.ms"]
 				: []),
@@ -179,6 +186,9 @@ const connectionHintOrigins = Array.from(
 
     {siteConfig.analytics?.googleAnalyticsId && (
             <GoogleAnalytics analyticsId={siteConfig.analytics.googleAnalyticsId} />
+    )}
+    {siteConfig.analytics?.googleAdsenseClientId && (
+      <GoogleAdsense clientId={siteConfig.analytics.googleAdsenseClientId} />
     )}
     {siteConfig.analytics?.microsoftClarityId && (
             <MicrosoftClarity clarityId={siteConfig.analytics.microsoftClarityId} />

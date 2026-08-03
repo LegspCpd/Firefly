@@ -221,6 +221,8 @@ export const siteConfig: SiteConfig = {
 	analytics: {
 		// Google Analytics ID
 		googleAnalyticsId: "",
+		// Google AdSense 发布商 ID (ca-pub-xxxxxxxxxxxxxxxx)，留空则不加载 AdSense 脚本
+		googleAdsenseClientId: "ca-pub-5451911549695673",
 		// Microsoft Clarity ID
 		microsoftClarityId: "",
 		// Umami 统计配置

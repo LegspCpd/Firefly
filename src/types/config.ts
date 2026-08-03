@@ -116,6 +116,7 @@ export type SiteConfig = {
 	// 统计分析
 	analytics?: {
 		googleAnalyticsId?: string; // Google Analytics ID
+		googleAdsenseClientId?: string; // Google AdSense 发布商 ID (ca-pub-xxxxxxxxxxxxxxxx)
 		microsoftClarityId?: string; // Microsoft Clarity ID
 		umamiAnalytics?: {
 			websiteId?: string; // Umami Website ID
