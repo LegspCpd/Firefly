@@ -11,13 +11,13 @@ export const sponsorConfig: SponsorConfig = {
 	usage: "目前不需要赞助~",
 
 	// 是否显示赞助者列表
-	showSponsorsList: true,
+	showSponsorsList: false,
 
 	// 是否显示评论区，需要先在commentConfig.ts启用评论系统
 	showComment: true,
 
 	// 是否在文章详情页底部显示赞助按钮
-	showButtonInPost: true,
+	showButtonInPost: false,
 
 	// 赞助方式列表
 	methods: [

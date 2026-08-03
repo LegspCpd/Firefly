@@ -36,7 +36,7 @@ export const profileConfig: ProfileConfig = {
 		{
 			name: "Email",
 			icon: "material-symbols:attach-email-outline",
-			url: "mailto:info@legspcpd.indevs.in",
+			url: "mailto:info@legspcpd.top",
 			showName: false,
 		},
 		{
