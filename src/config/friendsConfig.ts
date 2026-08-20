@@ -29,7 +29,27 @@ export const friendsConfig: FriendLink[] = [
 		desc: "飞萤之火自无梦的长夜亮起，绽放在终竟的明天。",
 		siteurl: "https://blog.cuteleaf.cn",
 		tags: ["Blog"],
-		weight: 10, // 权重，数字越大排序越靠前
+		weight: 1, // 权重，数字越大排序越靠前
+		enabled: true, // 是否启用
+	},
+	{
+		title: "二叉树树",
+		imgurl:
+			"https://img.legspcpd.de5.net/file/image/image.webp",
+		desc: "二叉树树的博客",
+		siteurl: "https://2x.nz",
+		tags: ["Blog"],
+		weight: 2, // 权重，数字越大排序越靠前
+		enabled: true, // 是否启用
+	},
+	{
+		title: "Bai21357",
+		imgurl:
+			"https://img.legspcpd.de5.net/file/image/image(1).webp",
+		desc: "Actions speak louder than words.",
+		siteurl: "https://baiblog.vip/",
+		tags: ["Blog"],
+		weight: 3, // 权重，数字越大排序越靠前
 		enabled: true, // 是否启用
 	},
 ];

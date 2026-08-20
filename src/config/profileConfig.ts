@@ -6,7 +6,7 @@ export const profileConfig: ProfileConfig = {
 	// 1. public 目录（以 "/" 开头，不优化）："/assets/images/avatar.webp"
 	// 2. src 目录（不以 "/" 开头，自动优化但会增加构建时间，推荐）："assets/images/avatar.webp"
 	// 3. 远程 URL："https://imghub.2xgh.qzz.io/file/image/Image_1775995211463.jpg"
-	avatar: "assets/images/me.jpg",
+	avatar: "https://hub.legspcpd.top/file/1786478720569_b_98f8cf789dc723b202017adcb82a0da9.jpg",
 
 	// 名字
 	name: "LegspCpd",

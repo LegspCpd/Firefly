@@ -10,7 +10,7 @@ export const siteConfig: SiteConfig = {
 	title: "LegspCpd Blog",
 
 	// 站点副标题
-	subtitle: "blog.legspcpd.indevs.in",
+	subtitle: "LegspCpd Blog",
 
 	// 站点 URL
 	site_url: "https://blog.legspcpd.top",
@@ -46,6 +46,7 @@ export const siteConfig: SiteConfig = {
 		"B站 LegspCpd 的个人博客",
 		"技术分享",
 		"科技",
+	    "Cloudflare"
 	],
 
 	// 主题色
@@ -93,8 +94,8 @@ export const siteConfig: SiteConfig = {
 		// 4. 网络图片: { type: "url", value: "https://example.com/logo.png", alt: "Logo" }
 		logo: {
 			type: "image",
-			value: "assets/images/firefly.png",
-			alt: "🍀",
+			value: "https://hub.legspcpd.top/file/1786478720569_b_98f8cf789dc723b202017adcb82a0da9.jpg",
+			alt: "",
 		},
 		// 导航栏标题
 		title: "LegspCpd Blog",
@@ -153,13 +154,13 @@ export const siteConfig: SiteConfig = {
 		// 友链页面开关
 		friends: true,
 		// 赞助页面开关
-		sponsor: true,
+		sponsor: false,
 		// 留言板页面开关，需要配置评论系统
 		guestbook: true,
 		// 番组计划页面开关，含追番、游戏、书籍和音乐，dev调试时只获取一页数据，build才会获取全部数据
-		bangumi: true,
+		bangumi: false,
 		// 相册页面开关
-		gallery: true,
+		gallery: false,
 	},
 
 	// 分类导航栏开关，在首页和归档页顶部显示分类快捷导航
@@ -172,7 +173,7 @@ export const siteConfig: SiteConfig = {
 		// 移动端默认布局模式，不设置则跟随 defaultMode
 		mobileDefaultMode: "list",
 		// 是否在文章列表中显示标签
-		showTags: true,
+		showTags: false,
 		// 文章简介显示行数，设为 0 则不截断
 		descriptionLines: 2,
 		// 是否允许用户切换布局
@@ -206,7 +207,7 @@ export const siteConfig: SiteConfig = {
 		// Google Search Console: 在 Google Search Console 中添加站点后获取 meta 标签的 content 值
 		google: "",
 		// 百度搜索资源平台: 在百度搜索资源平台中添加站点后获取 meta 标签的 content 值
-		baidu: "",
+		baidu: "Sy4nL3Xd5VtjwSqy",
 		// Yandex Webmaster: 在 Yandex Webmaster 中添加站点后获取 meta 标签的 content 值
 		yandex: "",
 		// 文件验证: key=文件名, value=文件内容, 自动在 /{key}.html 路由输出
@@ -220,21 +221,21 @@ export const siteConfig: SiteConfig = {
 	// 统计分析
 	analytics: {
 		// Google Analytics ID
-		googleAnalyticsId: "",
+		googleAnalyticsId: "G-EH2BZS4JH4",
 		// Google AdSense 发布商 ID (ca-pub-xxxxxxxxxxxxxxxx)，留空则不加载 AdSense 脚本
 		googleAdsenseClientId: "ca-pub-5451911549695673",
 		// Microsoft Clarity ID
-		microsoftClarityId: "",
+		microsoftClarityId: "y5kphl2duk",
 		// Umami 统计配置
 		umamiAnalytics: {
 			// Umami Website ID
-			websiteId: "",
+			websiteId: "a333ea5c-7ed3-440d-bf24-167384eef9c9",
 			// Umami JS地址，支持使用自建
 			scriptUrl: "https://cloud.umami.is/script.js",
 			// 是否追踪出站链接
 			trackOutboundLinks: true,
 			// 是否收集浏览器性能指标
-			collectWebVitals: false,
+			collectWebVitals: true,
 			// 会话回放配置
 			relpays: {
 				// 是否启用会话回放
