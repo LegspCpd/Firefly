@@ -49,14 +49,7 @@ export const musicPlayerConfig: MusicPlayerConfig = {
 	// lrc: "[00:00.00]歌词内容...",
 	local: {
 		playlist: [
-			{
-				name: "使一颗心免于哀伤",
-				artist: "知更鸟 / HOYO-MiX / Chevy",
-				url: "/assets/music/使一颗心免于哀伤-哼唱.mp3",
-				cover: "/assets/music/cover/109951169585655912.webp",
-				lrc: "",
-			},
-			{
+		   {
 				name: "Higher",
 				artist: "Tobu",
 				url: "/assets/music/Higher-Tobu.mp3",
@@ -117,6 +110,13 @@ export const musicPlayerConfig: MusicPlayerConfig = {
 				artist: "Odesza",
 				url: "/assets/music/A Moment Apart-Odesza.mp3",
 				cover: "/assets/music/cover/A_Moment_Alone_Cover.jpg",
+				lrc: "",
+			},
+				{
+				name: "使一颗心免于哀伤",
+				artist: "知更鸟 / HOYO-MiX / Chevy",
+				url: "/assets/music/使一颗心免于哀伤-哼唱.mp3",
+				cover: "/assets/music/cover/109951169585655912.webp",
 				lrc: "",
 			},
 		],
