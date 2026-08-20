@@ -23,7 +23,7 @@ draft: false
 
 ### 1. 域名接入
 
-首先打开 [DNSPod / 腾讯云解析控制台](https://console.cloud.tencent.com/cns)。如果你尚未在平台中添加域名，请先将域名添加进控制台并完成 DNS 修改；已添加域名的直接进入下一步。
+首先打开 [DNSPod控制台](https://console.cloud.tencent.com/cns)。如果你尚未在平台中添加域名，请先将域名添加进控制台并完成 DNS 修改；已添加域名的直接进入下一步。
 
 ---
 
