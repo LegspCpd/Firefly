@@ -93,8 +93,8 @@ export const siteConfig: SiteConfig = {
 		// 3. 本地图片（src目录，自动优化但会增加构建时间，推荐）: { type: "image", value: "assets/images/logo.webp", alt: "Logo" }
 		// 4. 网络图片: { type: "url", value: "https://example.com/logo.png", alt: "Logo" }
 		logo: {
-			type: "image",
-			value: "https://hub.legspcpd.top/file/1786478720569_b_98f8cf789dc723b202017adcb82a0da9.jpg",
+			type: "url",
+			value: "https://hub.legspcpd.top/file/1787274091485_ico.png",
 			alt: "Logo",
 		},
 		// 导航栏标题
