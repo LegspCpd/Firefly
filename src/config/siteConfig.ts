@@ -95,7 +95,7 @@ export const siteConfig: SiteConfig = {
 		logo: {
 			type: "image",
 			value: "https://hub.legspcpd.top/file/1786478720569_b_98f8cf789dc723b202017adcb82a0da9.jpg",
-			alt: "",
+			alt: "Logo",
 		},
 		// 导航栏标题
 		title: "LegspCpd Blog",
