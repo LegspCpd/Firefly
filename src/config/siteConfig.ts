@@ -136,7 +136,7 @@ export const siteConfig: SiteConfig = {
 
 	// 默认 OpenGraph 图片（用于无封面图文章和普通页面社交分享时的兜底）
 	// 建议使用 1200x630 比例的图片以获得最佳分享效果
-	defaultOgImage: "/assets/images/firefly.png",
+	defaultOgImage: "/assets/images/me.jpg",
 
 	// bangumi配置
 	bangumi: {
