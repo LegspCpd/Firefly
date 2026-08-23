@@ -130,7 +130,8 @@ while ($true) {
         $cleanUrl = Get-CleanUrl $targetApp.RawUrl
         $tempPath = Join-Path $env:TEMP $targetApp.FileName
         
-        Write-Host "$txtDownloading: $cleanUrl ..." -ForegroundColor Cyan
+        # 使用 ${txtDownloading} 消除变量与冒号的冲突
+        Write-Host "${txtDownloading}: $cleanUrl ..." -ForegroundColor Cyan
         
         try {
             Invoke-WebRequest -Uri $cleanUrl -OutFile $tempPath -UseBasicParsing -ErrorAction Stop
