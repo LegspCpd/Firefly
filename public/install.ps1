@@ -95,9 +95,30 @@ $softwareList = @(
     @{ 
         Id = "7"
         Name = "Old Outlook 2021 (Online)"
-        RawUrl = "https://alist.legspcpd.top/d/Github/exe/Old%20Outlook%202021.exe?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJhZG1pbiIsInJvbGUiOjIsImV4cCI6MTc4Nzk4NDIyMn0.eGVUt_ONIkiEoJuk26RtNHFjyD61ziv-qeeqQwzbGcs"
+        RawUrl = "https://alist.legspcpd.top/d/Github/exe/Old%20Outlook%202021.exe?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJhZG1pbiIsInR5cGUiOjIsImV4cCI6MTc4Nzk4NDIyMn0.eGVUt_ONIkiEoJuk26RtNHFjyD61ziv-qeeqQwzbGcs"
         FileName = "Old_Outlook_2021.exe"
         SilentArgs = ""
+    },
+    @{ 
+        Id = "8"
+        Name = "PotPlayer 64bit"
+        RawUrl = "https://alist.legspcpd.top/d/Github/exe/PotPlayerSetup64.exe?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJhZG1pbiIsInR5cGUiOjIsImV4cCI6MTc4Nzk4NDIyMn0.eGVUt_ONIkiEoJuk26RtNHFjyD61ziv-qeeqQwzbGcs"
+        FileName = "PotPlayerSetup64.exe"
+        SilentArgs = "/S"
+    },
+    @{ 
+        Id = "9"
+        Name = "Bandizip Pro 8.00 Beta 10 x64 Repack"
+        RawUrl = "https://alist.legspcpd.top/d/Github/exe/Bandizip-Pro-8.00-Beta-10-x64-Repack.exe?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJhZG1pbiIsInR5cGUiOjIsImV4cCI6MTc4Nzk4NDIyMn0.eGVUt_ONIkiEoJuk26RtNHFjyD61ziv-qeeqQwzbGcs"
+        FileName = "Bandizip-Pro-8.00-Beta-10-x64-Repack.exe"
+        SilentArgs = "/S"
+    },
+    @{ 
+        Id = "10"
+        Name = "Bandizip Professional 7.46 x64 Repack"
+        RawUrl = "https://alist.legspcpd.top/d/Github/exe/Bandizip-Professional-7.46-x64-Repack.exe?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJhZG1pbiIsInR5cGUiOjIsImV4cCI6MTc4Nzk4NDIyMn0.eGVUt_ONIkiEoJuk26RtNHFjyD61ziv-qeeqQwzbGcs"
+        FileName = "Bandizip-Professional-7.46-x64-Repack.exe"
+        SilentArgs = "/S"
     }
 )
 
