@@ -27,7 +27,7 @@ if ($langChoice -eq "2") {
     $txtTitle             = "=== Software Installation Hub ==="
     $txtSelectApp         = "Select the software you want to install:"
     $txtSelectMode        = "Select installation mode for"
-    $txtModeManual        = "1. Manual Install"
+    $txtModeManual        = "1. Manual Install / Run"
     $txtModeSilent        = "2. Silent Install"
     $txtBack              = "0. Exit"
     $txtDownloading       = "Downloading"
@@ -56,6 +56,7 @@ $softwareList = @(
         RawUrl = "https://alist.legspcpd.top/d/Github/exe/RobloxPlayerInstaller.exe"
         FileName = "RobloxPlayerInstaller.exe"
         SilentArgs = "" 
+        IsZip = $false
     },
     @{ 
         Id = "2"
@@ -63,6 +64,7 @@ $softwareList = @(
         RawUrl = "https://alist.legspcpd.top/d/Github/exe/Firefox%20Installer.exe"
         FileName = "Firefox_Installer.exe"
         SilentArgs = "-ms"
+        IsZip = $false
     },
     @{ 
         Id = "3"
@@ -70,6 +72,7 @@ $softwareList = @(
         RawUrl = "https://alist.legspcpd.top/d/Github/exe/Firefox%20Setup%20154.0.exe"
         FileName = "Firefox_Setup_154.0.exe"
         SilentArgs = "-ms"
+        IsZip = $false
     },
     @{ 
         Id = "4"
@@ -77,6 +80,7 @@ $softwareList = @(
         RawUrl = "https://alist.legspcpd.top/d/Github/exe/ChatGPT%20Installer.exe"
         FileName = "ChatGPT_Installer.exe"
         SilentArgs = "/S"
+        IsZip = $false
     },
     @{ 
         Id = "5"
@@ -84,6 +88,7 @@ $softwareList = @(
         RawUrl = "https://alist.legspcpd.top/d/Github/ChromeSetup.exe"
         FileName = "ChromeSetup.exe"
         SilentArgs = "/silent /install"
+        IsZip = $false
     },
     @{ 
         Id = "6"
@@ -91,6 +96,7 @@ $softwareList = @(
         RawUrl = "https://alist.legspcpd.top/d/Github/exe/151.0.7922.174_chrome_installer_uncompressed.exe"
         FileName = "chrome_installer_offline.exe"
         SilentArgs = "/silent /install"
+        IsZip = $false
     },
     @{ 
         Id = "7"
@@ -98,6 +104,7 @@ $softwareList = @(
         RawUrl = "https://alist.legspcpd.top/d/Github/exe/Old%20Outlook%202021.exe?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJhZG1pbiIsInR5cGUiOjIsImV4cCI6MTc4Nzk4NDIyMn0.eGVUt_ONIkiEoJuk26RtNHFjyD61ziv-qeeqQwzbGcs"
         FileName = "Old_Outlook_2021.exe"
         SilentArgs = ""
+        IsZip = $false
     },
     @{ 
         Id = "8"
@@ -105,6 +112,7 @@ $softwareList = @(
         RawUrl = "https://alist.legspcpd.top/d/Github/exe/PotPlayerSetup64.exe?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJhZG1pbiIsInR5cGUiOjIsImV4cCI6MTc4Nzk4NDIyMn0.eGVUt_ONIkiEoJuk26RtNHFjyD61ziv-qeeqQwzbGcs"
         FileName = "PotPlayerSetup64.exe"
         SilentArgs = "/S"
+        IsZip = $false
     },
     @{ 
         Id = "9"
@@ -112,6 +120,7 @@ $softwareList = @(
         RawUrl = "https://alist.legspcpd.top/d/Github/exe/Bandizip-Pro-8.00-Beta-10-x64-Repack.exe?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJhZG1pbiIsInR5cGUiOjIsImV4cCI6MTc4Nzk4NDIyMn0.eGVUt_ONIkiEoJuk26RtNHFjyD61ziv-qeeqQwzbGcs"
         FileName = "Bandizip-Pro-8.00-Beta-10-x64-Repack.exe"
         SilentArgs = "/S"
+        IsZip = $false
     },
     @{ 
         Id = "10"
@@ -119,6 +128,40 @@ $softwareList = @(
         RawUrl = "https://alist.legspcpd.top/d/Github/exe/Bandizip-Professional-7.46-x64-Repack.exe?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJhZG1pbiIsInR5cGUiOjIsImV4cCI6MTc4Nzk4NDIyMn0.eGVUt_ONIkiEoJuk26RtNHFjyD61ziv-qeeqQwzbGcs"
         FileName = "Bandizip-Professional-7.46-x64-Repack.exe"
         SilentArgs = "/S"
+        IsZip = $false
+    },
+    @{ 
+        Id = "11"
+        Name = "360 First Aid Kit (360急救箱)"
+        RawUrl = "https://alist.legspcpd.top/d/Github/exe/360c0mpkill_5.1.64.1289-0701.zip?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJhZG1pbiIsInR5cGUiOjIsImV4cCI6MTc4Nzk4NDIyMn0.eGVUt_ONIkiEoJuk26RtNHFjyD61ziv-qeeqQwzbGcs"
+        FileName = "360c0mpkill.zip"
+        SilentArgs = ""
+        IsZip = $true
+        ExtractExe = "360gar.exe"
+    },
+    @{ 
+        Id = "12"
+        Name = "360 Secure Browser x32 (360极速浏览器)"
+        RawUrl = "https://alist.legspcpd.top/d/Github/exe/360cse_23.0.1253.0.exe?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJhZG1pbiIsInR5cGUiOjIsImV4cCI6MTc4Nzk4NDIyMn0.eGVUt_ONIkiEoJuk26RtNHFjyD61ziv-qeeqQwzbGcs"
+        FileName = "360cse_x32.exe"
+        SilentArgs = "/S"
+        IsZip = $false
+    },
+    @{ 
+        Id = "13"
+        Name = "360 Secure Browser x64 (360极速浏览器)"
+        RawUrl = "https://alist.legspcpd.top/d/Github/exe/360csex_23.1.1253.64.exe?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJhZG1pbiIsInR5cGUiOjIsImV4cCI6MTc4Nzk4NDIyMn0.eGVUt_ONIkiEoJuk26RtNHFjyD61ziv-qeeqQwzbGcs"
+        FileName = "360csex_x64.exe"
+        SilentArgs = "/S"
+        IsZip = $false
+    },
+    @{ 
+        Id = "14"
+        Name = "Huorong Security x64 (火绒安全)"
+        RawUrl = "https://alist.legspcpd.top/d/Github/exe/sysdiag-all-x64-6.0.11.2-2026.08.23.1.exe?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJhZG1pbiIsInR5cGUiOjIsImV4cCI6MTc4Nzk4NDIyMn0.eGVUt_ONIkiEoJuk26RtNHFjyD61ziv-qeeqQwzbGcs"
+        FileName = "Huorong_x64.exe"
+        SilentArgs = "/S"
+        IsZip = $false
     }
 )
 
@@ -164,19 +207,34 @@ while ($true) {
         try {
             Invoke-WebRequest -Uri $downloadUrl -OutFile $tempPath -UseBasicParsing -ErrorAction Stop
             
-            if ($modeChoice -eq "1") {
-                Write-Host $txtLaunching -ForegroundColor Green
-                Start-Process -FilePath $tempPath
-            } 
-            elseif ($modeChoice -eq "2") {
-                Write-Host $txtInstallingSilent -ForegroundColor Green
-                if ($targetApp.SilentArgs) {
-                    Start-Process -FilePath $tempPath -ArgumentList $targetApp.SilentArgs -Wait
+            if ($targetApp.IsZip) {
+                $extractDir = Join-Path $env:TEMP ($targetApp.FileName -replace '\.zip$', '')
+                Write-Host "Extracting archive..." -ForegroundColor Yellow
+                Expand-Archive -Path $tempPath -DestinationPath $extractDir -Force
+                $runPath = Join-Path $extractDir $targetApp.ExtractExe
+                
+                if (Test-Path $runPath) {
+                    Write-Host $txtLaunching -ForegroundColor Green
+                    Start-Process -FilePath $runPath
                 } else {
-                    Start-Process -FilePath $tempPath -Wait
+                    Write-Host "Error: Main executable not found in archive." -ForegroundColor Red
+                    Pause
                 }
-                Write-Host $txtDone -ForegroundColor Green
-                Start-Sleep -Seconds 2
+            } else {
+                if ($modeChoice -eq "1") {
+                    Write-Host $txtLaunching -ForegroundColor Green
+                    Start-Process -FilePath $tempPath
+                } 
+                elseif ($modeChoice -eq "2") {
+                    Write-Host $txtInstallingSilent -ForegroundColor Green
+                    if ($targetApp.SilentArgs) {
+                        Start-Process -FilePath $tempPath -ArgumentList $targetApp.SilentArgs -Wait
+                    } else {
+                        Start-Process -FilePath $tempPath -Wait
+                    }
+                    Write-Host $txtDone -ForegroundColor Green
+                    Start-Sleep -Seconds 2
+                }
             }
         } 
         catch {
