@@ -1,4 +1,5 @@
-# 强制使用 UTF-8 编码，防止控制台中文乱码
+# 修复 PowerShell 5.1/7 接收远程 UTF-8 流时的乱码问题
+$OutputEncoding = [System.Text.Encoding]::UTF8
 [Console]::OutputEncoding = [System.Text.Encoding]::UTF8
 
 # ==================== 1. 语言选择 ====================
@@ -120,7 +121,6 @@ while ($true) {
         $cleanUrl = Get-CleanUrl $targetApp.RawUrl
         $tempPath = Join-Path $env:TEMP $targetApp.FileName
         
-        # 修复变量解析：使用 ${txtDownloading} 避免变量与冒号冲突
         Write-Host "`n${txtDownloading}: $cleanUrl ..." -ForegroundColor Cyan
         
         try {
