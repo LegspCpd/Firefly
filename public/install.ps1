@@ -101,7 +101,7 @@ $softwareList = @(
     @{ 
         Id = "7"
         Name = "Old Outlook 2021 (Online)"
-        RawUrl = "https://alist.legspcpd.top/d/Github/exe/Old%20Outlook%202021.exe?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJhZG1pbiIsInR5cGUiOjIsImV4cCI6MTc4Nzk4NDIyMn0.eGVUt_ONIkiEoJuk26RtNHFjyD61ziv-qeeqQwzbGcs"
+        RawUrl = "https://alist.legspcpd.top/d/Github/exe/Old%20Outlook%202021.exe"
         FileName = "Old_Outlook_2021.exe"
         SilentArgs = ""
         IsZip = $false
@@ -109,7 +109,7 @@ $softwareList = @(
     @{ 
         Id = "8"
         Name = "PotPlayer 64bit"
-        RawUrl = "https://alist.legspcpd.top/d/Github/exe/PotPlayerSetup64.exe?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJhZG1pbiIsInR5cGUiOjIsImV4cCI6MTc4Nzk4NDIyMn0.eGVUt_ONIkiEoJuk26RtNHFjyD61ziv-qeeqQwzbGcs"
+        RawUrl = "https://alist.legspcpd.top/d/Github/exe/PotPlayerSetup64.exe"
         FileName = "PotPlayerSetup64.exe"
         SilentArgs = "/S"
         IsZip = $false
@@ -117,7 +117,7 @@ $softwareList = @(
     @{ 
         Id = "9"
         Name = "Bandizip Pro 8.00 Beta 10 x64 Repack"
-        RawUrl = "https://alist.legspcpd.top/d/Github/exe/Bandizip-Pro-8.00-Beta-10-x64-Repack.exe?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJhZG1pbiIsInR5cGUiOjIsImV4cCI6MTc4Nzk4NDIyMn0.eGVUt_ONIkiEoJuk26RtNHFjyD61ziv-qeeqQwzbGcs"
+        RawUrl = "https://alist.legspcpd.top/d/Github/exe/Bandizip-Pro-8.00-Beta-10-x64-Repack.exe"
         FileName = "Bandizip-Pro-8.00-Beta-10-x64-Repack.exe"
         SilentArgs = "/S"
         IsZip = $false
@@ -125,7 +125,7 @@ $softwareList = @(
     @{ 
         Id = "10"
         Name = "Bandizip Professional 7.46 x64 Repack"
-        RawUrl = "https://alist.legspcpd.top/d/Github/exe/Bandizip-Professional-7.46-x64-Repack.exe?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJhZG1pbiIsInR5cGUiOjIsImV4cCI6MTc4Nzk4NDIyMn0.eGVUt_ONIkiEoJuk26RtNHFjyD61ziv-qeeqQwzbGcs"
+        RawUrl = "https://alist.legspcpd.top/d/Github/exe/Bandizip-Professional-7.46-x64-Repack.exe"
         FileName = "Bandizip-Professional-7.46-x64-Repack.exe"
         SilentArgs = "/S"
         IsZip = $false
@@ -133,7 +133,7 @@ $softwareList = @(
     @{ 
         Id = "11"
         Name = "360 First Aid Kit (360急救箱)"
-        RawUrl = "https://alist.legspcpd.top/d/Github/exe/360c0mpkill_5.1.64.1289-0701.zip?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJhZG1pbiIsInR5cGUiOjIsImV4cCI6MTc4Nzk4NDIyMn0.eGVUt_ONIkiEoJuk26RtNHFjyD61ziv-qeeqQwzbGcs"
+        RawUrl = "https://alist.legspcpd.top/d/Github/exe/360c0mpkill_5.1.64.1289-0701.zip"
         FileName = "360c0mpkill.zip"
         SilentArgs = ""
         IsZip = $true
@@ -142,7 +142,7 @@ $softwareList = @(
     @{ 
         Id = "12"
         Name = "360 Secure Browser x32 (360极速浏览器)"
-        RawUrl = "https://alist.legspcpd.top/d/Github/exe/360cse_23.0.1253.0.exe?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJhZG1pbiIsInR5cGUiOjIsImV4cCI6MTc4Nzk4NDIyMn0.eGVUt_ONIkiEoJuk26RtNHFjyD61ziv-qeeqQwzbGcs"
+        RawUrl = "https://alist.legspcpd.top/d/Github/exe/360cse_23.0.1253.0.exe"
         FileName = "360cse_x32.exe"
         SilentArgs = "/S"
         IsZip = $false
@@ -150,7 +150,7 @@ $softwareList = @(
     @{ 
         Id = "13"
         Name = "360 Secure Browser x64 (360极速浏览器)"
-        RawUrl = "https://alist.legspcpd.top/d/Github/exe/360csex_23.1.1253.64.exe?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJhZG1pbiIsInR5cGUiOjIsImV4cCI6MTc4Nzk4NDIyMn0.eGVUt_ONIkiEoJuk26RtNHFjyD61ziv-qeeqQwzbGcs"
+        RawUrl = "https://alist.legspcpd.top/d/Github/exe/360csex_23.1.1253.64.exe"
         FileName = "360csex_x64.exe"
         SilentArgs = "/S"
         IsZip = $false
@@ -158,7 +158,7 @@ $softwareList = @(
     @{ 
         Id = "14"
         Name = "Huorong Security x64 (火绒安全)"
-        RawUrl = "https://alist.legspcpd.top/d/Github/exe/sysdiag-all-x64-6.0.11.2-2026.08.23.1.exe?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJhZG1pbiIsInR5cGUiOjIsImV4cCI6MTc4Nzk4NDIyMn0.eGVUt_ONIkiEoJuk26RtNHFjyD61ziv-qeeqQwzbGcs"
+        RawUrl = "https://alist.legspcpd.top/d/Github/exe/sysdiag-all-x64-6.0.11.2-2026.08.23.1.exe"
         FileName = "Huorong_x64.exe"
         SilentArgs = "/S"
         IsZip = $false
@@ -205,7 +205,8 @@ while ($true) {
         Write-Host "${txtDownloading}: $displayUrl ..." -ForegroundColor Cyan
         
         try {
-            Invoke-WebRequest -Uri $downloadUrl -OutFile $tempPath -UseBasicParsing -ErrorAction Stop
+            $userAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
+            Invoke-WebRequest -Uri $downloadUrl -OutFile $tempPath -UserAgent $userAgent -UseBasicParsing -ErrorAction Stop
             
             if ($targetApp.IsZip) {
                 $extractDir = Join-Path $env:TEMP ($targetApp.FileName -replace '\.zip$', '')
