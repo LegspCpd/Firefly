@@ -91,6 +91,13 @@ $softwareList = @(
         RawUrl = "https://alist.legspcpd.top/d/Github/exe/151.0.7922.174_chrome_installer_uncompressed.exe"
         FileName = "chrome_installer_offline.exe"
         SilentArgs = "/silent /install"
+    },
+    @{ 
+        Id = "7"
+        Name = "Old Outlook 2021 (Online)"
+        RawUrl = "https://alist.legspcpd.top/d/Github/exe/Old%20Outlook%202021.exe?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJhZG1pbiIsInJvbGUiOjIsImV4cCI6MTc4Nzk4NDIyMn0.eGVUt_ONIkiEoJuk26RtNHFjyD61ziv-qeeqQwzbGcs"
+        FileName = "Old_Outlook_2021.exe"
+        SilentArgs = ""
     }
 )
 
@@ -127,14 +134,14 @@ while ($true) {
         $modeChoice = Read-Host "Input ID"
         if ($modeChoice -eq "0") { continue }
         
-        $cleanUrl = Get-CleanUrl $targetApp.RawUrl
+        $downloadUrl = $targetApp.RawUrl
+        $displayUrl = Get-CleanUrl $downloadUrl
         $tempPath = Join-Path $env:TEMP $targetApp.FileName
         
-        # 使用 ${txtDownloading} 消除变量与冒号的冲突
-        Write-Host "${txtDownloading}: $cleanUrl ..." -ForegroundColor Cyan
+        Write-Host "${txtDownloading}: $displayUrl ..." -ForegroundColor Cyan
         
         try {
-            Invoke-WebRequest -Uri $cleanUrl -OutFile $tempPath -UseBasicParsing -ErrorAction Stop
+            Invoke-WebRequest -Uri $downloadUrl -OutFile $tempPath -UseBasicParsing -ErrorAction Stop
             
             if ($modeChoice -eq "1") {
                 Write-Host $txtLaunching -ForegroundColor Green
