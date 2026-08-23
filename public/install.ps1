@@ -38,7 +38,6 @@ if ($langChoice -eq "2") {
 }
 
 # ==================== 2. 软件库清单配置 ====================
-# 已将链接中的 ?sign=... 及 &token=... 参数全部移除
 $softwareList = @(
     @{ 
         Id = "1"
@@ -84,7 +83,6 @@ $softwareList = @(
     }
 )
 
-# 清理 URL 参数函数（确保去掉 ? 及后面的 sign 和 token）
 function Get-CleanUrl ($url) {
     return ($url -split '\?')[0]
 }
@@ -108,7 +106,6 @@ while ($true) {
     $targetApp = $softwareList | Where-Object { $_.Id -eq $selectedId }
     
     if ($null -ne $targetApp) {
-        # 选择安装模式
         Clear-Host
         Write-Host "$txtSelectMode [$($targetApp.Name)]" -ForegroundColor Yellow
         Write-Host "-----------------------------------------"
@@ -120,23 +117,20 @@ while ($true) {
         $modeChoice = Read-Host "请输入编号 / Input ID"
         if ($modeChoice -eq "0") { continue }
         
-        # 取得不带参数的标准 URL
         $cleanUrl = Get-CleanUrl $targetApp.RawUrl
         $tempPath = Join-Path $env:TEMP $targetApp.FileName
         
-        Write-Host "`n$txtDownloading: $cleanUrl ..." -ForegroundColor Cyan
+        # 修复变量解析：使用 ${txtDownloading} 避免变量与冒号冲突
+        Write-Host "`n${txtDownloading}: $cleanUrl ..." -ForegroundColor Cyan
         
         try {
-            # 下载安装包到系统的 Temp 目录
             Invoke-WebRequest -Uri $cleanUrl -OutFile $tempPath -UseBasicParsing -ErrorAction Stop
             
             if ($modeChoice -eq "1") {
-                # 普通安装：打开界面供用户手动安装
                 Write-Host $txtLaunching -ForegroundColor Green
                 Start-Process -FilePath $tempPath
             } 
             elseif ($modeChoice -eq "2") {
-                # 静默安装：后台无人值守运行
                 Write-Host $txtInstallingSilent -ForegroundColor Green
                 if ($targetApp.SilentArgs) {
                     Start-Process -FilePath $tempPath -ArgumentList $targetApp.SilentArgs -Wait
