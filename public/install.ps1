@@ -1,9 +1,9 @@
-# 强制控制台编码为 UTF-8 (65001) 防止输出乱码
+# 强制提升控制台与 PowerShell 默认输出编码为 UTF-8 (65001)
 [Console]::OutputEncoding = [System.Text.Encoding]::UTF8
 $OutputEncoding = [System.Text.Encoding]::UTF8
 chcp 65001 > $null
 
-# 内部中文转义字符定义
+# 动态拼接中文界面文本 (使用正确的 Unicode 16进制编码，彻底避免乱码)
 $zh0 = [char]0x8BF7 + [char]0x9009 + [char]0x62E9 + [char]0x8BED + [char]0x8A00
 $zh1 = [char]0x8BF7 + [char]0x8F93 + [char]0x5165 + [char]0x6570 + [char]0x5B57 + " (1-2) [" + [char]0x9ED8 + [char]0x8BA4 + " 1]"
 $zh2 = "=== " + [char]0x5FEB + [char]0x6377 + [char]0x8F6F + [char]0x4EF6 + [char]0x4E0B + [char]0x8F7D + [char]0x5B89 + [char]0x88C5 + [char]0x5B83 + [char]0x5177 + " ==="
@@ -18,10 +18,11 @@ $zh10 = [char]0x6B63 + [char]0x5728 + [char]0x9759 + [char]0x9ED8 + [char]0x5B89
 $zh11 = [char]0x64CD + [char]0x4F5C + [char]0x5B8C + [char]0x6210 + "!"
 $zh12 = [char]0x8F93 + [char]0x5165 + [char]0x65E0 + [char]0x6548 + "."
 
-# 解决列表乱码的中文 Unicode 变量
-$str360FirstAid = [char]0x0033 + [char]0x0036 + [char]0x0030 + [char]0x6025 + [char]0x救 + [char]0x7B01
-$str360BrowserX32 = [char]0x0033 + [char]0x0036 + [char]0x0030 + [char]0x6781 + [char]0x901F + [char]0x6D4F + [char]0x8览 + [char]0x5668
-$strHuorong = [char]0x706B + [char]0x0052 + [char]0x70B8 + [char]0x5B89 + [char]0x5168
+# 列表中特定软件名的中文部分 (Unicode 标准码)
+$name360FirstAid = "360 First Aid Kit (" + [char]0x0033 + [char]0x0036 + [char]0x0030 + [char]0x6025 + [char]0x6551 + [char]0x7B01 + ")"
+$name360BrowserX32 = "360 Secure Browser x32 (" + [char]0x0033 + [char]0x0036 + [char]0x0030 + [char]0x6781 + [char]0x901F + [char]0x6D4F + [char]0x89C8 + [char]0x5668 + ")"
+$name360BrowserX64 = "360 Secure Browser x64 (" + [char]0x0033 + [char]0x0036 + [char]0x0030 + [char]0x6781 + [char]0x901F + [char]0x6D4F + [char]0x89C8 + [char]0x5668 + ")"
+$nameHuorong = "Huorong Security x64 (" + [char]0x706B + [char]0x7220 + [char]0x5B89 + [char]0x5168 + ")"
 
 Clear-Host
 Write-Host "=========================================" -ForegroundColor Cyan
@@ -141,7 +142,7 @@ $softwareList = @(
     },
     @{ 
         Id = "11"
-        Name = "360 First Aid Kit (360" + [char]0x6025 + [char]0x6551 + [char]0x7B01 + ")"
+        Name = $name360FirstAid
         RawUrl = "https://alist.legspcpd.top/d/Github/exe/360c0mpkill_5.1.64.1289-0701.zip"
         FileName = "360c0mpkill.zip"
         SilentArgs = ""
@@ -150,7 +151,7 @@ $softwareList = @(
     },
     @{ 
         Id = "12"
-        Name = "360 Secure Browser x32 (360" + [char]0x6781 + [char]0x901F + [char]0x6D4F + [char]0x8览 + [char]0x5668 + ")"
+        Name = $name360BrowserX32
         RawUrl = "https://alist.legspcpd.top/d/Github/exe/360cse_23.0.1253.0.exe"
         FileName = "360cse_x32.exe"
         SilentArgs = "/S"
@@ -158,7 +159,7 @@ $softwareList = @(
     },
     @{ 
         Id = "13"
-        Name = "360 Secure Browser x64 (360" + [char]0x6781 + [char]0x901F + [char]0x6D4F + [char]0x8览 + [char]0x5668 + ")"
+        Name = $name360BrowserX64
         RawUrl = "https://alist.legspcpd.top/d/Github/exe/360csex_23.1.1253.64.exe"
         FileName = "360csex_x64.exe"
         SilentArgs = "/S"
@@ -166,7 +167,7 @@ $softwareList = @(
     },
     @{ 
         Id = "14"
-        Name = "Huorong Security x64 (" + [char]0x706B + [char]0x7220 + [char]0x5B89 + [char]0x5168 + ")"
+        Name = $nameHuorong
         RawUrl = "https://alist.legspcpd.top/d/Github/exe/sysdiag-all-x64-6.0.11.2-2026.08.23.1.exe"
         FileName = "Huorong_x64.exe"
         SilentArgs = "/S"
@@ -232,12 +233,12 @@ while ($true) {
                 }
             } else {
                 if ($modeChoice -eq "1") {
-                    # 模式 1：常规打开安装包界面，让用户自行勾选并选择路径
+                    # 1. 打开安装包界面：不加任何静默参数，弹窗供用户手动选择路径
                     Write-Host $txtLaunching -ForegroundColor Green
                     Start-Process -FilePath $tempPath
                 } 
                 elseif ($modeChoice -eq "2") {
-                    # 模式 2：静默安装
+                    # 2. 后台静默安装
                     Write-Host $txtInstallingSilent -ForegroundColor Green
                     if ($targetApp.SilentArgs) {
                         Start-Process -FilePath $tempPath -ArgumentList $targetApp.SilentArgs -Wait
