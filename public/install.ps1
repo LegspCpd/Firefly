@@ -1,28 +1,48 @@
-# 强制提升控制台与 PowerShell 默认输出编码为 UTF-8 (65001)
 [Console]::OutputEncoding = [System.Text.Encoding]::UTF8
 $OutputEncoding = [System.Text.Encoding]::UTF8
 chcp 65001 > $null
 
-# 动态拼接中文界面文本 (使用正确的 Unicode 16进制编码，彻底避免乱码)
-$zh0 = [char]0x8BF7 + [char]0x9009 + [char]0x62E9 + [char]0x8BED + [char]0x8A00
-$zh1 = [char]0x8BF7 + [char]0x8F93 + [char]0x5165 + [char]0x6570 + [char]0x5B57 + " (1-2) [" + [char]0x9ED8 + [char]0x8BA4 + " 1]"
-$zh2 = "=== " + [char]0x5FEB + [char]0x6377 + [char]0x8F6F + [char]0x4EF6 + [char]0x4E0B + [char]0x8F7D + [char]0x5B89 + [char]0x88C5 + [char]0x5B83 + [char]0x5177 + " ==="
-$zh3 = [char]0x8BF7 + [char]0x9009 + [char]0x62E9 + [char]0x4F60 + [char]0x8981 + [char]0x4E0B + [char]0x8F7D + [char]0x5B89 + [char]0x88C5 + [char]0x7684 + [char]0x8F6F + [char]0x4EF6 + ":"
-$zh4 = [char]0x8BF7 + [char]0x9009 + [char]0x62E9 + [char]0x5B89 + [char]0x88C5 + [char]0x6A21 + [char]0x0020 + "-" + [char]0x0020
-$zh5 = "1. " + [char]0x666E + [char]0x901A + [char]0x5B89 + [char]0x88C5 + " (" + [char]0x6253 + [char]0x5F00 + [char]0x5B89 + [char]0x88C5 + [char]0x5305 + [char]0x002C + [char]0x81EA + [char]0x884C + [char]0x9009 + [char]0x62E9 + [char]0x5B89 + [char]0x88C5 + [char]0x4F4D + [char]0x7F6E + ")"
-$zh6 = "2. " + [char]0x9759 + [char]0x9ED8 + [char]0x5B89 + [char]0x88C5 + " (" + [char]0x540E + [char]0x53F0 + [char]0x81EA + [char]0x52A8 + [char]0x5B89 + [char]0x88C5 + ")"
-$zh7 = "0. " + [char]0x840C + [char]0x9000 + " / Exit"
-$zh8 = [char]0x6B63 + [char]0x5728 + [char]0x4E0B + [char]0x8F7D
-$zh9 = [char]0x6B63 + [char]0x5728 + [char]0x6253 + [char]0x5F00 + [char]0x5B89 + [char]0x88C5 + [char]0x5305 + [char]0x7A0B + [char]0x5A8F + "..."
-$zh10 = [char]0x6B63 + [char]0x5728 + [char]0x9759 + [char]0x9ED8 + [char]0x5B89 + [char]0x88C5 + "..."
-$zh11 = [char]0x64CD + [char]0x4F5C + [char]0x5B8C + [char]0x6210 + "!"
-$zh12 = [char]0x8F93 + [char]0x5165 + [char]0x65E0 + [char]0x6548 + "."
+function Get-Utf8String ($bytes) {
+    return [System.Text.Encoding]::UTF8.GetString([byte[]]$bytes)
+}
 
-# 列表中特定软件名的中文部分 (Unicode 标准码)
-$name360FirstAid = "360 First Aid Kit (" + [char]0x0033 + [char]0x0036 + [char]0x0030 + [char]0x6025 + [char]0x6551 + [char]0x7B01 + ")"
-$name360BrowserX32 = "360 Secure Browser x32 (" + [char]0x0033 + [char]0x0036 + [char]0x0030 + [char]0x6781 + [char]0x901F + [char]0x6D4F + [char]0x89C8 + [char]0x5668 + ")"
-$name360BrowserX64 = "360 Secure Browser x64 (" + [char]0x0033 + [char]0x0036 + [char]0x0030 + [char]0x6781 + [char]0x901F + [char]0x6D4F + [char]0x89C8 + [char]0x5668 + ")"
-$nameHuorong = "Huorong Security x64 (" + [char]0x706B + [char]0x7220 + [char]0x5B89 + [char]0x5168 + ")"
+# 动态获取用户当前实际的 Downloads 路径（支持跨盘符与路径重定向）
+function Get-DownloadsFolder {
+    $regPath = "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\User Shell Folders"
+    $downloadsGuid = "{374DE290-123F-4565-9164-39C4925E467B}"
+    
+    $folder = (Get-ItemProperty -Path $regPath).$downloadsGuid
+    if (-not $folder) {
+        $folder = (Get-ItemProperty -Path $regPath)."{7D83EE9B-2244-4E70-B1A5-774182A0A931}"
+    }
+    
+    if ($folder) {
+        return [System.Environment]::ExpandEnvironmentVariables($folder)
+    } else {
+        return [System.IO.Path]::Combine($env:USERPROFILE, "Downloads")
+    }
+}
+
+$downloadDir = Get-DownloadsFolder
+
+# 确保 Downloads 目录存在
+if (-not (Test-Path $downloadDir)) {
+    New-Item -ItemType Directory -Path $downloadDir -Force | Out-Null
+}
+
+# 界面语言字符串处理
+$zh0 = Get-Utf8String @(0xE8,0xAF,0xB7,0xE9,0x80,0x89,0xE6,0x8B,0xA9,0xE8,0xAF,0xAD,0xE8,0xA8,0x80)
+$zh1 = Get-Utf8String @(0xE8,0xAF,0xB7,0xE8,0xBE,0x93,0xE5,0x85,0xA5,0xE6,0x95,0xB0,0xE5,0xAD,0x97) + " (1-2) [" + Get-Utf8String @(0xE9,0xBB,0x98,0xE8,0xAE,0xA4) + " 1]"
+$zh2 = "=== " + Get-Utf8String @(0xE5,0xBF,0xAB,0xE6,0x8D,0xB7,0xE8,0xBD,0xAF,0xE4,0xBB,0xB6,0xE4,0xB8,0x8B,0xE8,0xBD,0xBD,0xE5,0xAE,0x89,0xE8,0xA3,0x85,0xE5,0xB7,0xA5,0xE5,0x85,0xB7) + " ==="
+$zh3 = Get-Utf8String @(0xE8,0xAF,0xB7,0xE9,0x80,0x89,0xE6,0x8B,0xA9,0xE8,0xBD,0xAF,0xE4,0xBB,0xB6) + ":"
+$zh4 = Get-Utf8String @(0xE8,0xAF,0xB7,0xE9,0x80,0x89,0xE6,0x8B,0xA9,0xE5,0xAE,0x89,0xE8,0xA3,0x85,0xE6,0xA8,0xA1,0xE5,0xBC,0x8F) + " -"
+$zh7 = "0. " + Get-Utf8String @(0xE9,0x80,0x80,0xE5,0x87,0xBA) + " / Exit"
+$zh8 = Get-Utf8String @(0xE6,0xAD,0xA3,0xE5,0x9C,0xA8,0xE4,0xB8,0x8B,0xE8,0xBD,0xBD)
+$zh9 = Get-Utf8String @(0xE6,0xAD,0xA3,0xE5,0x9C,0xA8,0xE6,0x89,0x93,0xE5,0xBC,0x80,0xE5,0xAE,0x89,0xE8,0xA3,0x85,0xE7,0xA8,0x8B,0xE5,0xBA,0x8F) + "..."
+$zh10 = Get-Utf8String @(0xE6,0xAD,0xA3,0xE5,0x9C,0xA8,0xE9,0x9D,0x99,0xE9,0xBB,0x98,0xE5,0xAE,0x89,0xE8,0xA3,0x85) + "..."
+$zh11 = Get-Utf8String @(0xE6,0x93,0x8D,0xE4,0xBD,0x9C,0xE5,0xAE,0x8C,0xE6,0x88,0x90) + "!"
+$zh12 = Get-Utf8String @(0xE8,0xBE,0x93,0xE5,0x85,0xA5,0xE6,0x97,0xA0,0xE6,0x95,0x88) + "."
+$zh13 = Get-Utf8String @(0xE6,0xAD,0xA3,0xE5,0x9C,0xA8,0xE6,0x89,0x93,0xE5,0xBC,0x80,0xE5,0x8E,0x8B,0xE7,0xBC,0xA9,0xE5,0x8C,0x85) + "..."
 
 Clear-Host
 Write-Host "=========================================" -ForegroundColor Cyan
@@ -37,11 +57,12 @@ if ($langChoice -eq "2") {
     $txtTitle             = "=== Software Installation Hub ==="
     $txtSelectApp         = "Select the software you want to install:"
     $txtSelectMode        = "Select installation mode for"
-    $txtModeManual        = "1. Manual Install (Open setup UI, choose folder manually)"
-    $txtModeSilent        = "2. Silent Install (Background automatic install)"
+    $txtModeManual        = "1. Manual Install (Open setup UI)"
+    $txtModeSilent        = "2. Silent Install (Background install)"
     $txtBack              = "0. Exit"
     $txtDownloading       = "Downloading"
     $txtLaunching         = "Launching installer..."
+    $txtOpeningZip        = "Opening archive..."
     $txtInstallingSilent  = "Executing silent installation..."
     $txtDone              = "Operation completed!"
     $txtInvalid           = "Invalid selection."
@@ -49,135 +70,33 @@ if ($langChoice -eq "2") {
     $txtTitle             = $zh2
     $txtSelectApp         = $zh3
     $txtSelectMode        = $zh4
-    $txtModeManual        = $zh5
-    $txtModeSilent        = $zh6
+    $txtModeManual        = "1. " + (Get-Utf8String @(0xE6,0x90,0xA1,0xE5,0xAE,0x89,0xE8,0xA3,0x85,0x20,0x28,0xE6,0x89,0x93,0xE5,0xBC,0x80,0xE5,0xAE,0x89,0xE8,0xA3,0x85,0xE5,0x8C,0x85,0x2C,0xE8,0x87,0xAA,0xE8,0xA1,0x8C,0xE9,0x80,0x89,0xE6,0x8B,0xA9,0xE4,0xBD,0x8D,0xE7,0xBD,0xAE,0x29))
+    $txtModeSilent        = "2. " + (Get-Utf8String @(0xE9,0x9D,0x99,0xE9,0xBB,0x98,0xE5,0xAE,0x89,0xE8,0xA3,0x85,0x20,0x28,0xE5,0x90,0x8E,0xE5,0x8F,0xB0,0xE8,0x87,0xAA,0xE5,0x8A,0xA8,0xE5,0xAE,0x89,0xE8,0xA3,0x85,0x29))
     $txtBack              = $zh7
     $txtDownloading       = $zh8
     $txtLaunching         = $zh9
+    $txtOpeningZip        = $zh13
     $txtInstallingSilent  = $zh10
     $txtDone              = $zh11
     $txtInvalid           = $zh12
 }
 
 $softwareList = @(
-    @{ 
-        Id = "1"
-        Name = "Roblox Player"
-        RawUrl = "https://alist.legspcpd.top/d/Github/exe/RobloxPlayerInstaller.exe"
-        FileName = "RobloxPlayerInstaller.exe"
-        SilentArgs = "" 
-        IsZip = $false
-    },
-    @{ 
-        Id = "2"
-        Name = "Firefox Installer (Online)"
-        RawUrl = "https://alist.legspcpd.top/d/Github/exe/Firefox%20Installer.exe"
-        FileName = "Firefox_Installer.exe"
-        SilentArgs = "-ms"
-        IsZip = $false
-    },
-    @{ 
-        Id = "3"
-        Name = "Firefox Setup 154.0 (Offline)"
-        RawUrl = "https://alist.legspcpd.top/d/Github/exe/Firefox%20Setup%20154.0.exe"
-        FileName = "Firefox_Setup_154.0.exe"
-        SilentArgs = "-ms"
-        IsZip = $false
-    },
-    @{ 
-        Id = "4"
-        Name = "ChatGPT Installer"
-        RawUrl = "https://alist.legspcpd.top/d/Github/exe/ChatGPT%20Installer.exe"
-        FileName = "ChatGPT_Installer.exe"
-        SilentArgs = "/S"
-        IsZip = $false
-    },
-    @{ 
-        Id = "5"
-        Name = "Google Chrome (Online)"
-        RawUrl = "https://alist.legspcpd.top/d/Github/ChromeSetup.exe"
-        FileName = "ChromeSetup.exe"
-        SilentArgs = "/silent /install"
-        IsZip = $false
-    },
-    @{ 
-        Id = "6"
-        Name = "Google Chrome (151.0 Offline)"
-        RawUrl = "https://alist.legspcpd.top/d/Github/exe/151.0.7922.174_chrome_installer_uncompressed.exe"
-        FileName = "chrome_installer_offline.exe"
-        SilentArgs = "/silent /install"
-        IsZip = $false
-    },
-    @{ 
-        Id = "7"
-        Name = "Old Outlook 2021 (Online)"
-        RawUrl = "https://alist.legspcpd.top/d/Github/exe/Old%20Outlook%202021.exe"
-        FileName = "Old_Outlook_2021.exe"
-        SilentArgs = ""
-        IsZip = $false
-    },
-    @{ 
-        Id = "8"
-        Name = "PotPlayer 64bit"
-        RawUrl = "https://alist.legspcpd.top/d/Github/exe/PotPlayerSetup64.exe"
-        FileName = "PotPlayerSetup64.exe"
-        SilentArgs = "/S"
-        IsZip = $false
-    },
-    @{ 
-        Id = "9"
-        Name = "Bandizip Pro 8.00 Beta 10 x64 Repack"
-        RawUrl = "https://alist.legspcpd.top/d/Github/exe/Bandizip-Pro-8.00-Beta-10-x64-Repack.exe"
-        FileName = "Bandizip-Pro-8.00-Beta-10-x64-Repack.exe"
-        SilentArgs = "/S"
-        IsZip = $false
-    },
-    @{ 
-        Id = "10"
-        Name = "Bandizip Professional 7.46 x64 Repack"
-        RawUrl = "https://alist.legspcpd.top/d/Github/exe/Bandizip-Professional-7.46-x64-Repack.exe"
-        FileName = "Bandizip-Professional-7.46-x64-Repack.exe"
-        SilentArgs = "/S"
-        IsZip = $false
-    },
-    @{ 
-        Id = "11"
-        Name = $name360FirstAid
-        RawUrl = "https://alist.legspcpd.top/d/Github/exe/360c0mpkill_5.1.64.1289-0701.zip"
-        FileName = "360c0mpkill.zip"
-        SilentArgs = ""
-        IsZip = $true
-        ExtractExe = "360gar.exe"
-    },
-    @{ 
-        Id = "12"
-        Name = $name360BrowserX32
-        RawUrl = "https://alist.legspcpd.top/d/Github/exe/360cse_23.0.1253.0.exe"
-        FileName = "360cse_x32.exe"
-        SilentArgs = "/S"
-        IsZip = $false
-    },
-    @{ 
-        Id = "13"
-        Name = $name360BrowserX64
-        RawUrl = "https://alist.legspcpd.top/d/Github/exe/360csex_23.1.1253.64.exe"
-        FileName = "360csex_x64.exe"
-        SilentArgs = "/S"
-        IsZip = $false
-    },
-    @{ 
-        Id = "14"
-        Name = $nameHuorong
-        RawUrl = "https://alist.legspcpd.top/d/Github/exe/sysdiag-all-x64-6.0.11.2-2026.08.23.1.exe"
-        FileName = "Huorong_x64.exe"
-        SilentArgs = "/S"
-        IsZip = $false
-    }
+    @{ Id = "1"; Name = "Roblox Player"; RawUrl = "https://alist.legspcpd.top/d/Github/exe/RobloxPlayerInstaller.exe"; FileName = "RobloxPlayerInstaller.exe"; SilentArgs = ""; IsZip = $false },
+    @{ Id = "2"; Name = "Firefox Installer (Online)"; RawUrl = "https://alist.legspcpd.top/d/Github/exe/Firefox%20Installer.exe"; FileName = "Firefox_Installer.exe"; SilentArgs = "-ms"; IsZip = $false },
+    @{ Id = "3"; Name = "Firefox Setup 154.0 (Offline)"; RawUrl = "https://alist.legspcpd.top/d/Github/exe/Firefox%20Setup%20154.0.exe"; FileName = "Firefox_Setup_154.0.exe"; SilentArgs = "-ms"; IsZip = $false },
+    @{ Id = "4"; Name = "ChatGPT Installer"; RawUrl = "https://alist.legspcpd.top/d/Github/exe/ChatGPT%20Installer.exe"; FileName = "ChatGPT_Installer.exe"; SilentArgs = "/S"; IsZip = $false },
+    @{ Id = "5"; Name = "Google Chrome (Online)"; RawUrl = "https://alist.legspcpd.top/d/Github/ChromeSetup.exe"; FileName = "ChromeSetup.exe"; SilentArgs = "/silent /install"; IsZip = $false },
+    @{ Id = "6"; Name = "Google Chrome (151.0 Offline)"; RawUrl = "https://alist.legspcpd.top/d/Github/exe/151.0.7922.174_chrome_installer_uncompressed.exe"; FileName = "chrome_installer_offline.exe"; SilentArgs = "/silent /install"; IsZip = $false },
+    @{ Id = "7"; Name = "Old Outlook 2021 (Online)"; RawUrl = "https://alist.legspcpd.top/d/Github/exe/Old%20Outlook%202021.exe"; FileName = "Old_Outlook_2021.exe"; SilentArgs = ""; IsZip = $false },
+    @{ Id = "8"; Name = "PotPlayer 64bit"; RawUrl = "https://alist.legspcpd.top/d/Github/exe/PotPlayerSetup64.exe"; FileName = "PotPlayerSetup64.exe"; SilentArgs = "/S"; IsZip = $false },
+    @{ Id = "9"; Name = "Bandizip Pro 8.00 Beta 10 x64 Repack"; RawUrl = "https://alist.legspcpd.top/d/Github/exe/Bandizip-Pro-8.00-Beta-10-x64-Repack.exe"; FileName = "Bandizip-Pro-8.00-Beta-10-x64-Repack.exe"; SilentArgs = "/S"; IsZip = $false },
+    @{ Id = "10"; Name = "Bandizip Professional 7.46 x64 Repack"; RawUrl = "https://alist.legspcpd.top/d/Github/exe/Bandizip-Professional-7.46-x64-Repack.exe"; FileName = "Bandizip-Professional-7.46-x64-Repack.exe"; SilentArgs = "/S"; IsZip = $false },
+    @{ Id = "11"; Name = "360 First Aid Kit"; RawUrl = "https://alist.legspcpd.top/d/Github/exe/360c0mpkill_5.1.64.1289-0701.zip"; FileName = "360c0mpkill.zip"; SilentArgs = ""; IsZip = $true },
+    @{ Id = "12"; Name = "360 Secure Browser x32"; RawUrl = "https://alist.legspcpd.top/d/Github/exe/360cse_23.0.1253.0.exe"; FileName = "360cse_x32.exe"; SilentArgs = "/S"; IsZip = $false },
+    @{ Id = "13"; Name = "360 Secure Browser x64"; RawUrl = "https://alist.legspcpd.top/d/Github/exe/360csex_23.1.1253.64.exe"; FileName = "360csex_x64.exe"; SilentArgs = "/S"; IsZip = $false },
+    @{ Id = "14"; Name = "Huorong Security x64"; RawUrl = "https://alist.legspcpd.top/d/Github/exe/sysdiag-all-x64-6.0.11.2-2026.08.23.1.exe"; FileName = "Huorong_x64.exe"; SilentArgs = "/S"; IsZip = $false }
 )
-
-function Get-CleanUrl ($url) {
-    return ($url -split '\?')[0]
-}
 
 while ($true) {
     Clear-Host
@@ -209,41 +128,34 @@ while ($true) {
         if ($modeChoice -eq "0") { continue }
         
         $downloadUrl = $targetApp.RawUrl
-        $displayUrl = Get-CleanUrl $downloadUrl
-        $tempPath = Join-Path $env:TEMP $targetApp.FileName
+        # 存放到系统当前真正的 Downloads 目录下
+        $targetPath = Join-Path $downloadDir $targetApp.FileName
         
-        Write-Host "${txtDownloading}: $displayUrl ..." -ForegroundColor Cyan
+        # 仅显示软件名称与提示，不再输出具体 URL
+        Write-Host "${txtDownloading}: $($targetApp.Name) ..." -ForegroundColor Cyan
         
         try {
             $userAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
-            Invoke-WebRequest -Uri $downloadUrl -OutFile $tempPath -UserAgent $userAgent -UseBasicParsing -ErrorAction Stop
+            Invoke-WebRequest -Uri $downloadUrl -OutFile $targetPath -UserAgent $userAgent -UseBasicParsing -ErrorAction Stop
             
-            if ($targetApp.IsZip) {
-                $extractDir = Join-Path $env:TEMP ($targetApp.FileName -replace '\.zip$', '')
-                Write-Host "Extracting archive..." -ForegroundColor Yellow
-                Expand-Archive -Path $tempPath -DestinationPath $extractDir -Force
-                $runPath = Join-Path $extractDir $targetApp.ExtractExe
-                
-                if (Test-Path $runPath) {
-                    Write-Host $txtLaunching -ForegroundColor Green
-                    Start-Process -FilePath $runPath
-                } else {
-                    Write-Host "Error: Main executable not found in archive." -ForegroundColor Red
-                    Pause
-                }
+            # 判断是否为压缩包格式（zip, 7z, rar 等）
+            if ($targetApp.IsZip -or $targetApp.FileName -match '\.(zip|7z|rar|tar|gz)$') {
+                Write-Host $txtOpeningZip -ForegroundColor Green
+                # 直接调用系统默认关联程序打开压缩包
+                Invoke-Item -Path $targetPath
             } else {
                 if ($modeChoice -eq "1") {
-                    # 1. 打开安装包界面：不加任何静默参数，弹窗供用户手动选择路径
+                    # 普通模式：打开安装程序
                     Write-Host $txtLaunching -ForegroundColor Green
-                    Start-Process -FilePath $tempPath
+                    Start-Process -FilePath $targetPath
                 } 
                 elseif ($modeChoice -eq "2") {
-                    # 2. 后台静默安装
+                    # 静默安装模式
                     Write-Host $txtInstallingSilent -ForegroundColor Green
                     if ($targetApp.SilentArgs) {
-                        Start-Process -FilePath $tempPath -ArgumentList $targetApp.SilentArgs -Wait
+                        Start-Process -FilePath $targetPath -ArgumentList $targetApp.SilentArgs -Wait
                     } else {
-                        Start-Process -FilePath $tempPath -Wait
+                        Start-Process -FilePath $targetPath -Wait
                     }
                     Write-Host $txtDone -ForegroundColor Green
                     Start-Sleep -Seconds 2
