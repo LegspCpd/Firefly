@@ -2,12 +2,10 @@
 $OutputEncoding = [System.Text.Encoding]::UTF8
 chcp 65001 > $null
 
-# Base64 原生解码函数，精准还原 UTF-8 中文，彻底消除字节转换错别字与乱码
 function B64 ($str) {
     return [System.Text.Encoding]::UTF8.GetString([System.Convert]::FromBase64String($str))
 }
 
-# 动态获取用户当前实际的 Downloads 路径（支持跨盘符与路径重定向）
 function Get-DownloadsFolder {
     $regPath = "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\User Shell Folders"
     $downloadsGuid = "{374DE290-123F-4565-9164-39C4925E467B}"
@@ -26,12 +24,10 @@ function Get-DownloadsFolder {
 
 $downloadDir = Get-DownloadsFolder
 
-# 确保 Downloads 目录存在
 if (-not (Test-Path $downloadDir)) {
     New-Item -ItemType Directory -Path $downloadDir -Force | Out-Null
 }
 
-# 中文字符串 Base64 定义
 $zh0  = B64 "6K+36YCJ5oup6K+t6KiA"
 $zh1  = (B64 "6K+36L6T5YWl5pWw5a2X") + " (1-2) [" + (B64 "6buY6K6k") + " 1]"
 $zh2  = B64 "PT09IOW/q+aNt+i9r+S7tuS4i+i9veWuieijheW3peWFtyA9PT0="
@@ -136,17 +132,24 @@ while ($true) {
         if ($modeChoice -eq "0") { continue }
         
         $downloadUrl = $targetApp.RawUrl
-        # 自动下载到系统实际的 Downloads 目录
         $targetPath = Join-Path $downloadDir $targetApp.FileName
         
-        # 仅显示软件名称，隐藏后端下载链接
         Write-Host "${txtDownloading}: $($targetApp.Name) ..." -ForegroundColor Cyan
         
         try {
             $userAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
-            Invoke-WebRequest -Uri $downloadUrl -OutFile $targetPath -UserAgent $userAgent -UseBasicParsing -ErrorAction Stop
+            $curlPath = "$env:SystemRoot\System32\curl.exe"
+
+            if (Test-Path $curlPath) {
+                # 直接调用系统原生 curl.exe CLI 进行下载
+                & $curlPath -fL -A $userAgent -o $targetPath $downloadUrl
+                if ($LASTEXITCODE -ne 0) {
+                    throw "curl.exe exited with code $LASTEXITCODE"
+                }
+            } else {
+                Invoke-WebRequest -Uri $downloadUrl -OutFile $targetPath -UserAgent $userAgent -UseBasicParsing -ErrorAction Stop
+            }
             
-            # 压缩包下载完成后直接调用系统默认解压工具打开
             if ($targetApp.IsZip -or $targetApp.FileName -match '\.(zip|7z|rar|tar|gz)$') {
                 Write-Host $txtOpeningZip -ForegroundColor Green
                 Invoke-Item -Path $targetPath
