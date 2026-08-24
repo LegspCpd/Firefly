@@ -2,10 +2,6 @@
 $OutputEncoding = [System.Text.Encoding]::UTF8
 chcp 65001 > $null
 
-function Get-Utf8String ($bytes) {
-    return [System.Text.Encoding]::UTF8.GetString([byte[]]$bytes)
-}
-
 # 动态获取用户当前实际的 Downloads 路径（支持跨盘符与路径重定向）
 function Get-DownloadsFolder {
     $regPath = "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\User Shell Folders"
@@ -30,27 +26,13 @@ if (-not (Test-Path $downloadDir)) {
     New-Item -ItemType Directory -Path $downloadDir -Force | Out-Null
 }
 
-# 界面语言字符串处理
-$zh0 = Get-Utf8String @(0xE8,0xAF,0xB7,0xE9,0x80,0x89,0xE6,0x8B,0xA9,0xE8,0xAF,0xAD,0xE8,0xA8,0x80)
-$zh1 = Get-Utf8String @(0xE8,0xAF,0xB7,0xE8,0xBE,0x93,0xE5,0x85,0xA5,0xE6,0x95,0xB0,0xE5,0xAD,0x97) + " (1-2) [" + Get-Utf8String @(0xE9,0xBB,0x98,0xE8,0xAE,0xA4) + " 1]"
-$zh2 = "=== " + Get-Utf8String @(0xE5,0xBF,0xAB,0xE6,0x8D,0xB7,0xE8,0xBD,0xAF,0xE4,0xBB,0xB6,0xE4,0xB8,0x8B,0xE8,0xBD,0xBD,0xE5,0xAE,0x89,0xE8,0xA3,0x85,0xE5,0xB7,0xA5,0xE5,0x85,0xB7) + " ==="
-$zh3 = Get-Utf8String @(0xE8,0xAF,0xB7,0xE9,0x80,0x89,0xE6,0x8B,0xA9,0xE8,0xBD,0xAF,0xE4,0xBB,0xB6) + ":"
-$zh4 = Get-Utf8String @(0xE8,0xAF,0xB7,0xE9,0x80,0x89,0xE6,0x8B,0xA9,0xE5,0xAE,0x89,0xE8,0xA3,0x85,0xE6,0xA8,0xA1,0xE5,0xBC,0x8F) + " -"
-$zh7 = "0. " + Get-Utf8String @(0xE9,0x80,0x80,0xE5,0x87,0xBA) + " / Exit"
-$zh8 = Get-Utf8String @(0xE6,0xAD,0xA3,0xE5,0x9C,0xA8,0xE4,0xB8,0x8B,0xE8,0xBD,0xBD)
-$zh9 = Get-Utf8String @(0xE6,0xAD,0xA3,0xE5,0x9C,0xA8,0xE6,0x89,0x93,0xE5,0xBC,0x80,0xE5,0xAE,0x89,0xE8,0xA3,0x85,0xE7,0xA8,0x8B,0xE5,0xBA,0x8F) + "..."
-$zh10 = Get-Utf8String @(0xE6,0xAD,0xA3,0xE5,0x9C,0xA8,0xE9,0x9D,0x99,0xE9,0xBB,0x98,0xE5,0xAE,0x89,0xE8,0xA3,0x85) + "..."
-$zh11 = Get-Utf8String @(0xE6,0x93,0x8D,0xE4,0xBD,0x9C,0xE5,0xAE,0x8C,0xE6,0x88,0x90) + "!"
-$zh12 = Get-Utf8String @(0xE8,0xBE,0x93,0xE5,0x85,0xA5,0xE6,0x97,0xA0,0xE6,0x95,0x88) + "."
-$zh13 = Get-Utf8String @(0xE6,0xAD,0xA3,0xE5,0x9C,0xA8,0xE6,0x89,0x93,0xE5,0xBC,0x80,0xE5,0x8E,0x8B,0xE7,0xBC,0xA9,0xE5,0x8C,0x85) + "..."
-
 Clear-Host
 Write-Host "=========================================" -ForegroundColor Cyan
-Write-Host " Select Language / $zh0" -ForegroundColor Yellow
+Write-Host " Select Language / 请选择语言" -ForegroundColor Yellow
 Write-Host " 1. Chinese"
 Write-Host " 2. English"
 Write-Host "=========================================" -ForegroundColor Cyan
-$langChoice = Read-Host "$zh1"
+$langChoice = Read-Host "请输入数字 (1-2) [默认 1]"
 if (-not $langChoice) { $langChoice = "1" }
 
 if ($langChoice -eq "2") {
@@ -67,18 +49,18 @@ if ($langChoice -eq "2") {
     $txtDone              = "Operation completed!"
     $txtInvalid           = "Invalid selection."
 } else {
-    $txtTitle             = $zh2
-    $txtSelectApp         = $zh3
-    $txtSelectMode        = $zh4
-    $txtModeManual        = "1. " + (Get-Utf8String @(0xE6,0x90,0xA1,0xE5,0xAE,0x89,0xE8,0xA3,0x85,0x20,0x28,0xE6,0x89,0x93,0xE5,0xBC,0x80,0xE5,0xAE,0x89,0xE8,0xA3,0x85,0xE5,0x8C,0x85,0x2C,0xE8,0x87,0xAA,0xE8,0xA1,0x8C,0xE9,0x80,0x89,0xE6,0x8B,0xA9,0xE4,0xBD,0x8D,0xE7,0xBD,0xAE,0x29))
-    $txtModeSilent        = "2. " + (Get-Utf8String @(0xE9,0x9D,0x99,0xE9,0xBB,0x98,0xE5,0xAE,0x89,0xE8,0xA3,0x85,0x20,0x28,0xE5,0x90,0x8E,0xE5,0x8F,0xB0,0xE8,0x87,0xAA,0xE5,0x8A,0xA8,0xE5,0xAE,0x89,0xE8,0xA3,0x85,0x29))
-    $txtBack              = $zh7
-    $txtDownloading       = $zh8
-    $txtLaunching         = $zh9
-    $txtOpeningZip        = $zh13
-    $txtInstallingSilent  = $zh10
-    $txtDone              = $zh11
-    $txtInvalid           = $zh12
+    $txtTitle             = "=== 快捷软件下载安装工具 ==="
+    $txtSelectApp         = "请选择你要下载安装的软件:"
+    $txtSelectMode        = "请选择安装模式 -"
+    $txtModeManual        = "1. 普通安装 (打开安装包,自行选择安装位置)"
+    $txtModeSilent        = "2. 静默安装 (后台自动安装)"
+    $txtBack              = "0. 退出 / Exit"
+    $txtDownloading       = "正在下载"
+    $txtLaunching         = "正在打开安装程序..."
+    $txtOpeningZip        = "正在打开压缩包..."
+    $txtInstallingSilent  = "正在静默安装..."
+    $txtDone              = "操作完成!"
+    $txtInvalid           = "输入无效."
 }
 
 $softwareList = @(
@@ -92,10 +74,10 @@ $softwareList = @(
     @{ Id = "8"; Name = "PotPlayer 64bit"; RawUrl = "https://alist.legspcpd.top/d/Github/exe/PotPlayerSetup64.exe"; FileName = "PotPlayerSetup64.exe"; SilentArgs = "/S"; IsZip = $false },
     @{ Id = "9"; Name = "Bandizip Pro 8.00 Beta 10 x64 Repack"; RawUrl = "https://alist.legspcpd.top/d/Github/exe/Bandizip-Pro-8.00-Beta-10-x64-Repack.exe"; FileName = "Bandizip-Pro-8.00-Beta-10-x64-Repack.exe"; SilentArgs = "/S"; IsZip = $false },
     @{ Id = "10"; Name = "Bandizip Professional 7.46 x64 Repack"; RawUrl = "https://alist.legspcpd.top/d/Github/exe/Bandizip-Professional-7.46-x64-Repack.exe"; FileName = "Bandizip-Professional-7.46-x64-Repack.exe"; SilentArgs = "/S"; IsZip = $false },
-    @{ Id = "11"; Name = "360 First Aid Kit"; RawUrl = "https://alist.legspcpd.top/d/Github/exe/360c0mpkill_5.1.64.1289-0701.zip"; FileName = "360c0mpkill.zip"; SilentArgs = ""; IsZip = $true },
-    @{ Id = "12"; Name = "360 Secure Browser x32"; RawUrl = "https://alist.legspcpd.top/d/Github/exe/360cse_23.0.1253.0.exe"; FileName = "360cse_x32.exe"; SilentArgs = "/S"; IsZip = $false },
-    @{ Id = "13"; Name = "360 Secure Browser x64"; RawUrl = "https://alist.legspcpd.top/d/Github/exe/360csex_23.1.1253.64.exe"; FileName = "360csex_x64.exe"; SilentArgs = "/S"; IsZip = $false },
-    @{ Id = "14"; Name = "Huorong Security x64"; RawUrl = "https://alist.legspcpd.top/d/Github/exe/sysdiag-all-x64-6.0.11.2-2026.08.23.1.exe"; FileName = "Huorong_x64.exe"; SilentArgs = "/S"; IsZip = $false }
+    @{ Id = "11"; Name = "360 First Aid Kit (360急救箱)"; RawUrl = "https://alist.legspcpd.top/d/Github/exe/360c0mpkill_5.1.64.1289-0701.zip"; FileName = "360c0mpkill.zip"; SilentArgs = ""; IsZip = $true },
+    @{ Id = "12"; Name = "360 Secure Browser x32 (360极速浏览器)"; RawUrl = "https://alist.legspcpd.top/d/Github/exe/360cse_23.0.1253.0.exe"; FileName = "360cse_x32.exe"; SilentArgs = "/S"; IsZip = $false },
+    @{ Id = "13"; Name = "360 Secure Browser x64 (360极速浏览器)"; RawUrl = "https://alist.legspcpd.top/d/Github/exe/360csex_23.1.1253.64.exe"; FileName = "360csex_x64.exe"; SilentArgs = "/S"; IsZip = $false },
+    @{ Id = "14"; Name = "Huorong Security x64 (火绒安全)"; RawUrl = "https://alist.legspcpd.top/d/Github/exe/sysdiag-all-x64-6.0.11.2-2026.08.23.1.exe"; FileName = "Huorong_x64.exe"; SilentArgs = "/S"; IsZip = $false }
 )
 
 while ($true) {
@@ -128,29 +110,23 @@ while ($true) {
         if ($modeChoice -eq "0") { continue }
         
         $downloadUrl = $targetApp.RawUrl
-        # 存放到系统当前真正的 Downloads 目录下
         $targetPath = Join-Path $downloadDir $targetApp.FileName
         
-        # 仅显示软件名称与提示，不再输出具体 URL
         Write-Host "${txtDownloading}: $($targetApp.Name) ..." -ForegroundColor Cyan
         
         try {
             $userAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
             Invoke-WebRequest -Uri $downloadUrl -OutFile $targetPath -UserAgent $userAgent -UseBasicParsing -ErrorAction Stop
             
-            # 判断是否为压缩包格式（zip, 7z, rar 等）
             if ($targetApp.IsZip -or $targetApp.FileName -match '\.(zip|7z|rar|tar|gz)$') {
                 Write-Host $txtOpeningZip -ForegroundColor Green
-                # 直接调用系统默认关联程序打开压缩包
                 Invoke-Item -Path $targetPath
             } else {
                 if ($modeChoice -eq "1") {
-                    # 普通模式：打开安装程序
                     Write-Host $txtLaunching -ForegroundColor Green
                     Start-Process -FilePath $targetPath
                 } 
                 elseif ($modeChoice -eq "2") {
-                    # 静默安装模式
                     Write-Host $txtInstallingSilent -ForegroundColor Green
                     if ($targetApp.SilentArgs) {
                         Start-Process -FilePath $targetPath -ArgumentList $targetApp.SilentArgs -Wait
