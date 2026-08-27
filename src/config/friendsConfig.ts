@@ -43,6 +43,16 @@ export const friendsConfig: FriendLink[] = [
 		enabled: true, // 是否启用
 	},
 	{
+		title: "ENA-QAQ",
+		imgurl:
+			"https://avatars.githubusercontent.com/u/178663977?v=4",
+		desc: "Guess I'm a poet as well — my code's full of line breaks",
+		siteurl: "https://enashpinal.pages.dev/",
+		tags: ["Blog"],
+		weight: 2, // 权重，数字越大排序越靠前
+		enabled: true, // 是否启用
+	},
+	{
 		title: "Bai21357",
 		imgurl:
 			"https://img.legspcpd.de5.net/file/image/image(1).webp",
