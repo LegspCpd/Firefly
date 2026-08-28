@@ -1,5 +1,8 @@
 import { getSortedPosts } from "@/utils/content-utils";
 
+// 静态预渲染：构建时生成 allPostMeta.json，三个平台（Vercel/Cloudflare/EdgeOne）前端均可直接使用
+export const prerender = true;
+
 export async function GET(): Promise<Response> {
 	const posts = await getSortedPosts();
 

@@ -36,7 +36,34 @@ import { remarkImageGrid } from "./src/plugins/remark-image-grid.js";
 import rehypeHeadingLevel from "./src/plugins/rehype-heading-level.mjs";
 import rehypeImageAlt from "./src/plugins/rehype-image-alt.mjs";
 
-import vercel from "@astrojs/vercel";
+// 根据环境变量 DEPLOY_TARGET 切换部署 adapter，实现一套代码多平台构建
+// 可选值：vercel（默认）| cloudflare | static
+// - vercel      -> 使用 @astrojs/vercel（serverless，保留所有动态接口）
+// - cloudflare  -> 使用 @astrojs/cloudflare（Cloudflare Pages Functions，动态接口自动转为 Function）
+// - static/edgeone -> 无 adapter，纯静态输出（EdgeOne Pages / 任意静态托管）
+const DEPLOY_TARGET = (process.env.DEPLOY_TARGET || "vercel").toLowerCase();
+const useCloudflare = DEPLOY_TARGET === "cloudflare";
+const useVercel = DEPLOY_TARGET === "vercel";
+const useStatic = !useCloudflare && !useVercel;
+
+let deployAdapter;
+// 只有需要 adapter 的平台上才动态导入对应的包，避免在纯静态/EdgeOne 构建时被无谓加载
+if (useCloudflare) {
+  const { default: cloudflare } = await import("@astrojs/cloudflare");
+  deployAdapter = cloudflare({
+    /**
+     * 使用 Node.js prerender 环境构建静态页：
+     * 项目内的 gallery-utils / og 图片生成等构建期逻辑使用了 node:fs / node:path，
+     * workerd 预渲染环境无法提供这些模块，会导致构建失败。
+     * 部署产物仍是标准 Cloudflare Pages（静态 + Functions），运行时 Functions 才用 workerd。
+     */
+    prerenderEnvironment: "node",
+  });
+} else if (useVercel) {
+  const { default: vercel } = await import("@astrojs/vercel");
+  deployAdapter = vercel();
+}
+
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
@@ -76,6 +103,8 @@ export default defineConfig({
   site: 'https://blog.legspcpd.top',
   base: "/",
   trailingSlash: "always",
+  // 输出目录：默认 dist，可用环境变量 OUT_DIR 覆盖（用于无痛验证或特殊部署）
+  outDir: process.env.OUT_DIR || "dist",
 
   
   // 图像优化配置
@@ -388,5 +417,9 @@ export default defineConfig({
       },
 	},
 
-  adapter: vercel(),
+  // 按 DEPLOY_TARGET 选择 adapter：
+  // - vercel（默认）    -> @astrojs/vercel（serverless，保留全部动态接口）
+  // - cloudflare        -> @astrojs/cloudflare（CF Pages Functions）
+  // - static / edgeone  -> 纯静态输出（无 adapter，EdgeOne Pages 部署 dist）
+  ...(deployAdapter ? { adapter: deployAdapter } : {}),
 });
