@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
   <id>https://blog.legspcpd.top/</id>
   <title type="text">LegspCpd Blog</title>
-  <subtitle type="text">LegspCpd Blog</subtitle>
+  <subtitle type="text">记录技术折腾与生活点滴</subtitle>
   <updated>2026-10-02T00:00:00.000Z</updated>
   <author><name>LegspCpd</name></author>
   <link rel="alternate" href="https://blog.legspcpd.top/"/>
