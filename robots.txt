@@ -6,26 +6,18 @@
 # ============================================
 User-agent: *
 
-# 允许抓取根路径及核心内容
 Allow: /
-Allow: /posts/
-Allow: /archive/
-Allow: /about/
-Allow: /tags/
-Allow: /categories/
 
-# 屏蔽无需索引的内部路径
-Disallow: /_astro/
+# 屏蔽无需收录的内部路径（刻意不含 /_astro/ 与 /search/）
 Disallow: /api/
 Disallow: /og/
 Disallow: /gh/
 Disallow: /ftp/
-Disallow: /search/
 Disallow: /yandex_
 Disallow: /baidu_verify_
 Disallow: /404
 
-# 屏蔽分页参数（避免重复内容）
+# 屏蔽会产出重复内容的分页与筛选参数
 Disallow: /*?page=
 Disallow: /*?tag=
 Disallow: /*?category=
@@ -34,24 +26,19 @@ Disallow: /*?category=
 # 特定爬虫优化
 # ============================================
 
-# Googlebot - 允许更频繁抓取
-User-agent: Googlebot
-Crawl-delay: 1
-Allow: /
-
-# Bingbot - 针对 Bing 优化
+# Bingbot 支持并遵循 Crawl-delay
 User-agent: Bingbot
 Crawl-delay: 1
 Allow: /
 
-# 百度爬虫 - 低频抓取
 User-agent: Baiduspider
 Crawl-delay: 2
 Allow: /
 
 # ============================================
-# 禁止抓取特定文件类型（节省爬虫带宽）
+# 屏蔽体积型文件，节省爬虫带宽
 # ============================================
+
 User-agent: *
 Disallow: /*.pdf$
 Disallow: /*.zip$
@@ -64,6 +51,3 @@ Disallow: /*.tar$
 # Sitemap
 # ============================================
 Sitemap: https://blog.legspcpd.top/sitemap-index.xml
-
-# IndexNow - 通知搜索引擎内容更新
-# 详见 https://www.indexnow.org/
