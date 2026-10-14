@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LCmail临时邮箱</title>
+    <style>
+        body{font-family:Arial;margin:20px;}
+        .container{max-width:800px;margin:0 auto;}
+        .section{margin:20px 0;padding:10px;border:1px solid #ccc;}
+        button{padding:8px 16px;cursor:pointer;margin:5px;}
+        pre{background:#f5f5f5;padding:10px;word-wrap:break-word;}
+        .error{color:red;}
+        .mail-item{margin:10px 0;padding:5px;border-bottom:1px solid #eee;}
+        .attachment{margin:8px 0;padding:5px;border:1px dashed #666;}
+        img{max-width:100%;height:auto;border:1px solid #eee;margin:5px 0;}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>LCmail临时邮箱工具</h1>
+        <!-- 创建邮箱 -->
+        <div class="section">
+            <h2>1. 创建临时邮箱</h2>
+            <button onclick="createMailbox()">创建新的临时邮箱</button>
+            <div id="mailInfo" class="error"></div>
+        </div>
+        <!-- 邮件列表 -->
+        <div class="section">
+            <h2>2. 查看收件箱</h2>
+            <button id="getMessagesBtn" onclick="getMessages()" disabled>获取邮件列表</button>
+            <div id="messageList"></div>
+        </div>
+        <!-- 邮件详情+附件+图片 -->
+        <div class="section">
+            <h2>3. 邮件详情/图片/附件</h2>
+            <div id="messageDetail"></div>
+        </div>
+    </div>
+
+<script>var CONFIG={API_KEY:"vmail_uA9y7POGPvQZAd7U3EK21s1muv5WdBvy",BASE_URL:"https://lcmail.cc.cd/api/v1"},currentMailboxId="";function requestApi(url,method,data,success,error){var xhr=window.XMLHttpRequest?new XMLHttpRequest:new ActiveXObject("Microsoft.XMLHTTP");xhr.open(method,url,!0),xhr.setRequestHeader("X-API-Key",CONFIG.API_KEY),xhr.setRequestHeader("Content-Type","application/json"),xhr.onreadystatechange=function(){var _a;if(xhr.readyState===4)try{var res=JSON.parse(xhr.responseText);xhr.status>=200&&xhr.status<300?success(res):error(((_a=res.error)==null?void 0:_a.message)||"\u8BF7\u6C42\u5931\u8D25")}catch(e){error("\u6570\u636E\u89E3\u6790\u5931\u8D25")}},xhr.send(data?JSON.stringify(data):null)}function getAttachmentBlob(messageId,attachId,callback){var url=CONFIG.BASE_URL+"/mailboxes/"+currentMailboxId+"/messages/"+messageId+"/attachments/"+attachId,xhr=window.XMLHttpRequest?new XMLHttpRequest:new ActiveXObject("Microsoft.XMLHTTP");xhr.open("GET",url,!0),xhr.setRequestHeader("X-API-Key",CONFIG.API_KEY),xhr.responseType="blob",xhr.onload=function(){xhr.status===200&&callback(xhr.response)},xhr.send()}function downloadFile(blob,fileName){if(window.navigator.msSaveOrOpenBlob)window.navigator.msSaveOrOpenBlob(blob,fileName);else{var a=document.createElement("a"),url=URL.createObjectURL(blob);a.href=url,a.download=fileName,a.click(),URL.revokeObjectURL(url)}}function createMailbox(){var info=document.getElementById("mailInfo");info.className="error",info.innerHTML="\u521B\u5EFA\u4E2D...",requestApi(CONFIG.BASE_URL+"/mailboxes","POST",null,function(res){currentMailboxId=res.data.id,document.getElementById("getMessagesBtn").disabled=!1,info.className="",info.innerHTML="<strong>\u521B\u5EFA\u6210\u529F\uFF01</strong><br>\u90AE\u7BB1\uFF1A"+res.data.address+"<br>\u8FC7\u671F\uFF1A"+new Date(res.data.expiresAt).toLocaleString()},function(err){info.innerHTML=err})}function getMessages(){var list=document.getElementById("messageList");if(list.innerHTML="\u52A0\u8F7D\u4E2D...",!currentMailboxId){list.innerHTML="\u8BF7\u5148\u521B\u5EFA\u90AE\u7BB1";return}requestApi(CONFIG.BASE_URL+"/mailboxes/"+currentMailboxId+"/messages","GET",null,function(res){if(!res.data.length){list.innerHTML="\u6682\u65E0\u90AE\u4EF6";return}for(var html="<strong>\u5171"+res.pagination.total+'\u5C01\u90AE\u4EF6</strong><ul style="list-style:none;padding:0;">',i=0;i<res.data.length;i++){var m=res.data[i];html+=`<li class="mail-item"><button onclick="viewMessageDetail('`+m.id+`')">\u67E5\u770B\u8BE6\u60C5</button>\u53D1\u4EF6\u4EBA\uFF1A`+(m.from.name||m.from.address)+"<br>\u4E3B\u9898\uFF1A"+m.subject+"</li>"}list.innerHTML=html+"</ul>"},function(err){list.innerHTML=err})}function viewMessageDetail(messageId){var detail=document.getElementById("messageDetail");detail.innerHTML="\u52A0\u8F7D\u4E2D...",requestApi(CONFIG.BASE_URL+"/mailboxes/"+currentMailboxId+"/messages/"+messageId,"GET",null,function(res){for(var m=res.data,toList=[],i=0;i<m.to.length;i++)toList.push(m.to[i].address);var html="<h3>\u90AE\u4EF6\u8BE6\u60C5</h3>";if(html+="<div>\u53D1\u4EF6\u4EBA\uFF1A"+(m.from.name||m.from.address)+"</div>",html+="<div>\u4E3B\u9898\uFF1A"+m.subject+"</div>",html+="<div>\u65F6\u95F4\uFF1A"+new Date(m.receivedAt).toLocaleString()+"</div>",html+="<div>\u5185\u5BB9\uFF1A<pre>"+(m.text||"\u65E0")+"</pre></div>",m.attachments&&m.attachments.length){html+="<h4>\u9644\u4EF6/\u56FE\u7247\uFF08"+m.attachments.length+"\u4E2A\uFF09</h4>";for(var j=0;j<m.attachments.length;j++){var attach=m.attachments[j],isImage=attach.contentType.indexOf("image/")===0;html+='<div class="attachment">\u6587\u4EF6\u540D\uFF1A'+attach.fileName+"<br>",isImage&&(html+="<div>\u56FE\u7247\u9884\u89C8\uFF1A</div>",html+='<div id="img_'+attach.id+'">\u52A0\u8F7D\u56FE\u7247...</div>',setTimeout((function(aid,mid){getAttachmentBlob(mid,aid,function(blob){var imgUrl=URL.createObjectURL(blob);document.getElementById("img_"+aid).innerHTML='<img src="'+imgUrl+'" alt="\u56FE\u7247">'})})(attach.id,messageId),0)),html+=`<button onclick="downloadAttachment('`+messageId+"','"+attach.id+"','"+attach.fileName+`')">\u4E0B\u8F7D\u9644\u4EF6</button>`,html+="</div>"}}else html+="<div>\u65E0\u9644\u4EF6</div>";detail.innerHTML=html},function(err){detail.innerHTML=err})}function downloadAttachment(messageId,attachId,fileName){getAttachmentBlob(messageId,attachId,function(blob){downloadFile(blob,fileName)})}
+</script>
+</body>
+</html>

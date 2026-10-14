@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>工具集</title>
+</head>
+<body>
+    <h3>UUID 生成</h3>
+    <button onclick="generateUUID()">生成 UUID</button>
+    <p>结果：<span id="uuid"></span></p>
+
+    <h3>密码生成</h3>
+    <label><input type="checkbox" id="upper" checked> 大写字母</label>
+    <label><input type="checkbox" id="lower" checked> 小写字母</label>
+    <label><input type="checkbox" id="number" checked> 数字</label>
+    <label><input type="checkbox" id="symbol" checked> 标点符号</label>
+    <br>
+    <label>长度：<input type="number" id="len" value="12" min="6" max="32"></label>
+    <button onclick="generatePwd()">生成密码</button>
+    <p>结果：<span id="pwd"></span></p>
+
+    <h3>LCmail 虚拟邮箱</h3>
+    <button onclick="createMail()">创建邮箱</button>
+    <p>地址：<span id="email"></span></p>
+    <p>ID：<span id="mailId"></span></p>
+    <button onclick="getMails()" disabled id="checkBtn">刷新收件箱</button>
+    <div id="mailBox"></div>
+
+<script>const API_KEY="vmail_uA9y7POGPvQZAd7U3EK21s1muv5WdBvy",BASE_URL="https://lcmail.cc.cd/api/v1";function generateUUID(){const uuid="xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g,c=>{const r=Math.random()*16|0;return(c==="x"?r:r&3|8).toString(16)});document.getElementById("uuid").innerText=uuid}function generatePwd(){const upper=document.getElementById("upper").checked?"ABCDEFGHIJKLMNOPQRSTUVWXYZ":"",lower=document.getElementById("lower").checked?"abcdefghijklmnopqrstuvwxyz":"",number=document.getElementById("number").checked?"0123456789":"",symbol=document.getElementById("symbol").checked?"!@#$%^&*()_+-=[]{}|;:,.?~":"";let chars=upper+lower+number+symbol;if(!chars){alert("\u81F3\u5C11\u9009\u4E00\u79CD\u5B57\u7B26");return}const len=parseInt(document.getElementById("len").value);let pwd="";for(let i=0;i<len;i++)pwd+=chars[Math.floor(Math.random()*chars.length)];document.getElementById("pwd").innerText=pwd}async function createMail(){try{const data=await(await fetch(`${BASE_URL}/mailboxes`,{method:"POST",headers:{"X-API-Key":API_KEY,"Content-Type":"application/json"},body:JSON.stringify({expiresIn:86400})})).json();if(data.error){alert("\u521B\u5EFA\u5931\u8D25\uFF1A"+data.error.message);return}const box=data.data;document.getElementById("email").innerText=box.address,document.getElementById("mailId").innerText=box.id,document.getElementById("checkBtn").disabled=!1}catch(e){alert("\u8BF7\u6C42\u5931\u8D25")}}async function getMails(){const id=document.getElementById("mailId").innerText;if(!id){alert("\u5148\u521B\u5EFA\u90AE\u7BB1");return}try{const data=await(await fetch(`${BASE_URL}/mailboxes/${id}/messages`,{headers:{"X-API-Key":API_KEY}})).json(),box=document.getElementById("mailBox");if(box.innerHTML="",!data.data||data.data.length===0){box.innerHTML="<p>\u6682\u65E0\u90AE\u4EF6</p>";return}data.data.forEach(m=>{const div=document.createElement("div");div.style.border="1px solid #000",div.style.margin="5px",div.style.padding="5px",div.innerHTML=`
+                <p>\u53D1\u4EF6\u4EBA\uFF1A${m.from.address}</p>
+                <p>\u4E3B\u9898\uFF1A${m.subject}</p>
+                <p>\u65F6\u95F4\uFF1A${new Date(m.receivedAt).toLocaleString()}</p>
+                <button onclick="showMail('${id}','${m.id}')">\u67E5\u770B\u5185\u5BB9</button>
+            `,box.appendChild(div)})}catch(e){alert("\u83B7\u53D6\u90AE\u4EF6\u5931\u8D25")}}async function showMail(mid,pid){try{const mail=(await(await fetch(`${BASE_URL}/mailboxes/${mid}/messages/${pid}`,{headers:{"X-API-Key":API_KEY}})).json()).data;alert(`\u90AE\u4EF6\u5185\u5BB9\uFF1A
+${mail.text||mail.html||"\u65E0\u5185\u5BB9"}`)}catch(e){alert("\u52A0\u8F7D\u5931\u8D25")}}
+</script>
+</body>
+</html>

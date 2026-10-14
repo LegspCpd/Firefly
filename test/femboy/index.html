@@ -1,0 +1,751 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta property="og:title" content="男娘潜质综合评估量表" />
+    <meta property="og:description" content="一份结合了心理学量表与行为逻辑测试的深度鉴定系统" />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <title>男娘潜质综合评估量表｜测测你离北朝还有多远？</title>
+    <!-- 引入外部资源 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700;900&display=swap" rel="stylesheet">
+    
+    <!-- 外部 CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+    
+    <!-- 本地题库（关键！） -->
+    <script src="/test/femboy/questions.js"></script>
+    <style>
+        :root {
+            --primary: #ff8fab;
+            --primary-light: #ffc2d1;
+            --secondary: #8eecf5;
+            --text-main: #333;
+            --text-light: #666;
+            --bg-body: #f7f9fc;
+            --card-bg: rgba(255, 255, 255, 0.95);
+        }
+
+        /* 黑暗模式变量与覆盖 */
+        body.dark-mode {
+            --text-main: #f0f0f0;
+            --text-light: #bbbbbb;
+            --bg-body: #1a1a2e;
+            --card-bg: rgba(30, 30, 46, 0.95);
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+        }
+
+        body.dark-mode .desc-box {
+            background: rgba(255, 143, 171, 0.1);
+            color: var(--text-main);
+        }
+
+        body.dark-mode .option-btn {
+            background: #2a2a3e;
+            border-color: #3f3f5a;
+            color: var(--text-main);
+        }
+
+        body.dark-mode .option-btn:hover {
+            background: #35354e;
+        }
+
+        body.dark-mode .option-btn.selected {
+            background: rgba(255, 143, 171, 0.15);
+            color: #ff8fab;
+            border-color: var(--primary);
+        }
+
+        body.dark-mode .conclusion-box {
+            background: #252538;
+            border-color: #3a3a52;
+            color: #ddd;
+        }
+
+        body.dark-mode .trait-text {
+            color: #ccc;
+        }
+
+        body.dark-mode .dim-header {
+            color: #ddd;
+        }
+
+        body.dark-mode .dim-bar-bg {
+            background: #333;
+        }
+
+        body.dark-mode .dim-desc {
+            color: #bbb;
+        }
+
+        body.dark-mode .section-title {
+            color: #eee;
+        }
+
+        body.dark-mode .report-header p {
+            color: #bbb !important;
+        }
+
+        body.dark-mode .progress-bar {
+            background-color: #333;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        /* 波纹点击特效 */
+        .click-ripple {
+            position: fixed;
+            border-radius: 50%;
+            background: rgba(255, 143, 171, 0.4);
+            transform: scale(0);
+            pointer-events: none;
+            animation: ripple-anim 0.6s linear forwards;
+            z-index: 9999;
+        }
+
+        @keyframes ripple-anim {
+            to {
+                transform: scale(2);
+                opacity: 0;
+            }
+        }
+
+        body {
+            background: linear-gradient(135deg, #ffc2d1 0%, #8eecf5 100%);
+            background-attachment: fixed;
+            color: var(--text-main);
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 100vh;
+            padding: 20px 10px;
+        }
+
+        .container {
+            background: var(--card-bg);
+            width: 100%;
+            max-width: 500px;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            padding: 30px 20px;
+            position: relative;
+            margin-bottom: 20px;
+        }
+
+        /* 页面切换动画 */
+        .page {
+            display: none;
+            animation: fadeIn 0.4s ease forwards;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(15px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* 通用按钮 */
+        .btn-main {
+            background: linear-gradient(45deg, #ff8fab, #ff5c8a);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 30px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 0 8px 20px rgba(255, 92, 138, 0.3);
+            transition: all 0.2s;
+            width: 100%;
+            display: block;
+            margin: 20px auto 0;
+        }
+
+        .btn-main:active {
+            transform: scale(0.96);
+        }
+
+        /* --- 欢迎页 --- */
+        .title-icon {
+            font-size: 60px;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        h1 {
+            font-size: 24px;
+            color: #ff5c8a;
+            text-align: center;
+            margin-bottom: 15px;
+        }
+
+        .desc-box {
+            background: #fff0f3;
+            padding: 15px;
+            border-radius: 12px;
+            font-size: 14px;
+            line-height: 1.6;
+            color: #555;
+            margin-bottom: 25px;
+            border-left: 4px solid var(--primary);
+        }
+
+        /* --- 答题页 --- */
+        .top-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .btn-prev {
+            background: transparent;
+            border: none;
+            color: var(--primary);
+            font-weight: bold;
+            font-size: 15px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+        }
+
+        .btn-prev.hidden {
+            visibility: hidden;
+        }
+
+        .progress-text {
+            font-size: 13px;
+            color: var(--text-light);
+            font-weight: 500;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background-color: #f0f0f0;
+            border-radius: 4px;
+            margin-bottom: 25px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #8eecf5, #ff8fab);
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+
+        .question-type-badge {
+            display: inline-block;
+            background: #e0f7fa;
+            color: #00acc1;
+            font-size: 12px;
+            padding: 3px 10px;
+            border-radius: 10px;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        .question-text {
+            font-size: 18px;
+            line-height: 1.5;
+            font-weight: 500;
+            margin-bottom: 25px;
+            min-height: 54px;
+        }
+
+        .options-wrapper {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .option-btn {
+            background: #fff;
+            border: 2px solid #eaeaea;
+            color: var(--text-main);
+            padding: 15px 20px;
+            border-radius: 12px;
+            font-size: 15px;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-align: left;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+        }
+
+        .option-btn:hover {
+            border-color: var(--primary-light);
+            background: #fff9fa;
+        }
+
+        .option-btn.selected {
+            background: #fff0f3;
+            border-color: var(--primary);
+            color: #e91e63;
+            animation: pop 0.3s ease;
+            box-shadow: 0 0 0 4px rgba(255, 143, 171, 0.3);
+        }
+
+        @keyframes pop {
+            0% {
+                transform: scale(0.95);
+            }
+
+            50% {
+                transform: scale(1.05);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        /* --- 结果页 (深度报告) --- */
+        .report-header {
+            text-align: center;
+            border-bottom: 2px dashed #eee;
+            padding-bottom: 20px;
+            margin-bottom: 20px;
+        }
+
+        .score-num {
+            font-size: 50px;
+            font-weight: 900;
+            color: #ff5c8a;
+            line-height: 1;
+            margin: 10px 0;
+        }
+
+        .tier-badge {
+            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 99%, #fecfef 100%);
+            color: #d81b60;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 18px;
+            font-weight: bold;
+            display: inline-block;
+        }
+
+        .section-title {
+            font-size: 16px;
+            font-weight: bold;
+            color: #333;
+            margin: 25px 0 15px;
+            display: flex;
+            align-items: center;
+        }
+
+        .section-title::before {
+            content: '';
+            display: inline-block;
+            width: 4px;
+            height: 16px;
+            background: var(--primary);
+            margin-right: 8px;
+            border-radius: 2px;
+        }
+
+        .radar-box {
+            max-width: 320px;
+            margin: 0 auto;
+        }
+
+        .dim-item {
+            margin-bottom: 15px;
+        }
+
+        .dim-header {
+            display: flex;
+            justify-content: space-between;
+            font-size: 13px;
+            margin-bottom: 5px;
+            color: #555;
+        }
+
+        .dim-bar-bg {
+            width: 100%;
+            height: 10px;
+            background: #f0f0f0;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        .dim-bar-fill {
+            height: 100%;
+            background: var(--primary);
+            border-radius: 5px;
+        }
+
+        .dim-desc {
+            font-size: 12px;
+            color: #888;
+            margin-top: 4px;
+        }
+
+        .conclusion-box {
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 12px;
+            padding: 20px;
+            font-size: 14px;
+            line-height: 1.6;
+            color: #444;
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        @keyframes hardcore-glitch {
+            0% {
+                transform: translate(0) skew(0deg);
+                filter: blur(0px) contrast(150%) hue-rotate(-20deg) sepia(50%) saturate(400%);
+            }
+
+            20% {
+                transform: translate(-5px, 5px) skew(-5deg);
+                filter: blur(1px) contrast(200%) hue-rotate(0deg) sepia(100%) saturate(600%) invert(15%);
+            }
+
+            40% {
+                transform: translate(-5px, -5px) skew(5deg);
+                filter: blur(0px) contrast(150%) hue-rotate(-20deg) sepia(50%) saturate(400%);
+            }
+
+            60% {
+                transform: translate(5px, 5px) skew(-2deg);
+                filter: blur(2px) contrast(250%) hue-rotate(15deg) sepia(80%) saturate(500%) invert(30%);
+            }
+
+            80% {
+                transform: translate(5px, -5px) skew(2deg);
+                filter: blur(0px) contrast(150%) hue-rotate(-20deg) sepia(50%) saturate(400%);
+            }
+
+            100% {
+                transform: translate(0) skew(0deg);
+                filter: blur(0px) contrast(150%) hue-rotate(-20deg) sepia(50%) saturate(400%);
+            }
+        }
+
+        .spam-punish-effect {
+            animation: hardcore-glitch 0.2s infinite;
+            background-color: #2a0000 !important;
+            color: #ff3333;
+            background-image: repeating-linear-gradient(45deg, rgba(255, 0, 0, 0.1) 0px, rgba(255, 0, 0, 0.1) 10px, transparent 10px, transparent 20px) !important;
+        }
+
+        .spam-punish-effect::before {
+            content: "你乱点的吧";
+            position: fixed;
+            top: 40%;
+            left: -10%;
+            width: 120%;
+            text-align: center;
+            font-size: 60px;
+            color: rgba(255, 0, 0, 0.4);
+            z-index: 100;
+            font-weight: 900;
+            transform: rotate(-15deg);
+            pointer-events: none;
+            letter-spacing: 15px;
+            text-shadow: 4px 4px 0px rgba(0, 255, 255, 0.3), -4px -4px 0px rgba(255, 255, 0, 0.3);
+            white-space: nowrap;
+        }
+
+        .spam-punish-effect .conclusion-box {
+            background: #1a0000;
+            border-color: #ff0000;
+            color: #ff9999;
+            box-shadow: 0 0 15px #ff0000;
+        }
+
+        .spam-punish-effect .btn-main {
+            background: #550000 !important;
+            color: #ff6666 !important;
+            border: 2px solid #ff0000;
+            box-shadow: 0 0 10px #ff0000;
+        }
+
+        .spam-punish-effect h3,
+        .spam-punish-effect .section-title {
+            color: #ff0000 !important;
+            text-shadow: 2px 2px 0px #000;
+        }
+
+        .spam-punish-effect p,
+        .spam-punish-effect .trait-text {
+            color: #ffcccc !important;
+            font-weight: bold;
+        }
+
+        .spam-punish-effect #final-score {
+            font-size: 70px;
+            text-shadow: 0 0 20px #ff0000;
+        }
+
+        .spam-punish-effect .tier-badge {
+            background: #000 !important;
+            color: #f00 !important;
+            border: 2px solid #f00 !important;
+            font-size: 22px;
+        }
+
+        .trait-section {
+            margin-bottom: 15px;
+        }
+
+        .trait-label {
+            font-weight: bold;
+            color: var(--primary);
+            display: inline-block;
+            margin-bottom: 4px;
+        }
+
+        .trait-text {
+            color: #555;
+            text-align: justify;
+        }
+
+        /* 加载动画 */
+        .loader {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid var(--primary);
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 15px;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* ================= 移动端专项适配 ================= */
+        @media (max-width: 480px) {
+            body {
+                padding: 15px 5px;
+            }
+
+            .container {
+                padding: 25px 15px;
+                border-radius: 15px;
+            }
+
+            h1 {
+                font-size: 20px;
+            }
+
+            .title-icon {
+                font-size: 48px;
+            }
+
+            .question-text {
+                font-size: 16px;
+                min-height: 48px;
+                margin-bottom: 20px;
+            }
+
+            .option-btn {
+                padding: 12px 15px;
+                font-size: 14px;
+                border-radius: 10px;
+            }
+
+            .score-num {
+                font-size: 42px;
+            }
+
+            .tier-badge {
+                font-size: 16px;
+                padding: 6px 16px;
+            }
+
+            .conclusion-box {
+                padding: 15px;
+                font-size: 13px;
+            }
+        }
+
+        @media (min-width: 481px) {
+            .mobile-share-btn {
+                display: none !important;
+            }
+        }
+
+        #dark-mode-toggle {
+            position: fixed;
+            top: 15px;
+            right: 15px;
+            z-index: 1000;
+            background: var(--card-bg);
+            border: 1px solid #ddd;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            font-size: 20px;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+
+        body.dark-mode #dark-mode-toggle {
+            border-color: #3a3a52;
+        }
+    </style>
+</head>
+
+<body>
+
+    <button id="dark-mode-toggle" onclick="toggleDarkMode()">🌙</button>
+
+    <div class="container">
+
+        <!-- 1. 欢迎页 -->
+        <div id="page-home" class="page active">
+            <div class="title-icon">🎀</div>
+            <h1>男娘潜质综合评估量表</h1>
+            <div class="desc-box">
+                <p>这是一份结合了<b>心理学量表</b>与<b>行为逻辑测试</b>的深度鉴定系统。</p><br>
+                <p>系统已接入 <strong>130题</strong> 的动态题库引擎，本次将为你随机抽取 <strong>50</strong> 道专属测验题，分为：</p>
+                <ul style="margin-left: 20px; margin-top: 5px; color: #666;">
+                    <li>同意度自评题 (测验潜意识态度)</li>
+                    <li>情景模拟选择题 (测验下意识行为)</li>
+                </ul><br>
+                <p>⚠️ 请放下防备，凭第一直觉作答。结束后将生成专属深度分析报告。</p>
+            </div>
+            <button class="btn-main" onclick="startTest()">抽取题库，开始鉴定</button>
+            <button class="btn-main" id="btn-continue" onclick="continueTest()"
+                style="display:none; background: linear-gradient(45deg, #8eecf5, #4facfe); margin-top: 15px;">继续上次鉴定</button>
+        </div>
+
+        <!-- 2. 答题页 -->
+        <div id="page-quiz" class="page">
+            <div class="top-nav">
+                <button class="btn-prev" id="btn-prev" onclick="prevQuestion()">⬅️ 上一题</button>
+                <span class="progress-text">进度: <span id="current-q">1</span> / 50</span>
+            </div>
+            <div
+                style="font-size: 12px; color: #ff8fab; text-align: center; margin-bottom: 8px; font-weight: bold; letter-spacing: 1px;">
+                ⏳ 剩余时间越短，潜质暴露越真实（请凭第一直觉作答）
+            </div>
+            <div class="progress-bar">
+                <div class="progress-fill" id="progress"></div>
+            </div>
+
+            <div id="q-badge" class="question-type-badge">态度自评题</div>
+            <h2 class="question-text" id="question-text">加载中...</h2>
+
+            <div class="options-wrapper" id="options-container"></div>
+        </div>
+
+        <!-- 3. 加载页 -->
+        <div id="page-loading" class="page" style="text-align: center; padding: 60px 0;">
+            <div class="loader"></div>
+            <h3 style="color: #ff5c8a; margin-bottom: 10px;">正在生成深度鉴定报告...</h3>
+            <p style="color: #888; font-size: 14px;" id="loading-text">正在交叉比对行为与心理数据...</p>
+        </div>
+
+        <!-- 4. 结果页 (深度报告) -->
+        <div id="page-result" class="page">
+            <div class="report-header">
+                <p style="color: #888; font-size: 14px;">综合潜质鉴定得分</p>
+                <div class="score-num" id="final-score">0</div>
+                <div class="tier-badge" id="tier-title">评级加载中</div>
+                <div id="tier-desc" style="font-size: 14px; margin-top: 12px; font-weight: bold; letter-spacing: 1px;">
+                </div>
+                <div id="national-rank"
+                    style="font-size: 13px; color: var(--primary); margin-top: 8px; font-weight: bold;"></div>
+            </div>
+
+            <div class="section-title">核心潜质雷达图</div>
+            <div class="radar-box"><canvas id="radarChart"></canvas></div>
+
+            <div class="section-title">多维度明细剖析</div>
+            <div id="dim-breakdown">
+                <!-- 维度进度条由JS动态插入 -->
+            </div>
+
+            <div class="section-title">鉴定官专属深度报告</div>
+            <div class="conclusion-box">
+                <h3 style="color:var(--primary); text-align:center; margin-bottom:18px; font-size: 18px;"
+                    id="dom-trait-title">核心特征加载中</h3>
+                <div class="trait-section">
+                    <span class="trait-label">【潜意识解析】</span>
+                    <div class="trait-text" id="trait-analysis">加载中...</div>
+                </div>
+                <div class="trait-section">
+                    <span class="trait-label">【日常生活表现】</span>
+                    <div class="trait-text" id="trait-behavior">加载中...</div>
+                </div>
+                <div class="trait-section" style="margin-bottom: 0;">
+                    <span class="trait-label">【进阶整活建议】</span>
+                    <div class="trait-text" id="trait-advice">加载中...</div>
+                </div>
+            </div>
+
+            <div style="text-align: center; margin: 25px 0;">
+                <img id="qr-code" crossorigin="anonymous"
+                    style="width: 120px; height: 120px; border-radius: 10px; border: 3px solid #ff8fab; background: #fff;"
+                    alt="二维码">
+                <p style="font-size: 12px; color: var(--text-light); margin-top: 8px;">长按保存或扫码测测你的潜质</p>
+            </div>
+
+            <button class="btn-main mobile-share-btn" id="btn-share" onclick="nativeShare()"
+                style="background: linear-gradient(45deg, #f6d365, #fda085); margin-bottom: 15px;">分享给兄弟测测</button>
+            <button class="btn-main" id="btn-download" onclick="downloadResult()"
+                style="background: linear-gradient(45deg, #8eecf5, #4facfe); margin-bottom: 15px;">保存分析长图</button>
+            <button class="btn-main" onclick="resetTest()">重新抽取题库 / 再次测试</button>
+        </div>
+
+        <button id="btn-stop-glitch" onclick="stopGlitch()"
+            style="display: none; position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%); z-index: 10000; background: rgba(30, 30, 46, 0.95); color: #ff8fab; padding: 12px 24px; border-radius: 30px; border: 2px solid #ff8fab; box-shadow: 0 4px 15px rgba(0,0,0,0.5); font-weight: bold; font-size: 15px; cursor: pointer; letter-spacing: 1px; transition: all 0.3s; white-space: nowrap;">
+            ✖ 关闭特效
+        </button>
+    </div>
+
+    <script>const standardOptions=[{l:"\u5B8C\u5168\u7B26\u5408",v:5},{l:"\u6BD4\u8F83\u7B26\u5408",v:4},{l:"\u4E2D\u7ACB/\u4E0D\u786E\u5B9A",v:3},{l:"\u6BD4\u8F83\u4E0D\u7B26\u5408",v:2},{l:"\u5B8C\u5168\u4E0D\u7B26\u5408",v:1}];let shuffledQuestions=[],userAnswers=new Array(50).fill(null),currentQIdx=0,isAnswering=!1,radarChartInstance=null,totalAnsweringTimeMs=0,lastQTime=0;const dimNames={A:"\u5BA1\u7F8E\u504F\u597D",B:"\u884C\u4E3A\u4E60\u60EF",C:"\u5FC3\u7406\u5171\u60C5",D:"\u793E\u4EA4\u4E9A\u6587\u5316"};let dimMaxScores={A:0,B:0,C:0,D:0};const pages={home:document.getElementById("page-home"),quiz:document.getElementById("page-quiz"),loading:document.getElementById("page-loading"),result:document.getElementById("page-result")};function showPage(id){Object.values(pages).forEach(p=>p.classList.remove("active")),pages[id].classList.add("active"),window.scrollTo(0,0)}document.addEventListener("click",function(e){const ripple=document.createElement("div");ripple.classList.add("click-ripple");const size=100;ripple.style.width=ripple.style.height=`${size}px`,ripple.style.left=`${e.clientX-size/2}px`,ripple.style.top=`${e.clientY-size/2}px`,document.body.appendChild(ripple),setTimeout(()=>{ripple.remove()},600)}),window.onload=()=>{localStorage.getItem("nnTestState_v1")&&(document.getElementById("btn-continue").style.display="block")};function saveState(){localStorage.setItem("nnTestState_v1",JSON.stringify({shuffledQuestions,userAnswers,currentQIdx,dimMaxScores,totalAnsweringTimeMs}))}function continueTest(){let st=JSON.parse(localStorage.getItem("nnTestState_v1"));if(!st)return startTest();shuffledQuestions=st.shuffledQuestions,userAnswers=st.userAnswers,currentQIdx=st.currentQIdx,dimMaxScores=st.dimMaxScores,totalAnsweringTimeMs=st.totalAnsweringTimeMs||0,showPage("quiz"),renderQuestion()}function resetTest(){localStorage.removeItem("nnTestState_v1"),location.reload()}function initGame(){const targetDistribution={A:{likert:9,choice:3},B:{likert:9,choice:4},C:{likert:9,choice:3},D:{likert:9,choice:4}};let selectedQuestions=[];dimMaxScores={A:0,B:0,C:0,D:0};let randomizedPool=JSON.parse(JSON.stringify(rawQuestionBank));for(let i=randomizedPool.length-1;i>0;i--){let j;if(window.crypto&&window.crypto.getRandomValues){const array=new Uint32Array(1);window.crypto.getRandomValues(array),j=array[0]%(i+1)}else j=Math.floor(Math.random()*(i+1));[randomizedPool[i],randomizedPool[j]]=[randomizedPool[j],randomizedPool[i]]}Object.keys(targetDistribution).forEach(dim=>{["likert","choice"].forEach(type=>{let targetCount=targetDistribution[dim][type],drawn=randomizedPool.filter(q=>q.d===dim&&q.type===type).slice(0,targetCount);selectedQuestions=selectedQuestions.concat(drawn)})}),shuffledQuestions=selectedQuestions.sort(()=>Math.random()-.5),shuffledQuestions.forEach(q=>{dimMaxScores[q.d]+=5}),console.log("\u9898\u5E93\u62BD\u53D6\u5B8C\u6210\uFF0C\u603B\u9898\u6570:",shuffledQuestions.length)}function startTest(){initGame(),currentQIdx=0,totalAnsweringTimeMs=0,userAnswers.fill(null),showPage("quiz"),renderQuestion()}function renderQuestion(){isAnswering=!1;const q=shuffledQuestions[currentQIdx];document.getElementById("current-q").innerText=currentQIdx+1,document.getElementById("progress").style.width=`${currentQIdx/shuffledQuestions.length*100}%`;const btnPrev=document.getElementById("btn-prev");currentQIdx===0?btnPrev.classList.add("hidden"):btnPrev.classList.remove("hidden");const badge=document.getElementById("q-badge");q.type==="likert"?(badge.innerText="\u6001\u5EA6\u81EA\u8BC4\u9898",badge.style.background="#e0f7fa",badge.style.color="#00acc1",document.getElementById("question-text").innerText=q.t.replace("\u3010\u53CD\u5411\u3011","")):(badge.innerText="\u60C5\u666F\u6A21\u62DF\u9898",badge.style.background="#f3e5f5",badge.style.color="#8e24aa",document.getElementById("question-text").innerText=q.t);const container=document.getElementById("options-container");container.innerHTML="",(q.type==="likert"?standardOptions:q.options).forEach(opt=>{const btn=document.createElement("button");btn.className="option-btn",btn.innerText=opt.l;let scoreVal=q.type==="likert"&&q.r?6-opt.v:opt.v;userAnswers[currentQIdx]===scoreVal&&btn.classList.add("selected"),btn.onclick=()=>{isAnswering||(isAnswering=!0,totalAnsweringTimeMs+=Date.now()-lastQTime,document.querySelectorAll(".option-btn").forEach(b=>b.classList.remove("selected")),btn.classList.add("selected"),userAnswers[currentQIdx]=scoreVal,setTimeout(()=>{saveState(),currentQIdx<shuffledQuestions.length-1?(currentQIdx++,renderQuestion()):finishTest()},350))},container.appendChild(btn)}),lastQTime=Date.now()}function prevQuestion(){currentQIdx>0&&(currentQIdx--,renderQuestion())}function finishTest(){const totalSecs=totalAnsweringTimeMs/1e3;if(window.spamStatus=0,totalSecs<35)window.spamStatus=1,window.spamVal=totalSecs.toFixed(1);else{let valCounts={1:0,2:0,3:0,4:0,5:0};userAnswers.forEach(ans=>{ans&&(valCounts[ans]=(valCounts[ans]||0)+1)});let maxSameCount=Math.max(...Object.values(valCounts));maxSameCount>=42&&(window.spamStatus=2,window.spamVal=maxSameCount)}document.getElementById("progress").style.width="100%",setTimeout(()=>{showPage("loading");const texts=(window.spamStatus>0?["\u26A0\uFE0F \u68C0\u6D4B\u5230\u5F02\u5E38\u4F5C\u7B54\u8111\u7535\u6CE2...","\u542F\u52A8\u6838\u5FC3\u6D4B\u8C0E\u9632\u5FA1\u7CFB\u7EDF...","\u6B63\u5728\u62E6\u622A\u673A\u68B0\u5316\u72C2\u70B9\u4FE1\u53F7...","\u63D0\u53D6\u7CFB\u7EDF\u8BC6\u522B\u65E5\u5FD7...","\u5DF2\u653E\u5F03\u5BF9\u8BE5\u6837\u672C\u7684\u7075\u9B42\u89E3\u6790...","\u6B63\u5728\u751F\u6210\u5C0F\u4E11\u4E13\u5C5E\u56FE\u9274..."]:["\u6B63\u5728\u6784\u5EFA\u6838\u5FC3\u884C\u4E3A\u6811...","\u6DF1\u5EA6\u5206\u6790\u6F5C\u610F\u8BC6\u503E\u5411...","\u5339\u914D\u5168\u7F51\u4E9A\u6587\u5316\u56FE\u8C31...","\u751F\u6210\u9AD8\u7EF4\u96F7\u8FBE\u6A21\u578B...","\u63A2\u6D4B\u7075\u9B42\u6DF1\u5904\u7684\u67D4\u8F6F\u5EA6...","\u8C03\u53D6\u808C\u8089\u8BB0\u5FC6\u504F\u5DEE\u503C...","\u68C0\u6D4B\u7C89\u8272\u57FA\u56E0\u89C9\u9192\u8FDB\u5EA6...","\u6B63\u5728\u6E32\u67D3\u6700\u7EC8\u5F62\u6001\u56FE\u9274...","\u6B63\u5728\u8FDE\u63A5\u5317\u671D\u670D\u52A1\u5668...","\u5206\u6790\u5973\u88C5\u62B5\u6297\u529B\u9608\u503C...","\u63D0\u7EAF\u523B\u5728DNA\u91CC\u7684\u5A07\u8F6F\u57FA\u56E0...","\u6B63\u5728\u8FC7\u6EE4\u94A2\u94C1\u76F4\u7537\u7684\u865A\u5047\u4F2A\u88C5...","\u8BA1\u7B97JK\u5236\u670D\u5B8C\u7F8E\u5339\u914D\u5EA6...","\u6BD4\u6253\u4E8C\u6B21\u5143\u901A\u8BAF\u5F55\u6210\u5206..."]).sort(()=>Math.random()-.5).slice(0,4);let tIdx=0;const intv=setInterval(()=>{tIdx++,tIdx<texts.length?document.getElementById("loading-text").innerText=texts[tIdx]:(clearInterval(intv),loadChartjsAndResult())},600)},400)}function loadChartjsAndResult(){if(typeof Chart!="undefined"){generateResult();return}document.getElementById("loading-text").innerText="\u52A0\u8F7D\u5236\u56FE\u5F15\u64CE...";const script=document.createElement("script");script.src="https://cdn.jsdelivr.net/npm/chart.js",script.onload=generateResult,document.head.appendChild(script)}function generateResult(){if(showPage("result"),window.spamStatus>0){document.getElementById("final-score").innerText="0",document.getElementById("national-rank").innerText="\u{1F3C6} \u51FB\u8D25\u4E86\u5168\u56FD 114514% \u7684\u4EBA\uFF08\u6BEB\u65E0\u611F\u60C5\uFF09",document.getElementById("national-rank").style.color="#ff4d4f";const titleEl2=document.getElementById("tier-title");titleEl2.innerText="\u{1F921} \u9A97\u9A97\u54E5\u4EEC\u5C31\u884C\u4E86\uFF0C\u522B\u628A\u81EA\u5DF1\u9A97\u4E86\uFF08",titleEl2.style.color="#fff",titleEl2.style.background="#ff4d4f",titleEl2.style.border="none",titleEl2.style.boxShadow="0 4px 15px rgba(255, 77, 79, 0.4)";const descEl2=document.getElementById("tier-desc");descEl2.innerText=window.spamStatus===1?`\u4F60\u4E71\u70B9\u7684\u5427 \xB7 \u6781\u901F\u72C2\u70B9\uFF08\u5747\u9898\u7EA6 ${(window.spamVal/50).toFixed(2)} \u79D2\uFF09`:`\u4F60\u4E71\u70B9\u7684\u5427 \xB7 \u9AD8\u5EA6\u673A\u68B0\u89C4\u5F8B\uFF08\u540C\u9891\u5EA6\u8FBE ${window.spamVal} \u6B21\uFF09`,descEl2.style.color="#ff4d4f",document.getElementById("dom-trait-title").innerText="\u{1F6AB} \u6F5C\u8D28\u8BC4\u4F30\u5DF2\u5F3A\u5236\u7EC8\u6B62",document.getElementById("trait-analysis").innerText=window.spamStatus===1?`\u7CFB\u7EDF\u68C0\u6D4B\u5230\u4F60\u7684\u603B\u7528\u65F6\u4EC5\u6709 ${window.spamVal} \u79D2\u3002\u4F60\u8FDE\u9898\u76EE\u90FD\u61D2\u5F97\u770B\u4E00\u773C\uFF0C\u51ED\u4EC0\u4E48\u6307\u671B\u7CFB\u7EDF\u80FD\u7ED9\u51FA\u7CBE\u51C6\u7684\u7075\u9B42\u96F7\u8FBE\uFF1F\u7537\u5A18\u7684\u89C9\u9192\u662F\u9700\u8981\u76F4\u6EAF\u5185\u5FC3\u7684\uFF0C\u4E0D\u662F\u9760\u624B\u901F\u778E\u6309\u5237\u51FA\u6765\u7684\uFF01`:"\u4F60\u7684\u56DE\u7B54\u5B8C\u7F8E\u907F\u5F00\u4E86\u6B63\u5E38\u4EBA\u7C7B\u5FC3\u7406\u5E94\u6709\u7684\u8D77\u4F0F\u6CE2\u52A8\uFF0C\u5448\u73B0\u51FA\u6781\u5176\u673A\u68B0\u7684\u89C4\u5F8B\u6027\uFF08\u65E0\u8111\u5168\u9009\u540C\u4E00\u4E2A\u65B9\u5411\uFF09\u3002\u6D4B\u8C0E\u9632\u5FA1\u7F51\u5173\u5DF2\u5C06\u4F60\u65E0\u60C5\u62E6\u622A\u3002",document.getElementById("trait-behavior").innerText="\u4F60\u7684\u884C\u4E3A\u7279\u5F81\u8868\u73B0\u4E3A\uFF1A\u6025\u8E81\u3001\u673A\u68B0\u3001\u5E26\u6709\u6781\u5F3A\u7684\u6577\u884D\u6027\uFF08\u4E3A\u4E86\u770B\u7279\u6B8A\u5F69\u86CB\u800C\u75AF\u72C2\u4E71\u70B9\uFF09\u3002\u5728\u4E8C\u6B21\u5143\u5708\u5B50\u91CC\uFF0C\u8FD9\u79CD\u5B58\u5728\u901A\u5E38\u88AB\u79F0\u4E3A\u201C\u8D70\u80BE\u4E0D\u8D70\u5FC3\u7684\u6D4B\u614C\u4EEA\u53CD\u9762\u6559\u6750\u201D\u3002",document.getElementById("trait-advice").innerText="\u6E05\u7A7A\u6742\u5FF5\uFF0C\u5378\u4E0B\u6240\u6709\u9632\u5907\uFF01\u9000\u51FA\u53BB\u91CD\u65B0\u51ED\u4F60\u7684\u3010\u771F\u5B9E\u7B2C\u4E00\u76F4\u89C9\u3011\u586B\u4E00\u904D\uFF01\u4F60\u9A97\u5F97\u8FC7\u7535\u8111\u91CC\u7684\u6B7B\u7A0B\u5E8F\uFF0C\u4F46\u6C38\u8FDC\u9A97\u4E0D\u8FC7\u4F60\u771F\u5B9E\u7684DNA\uFF01",document.getElementById("dim-breakdown").innerHTML='<div style="text-align:center;color:#ff4d4f;margin:30px 0;font-weight:bold;font-size:16px;">\u68C0\u6D4B\u5230\u6781\u5EA6\u5F02\u5E38\u6570\u636E<br>\u672C\u5C40\u5404\u5927\u7EF4\u5EA6\u5E95\u5C42\u9762\u677F\u5DF2\u81EA\u6BC1 \u{1F232}</div>',drawRadar({A:0,B:0,C:0,D:0}),document.getElementById("page-result").classList.add("spam-punish-effect"),document.getElementById("btn-stop-glitch").style.display="block",localStorage.removeItem("nnTestState_v1");let testUrl2=window.location.href.split("#")[0].split("?")[0];testUrl2.startsWith("http")||(testUrl2="https://github.com"),document.getElementById("qr-code").src=`https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${encodeURIComponent(testUrl2)}`;return}let scores={A:0,B:0,C:0,D:0};for(let i=0;i<shuffledQuestions.length;i++){let dim=shuffledQuestions[i].d;scores[dim]+=userAnswers[i]}let totalPercent=(scores.A/dimMaxScores.A+scores.B/dimMaxScores.B+scores.C/dimMaxScores.C+scores.D/dimMaxScores.D)/4*100,displayScore=Math.round(totalPercent*2.5),beatPercent=displayScore/250*100*.8+15+Math.random()*4.9;displayScore<50&&(beatPercent=5+Math.random()*5),displayScore>=230&&(beatPercent=99.1+Math.random()*.8),document.getElementById("national-rank").innerText=`\u{1F3C6} \u51FB\u8D25\u4E86\u5168\u56FD ${beatPercent.toFixed(1)}% \u7684\u53D7\u6D4B\u8005`;let testUrl=window.location.href.split("#")[0].split("?")[0];testUrl.startsWith("http")||(testUrl="https://github.com"),document.getElementById("qr-code").src=`https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${encodeURIComponent(testUrl)}`;let curr=0,step=Math.ceil(displayScore/40);function updateScoreVisual(){curr+=step,curr>=displayScore&&(curr=displayScore),document.getElementById("final-score").innerText=curr,curr<displayScore?requestAnimationFrame(updateScoreVisual):(drawRadar(scores),localStorage.removeItem("nnTestState_v1"))}requestAnimationFrame(updateScoreVisual);let tier="",tierDesc="",tierColor="";displayScore<=75?(tier="\u{1F6E1}\uFE0F \u7EDD\u5BF9\u94A2\u94C1\u58C1\u5792",tierDesc="\u7EAF\u76F4\xB7\u96F6\u6CE2\u52A8\xB7\u9632\u5F39\u7EA7\xB7\u6BEB\u65E0\u7834\u7EFD",tierColor="#777777"):displayScore<=105?(tier="\u{1FAA8} \u786C\u6838\u76F4\u7537\u672C\u8272",tierDesc="\u76F4\u5F97\u53D1\u5149\xB7\u94A2\u94C1\u76F4\u7537\xB7\u6BEB\u65E0\u6CE2\u6F9C",tierColor="#888888"):displayScore<=135?(tier="\u{1F4E6} \u859B\u5B9A\u8C14\u7684\u840C\u65B0",tierDesc="\u5076\u5C14\u5FC3\u52A8\xB7\u4F46\u8FD8\u85CF\u5F97\u4F4F\xB7\u6F5C\u8D28\u521D\u73B0",tierColor="#a0a0a0"):displayScore<=160?(tier="\u{1F338} \u6D45\u5EA6\u7C89\u7EA2\u89C9\u9192",tierDesc="\u5DF2\u7ECF\u5077\u5077\u770B\u53EF\u7231\u4E1C\u897F\u4E86\xB7\u5165\u95E8\u7EA7",tierColor="#ff8fab"):displayScore<=185?(tier="\u{1F380} \u6DF1\u5EA6\u89C9\u9192\u9884\u5907\u5F79",tierDesc="\u6F5C\u8D28\u5DF2\u89C9\u9192\xB7\u53EA\u5DEE\u4E34\u95E8\u4E00\u811A",tierColor="#ff5c8a"):displayScore<=205?(tier="\u{1F9F8} \u8F6F\u59B9\u57FA\u56E0\u521D\u9192",tierDesc="\u884C\u4E3A\u5F00\u59CB\u53DB\u53D8\xB7\u672C\u80FD\u7CFB\u8F6F\u59B9",tierColor="#fa709a"):displayScore<=225?(tier="\u{1F308} \u7EAF\u5EA6\u6781\u9AD8\u7684\u7537\u5A18",tierDesc="\u5929\u8D4B\u62C9\u6EE1\xB7\u968F\u65F6\u53EF\u4EE5C\u4F4D\u51FA\u9053",tierColor="#a18cd1"):(tier="\u{1F451} \u7A76\u6781\u5929\u9009\u7537\u5A18",tierDesc="\u4F20\u8BF4\u7EA7\xB7\u7EAF\u5EA699.9%\xB7\u5DF2\u65E0\u836F\u53EF\u6551",tierColor="#ff1493");const titleEl=document.getElementById("tier-title");titleEl.innerText=tier,titleEl.style.color=tierColor,titleEl.style.background="rgba(255, 255, 255, 0.9)",titleEl.style.border=`2px solid ${tierColor}66`,titleEl.style.boxShadow=`0 4px 12px ${tierColor}44`;const descEl=document.getElementById("tier-desc");descEl&&(descEl.innerText=tierDesc,descEl.style.color=tierColor);const breakdownDiv=document.getElementById("dim-breakdown");breakdownDiv.innerHTML="",Object.keys(scores).forEach(k=>{let percent=Math.round(scores[k]/dimMaxScores[k]*100),color=k==="A"?"#ff8fab":k==="B"?"#a8e6cf":k==="C"?"#d8b4fe":"#ffd700",text=percent>80?"\u6781\u5EA6\u51F8\u663E\uFF0C\u5DF2\u8D85\u8D8A95%\u7684\u4EBA":percent>50?"\u7565\u6709\u7AEF\u502A\uFF0C\u5177\u5907\u4E00\u5B9A\u6F5C\u8D28":"\u6BEB\u65E0\u6CE2\u6F9C\uFF0C\u5982\u540C\u94A2\u94C1";breakdownDiv.innerHTML+=`
+                <div class="dim-item">
+                    <div class="dim-header">
+                        <span>${dimNames[k]}</span>
+                        <span style="color:${color}; font-weight:bold;">${scores[k]}/${dimMaxScores[k]} (${percent}%)</span>
+                    </div>
+                    <div class="dim-bar-bg"><div class="dim-bar-fill" style="width:${percent}%; background:${color};"></div></div>
+                    <div class="dim-desc">${text}</div>
+                </div>
+            `});let percs={A:scores.A/dimMaxScores.A,B:scores.B/dimMaxScores.B,C:scores.C/dimMaxScores.C,D:scores.D/dimMaxScores.D},sortedDims=Object.keys(percs).sort((a,b)=>percs[b]-percs[a]),maxDim1=sortedDims[0],maxDim2=sortedDims[1];const traits={A:{title:"\u{1F3AF} \u6838\u5FC3\u7A81\u53D8\u57FA\u56E0\uFF1A\u3010\u89C6\u89C9\u7CFB\u5A07\u5A18\u3011",analysis:"\u8868\u9762\u4E0A\u4F60\u662F\u4E2A\u666E\u901A\u7684\u7537\u751F\uFF0C\u4F46\u4F60\u7684\u611F\u5B98\u96F7\u8FBE\u5BF9\u201C\u67D4\u548C\u3001\u7CBE\u81F4\u3001\u53EF\u7231\u201D\u7684\u4E8B\u7269\u6709\u7740\u672C\u80FD\u7684\u8D8B\u5149\u6027\u3002\u4F60\u5BF9\u7C97\u7CD9\u3001\u6577\u884D\u7684\u76F4\u7537\u5BA1\u7F8E\u6709\u5F3A\u70C8\u7684\u6F5C\u610F\u8BC6\u6392\u65A5\uFF0C\u6781\u5176\u5BB9\u6613\u88AB\u7F8E\u597D\u7684\u4E8B\u7269\u6240\u4FD8\u83B7\u3002",behavior:"\u4E5F\u8BB8\u4F60\u81EA\u5DF1\u90FD\u6CA1\u53D1\u73B0\uFF0C\u4F60\u5728\u6E38\u620F\u91CC\u634F\u8138\u6BD4\u5973\u751F\u8FD8\u7EC6\u81F4\uFF0C\u4E70\u4E2A\u676F\u5B50\u90FD\u8981\u6311\u9A6C\u5361\u9F99\u8272\u3002\u9047\u5230\u597D\u770B\u7684\u8863\u7269\u9970\u54C1\u603B\u4F1A\u591A\u770B\u4E24\u773C\u3002\u6F5C\u610F\u8BC6\u91CC\uFF0C\u4F60\u4E00\u76F4\u5728\u5077\u5077\u6E34\u671B\u7528\u7C89\u5AE9\u548C\u67D4\u8F6F\u5C06\u81EA\u5DF1\u5305\u88F9\u8D77\u6765\u3002",advice:"\u4E0D\u8981\u518D\u76EF\u7740\u5973\u88C5\u5E97\u7684\u6A71\u7A97\u770B\u4E86\uFF01\u52C7\u6562\u70B9\uFF0C\u65E2\u7136\u5E95\u5B50\u8FD9\u4E48\u597D\uFF0C\u5148\u4ECE\u7F51\u8D2D\u4E00\u53CC\u8FC7\u819D\u889C\u5F00\u59CB\u4F60\u7684\u7EDD\u5999\u8715\u53D8\u5427\uFF01"},B:{title:"\u{1F3AF} \u6838\u5FC3\u7A81\u53D8\u57FA\u56E0\uFF1A\u3010\u672C\u80FD\u7CFB\u8F6F\u59B9\u3011",analysis:"\u6781\u5EA6\u5371\u9669\uFF01\u4F60\u7684\u884C\u4E3A\u903B\u8F91\u5DF2\u7ECF\u5F7B\u5E95\u80CC\u53DB\u4E86\u4F60\u7684\u751F\u7406\u6027\u522B\u3002\u4F60\u7684\u808C\u8089\u8BB0\u5FC6\u4E2D\u523B\u6EE1\u4E86\u201C\u6536\u655B\u201D\u3001\u201C\u8F7B\u67D4\u201D\u548C\u201C\u6781\u5EA6\u7CBE\u81F4\u201D\u3002\u8FD9\u662F\u4E00\u79CD\u8131\u79BB\u4E86\u5927\u8111\u63A7\u5236\u7684\u672C\u80FD\u53CD\u5E94\u3002",behavior:"\u62E7\u4E0D\u5F00\u74F6\u76D6\u4E0B\u610F\u8BC6\u60F3\u6C42\u52A9\u3001\u5750\u59FF\u4E56\u5DE7\u53CC\u817F\u5E76\u62E2\u3001\u559D\u5976\u8336\u559C\u6B22\u54AC\u5438\u7BA1\u3001\u5BF9\u4F53\u6BDB\u6781\u5176\u4ECB\u610F\u2026\u2026\u4F60\u7684\u65E5\u5E38\u5C0F\u52A8\u4F5C\u6BD4\u5F88\u591A\u771F\u6B63\u7684\u5973\u5B69\u5B50\u8FD8\u8981\u6807\u51C6\u548C\u81EA\u7136\u3002",advice:"\u8FD9\u79CD\u6D51\u7136\u5929\u6210\u7684\u5A07\u61A8\u611F\u662F\u88C5\u4E0D\u51FA\u6765\u7684\u3002\u5EFA\u8BAE\u76F4\u63A5\u4E70\u5957JK\u5236\u670D\u539F\u5730C\u4F4D\u51FA\u9053\uFF0C\u522B\u6D6A\u8D39\u4E86\u8FD9\u4E0E\u751F\u4FF1\u6765\u7684\u5929\u8D4B\uFF01"},C:{title:"\u{1F3AF} \u6838\u5FC3\u7A81\u53D8\u57FA\u56E0\uFF1A\u3010\u7075\u9B42\u7CFB\u5171\u9E23\u3011",analysis:"\u4F60\u7684\u7075\u9B42\u4EFF\u4F5B\u751F\u9519\u4E86\u8EAF\u58F3\u3002\u4F60\u62E5\u6709\u6781\u5176\u654F\u9510\u7684\u5171\u60C5\u80FD\u529B\u548C\u6781\u4F4E\u7684\u60C5\u7EEA\u9608\u503C\uFF0C\u4F20\u7EDF\u7684\u201C\u9633\u521A\u4E4B\u6C14\u201D\u5BF9\u4F60\u6765\u8BF4\u662F\u4E00\u79CD\u6C89\u91CD\u7684\u7CBE\u795E\u67B7\u9501\u3002\u4F60\u7684\u7075\u9B42\u5728\u6027\u522B\u7684\u8FB9\u754C\u4E0A\u81EA\u7531\u6D41\u52A8\u3002",behavior:"\u770B\u4E2A\u611F\u4EBA\u89C6\u9891\u80FD\u54ED\u5F97\u7A00\u91CC\u54D7\u5566\uFF0C\u53D7\u5230\u59D4\u5C48\u65F6\u6781\u5EA6\u6E34\u671B\u88AB\u62E5\u62B1\u3001\u88AB\u5BA0\u7231\u3001\u88AB\u4FDD\u62A4\u3002\u5728\u793E\u4EA4\u4E2D\uFF0C\u4F60\u603B\u662F\u90A3\u4E2A\u9ED8\u9ED8\u63D0\u4F9B\u60C5\u7EEA\u4EF7\u503C\uFF0C\u50CF\u5C0F\u52A8\u7269\u4E00\u6837\u6E29\u987A\u7684\u201C\u5C0F\u5929\u4F7F\u201D\u3002",advice:"\u5378\u4E0B\u4F2A\u88C5\u7684\u575A\u5F3A\u5427\uFF0C\u627E\u4E00\u4E2A\u80FD\u628A\u4F60\u5F53\u5C0F\u732B\u4E00\u6837\u75AF\u72C2\u63C9\u6413\u3001\u65E0\u9650\u5305\u5BB9\u4F60\u7684\u4F34\u4FA3\uFF0C\u624D\u662F\u4F60\u8FD9\u67D4\u8F6F\u7075\u9B42\u7684\u6700\u7EC8\u5F52\u5BBF\u3002"},D:{title:"\u{1F3AF} \u6838\u5FC3\u7A81\u53D8\u57FA\u56E0\uFF1A\u3010\u73AF\u5883\u7CFB\u540C\u5316\u3011",analysis:"\u4F60\u7684\u793E\u4EA4\u5C5E\u6027\u5DF2\u7ECF\u5B8C\u5168\u88AB\u4E8C\u6B21\u5143\u548C\u7F51\u7EDC\u4E9A\u6587\u5316\u814C\u5165\u5473\u4E86\u3002\u4F60\u5728\u7F51\u7EDC\u4E0A\u7684\u7CBE\u795E\u72B6\u6001\u548C\u6027\u522B\u8BA4\u77E5\uFF0C\u9886\u5148\u5F53\u524D\u793E\u4F1A\u666E\u901A\u7248\u672C\u81F3\u5C11\u4E94\u4E2A\u5927\u6BB5\uFF0C\u4E14\u6781\u5EA6\u81EA\u6D3D\u3002",behavior:"\u719F\u7EC3\u4F7F\u7528\u5404\u79CD\u840C\u59B9/\u732B\u732B\u8868\u60C5\u5305\uFF0C\u88AB\u5144\u5F1F\u4EEC\u53EB\u201C\u8001\u5A46\u201D\u4E0D\u4EC5\u4E0D\u751F\u6C14\u751A\u81F3\u4F1A\u987A\u6746\u5F80\u4E0A\u722C\u3002\u5728\u865A\u62DF\u4E16\u754C\u91CC\uFF0C\u4F60\u7684\u6027\u522B\u65E9\u5C31\u53D8\u6210\u4E86\u4E00\u4E2A\u968F\u65F6\u53EF\u4EE5\u65E0\u7F1D\u5207\u6362\u7684\u859B\u5B9A\u8C14\u72B6\u6001\u3002",advice:"\u65E2\u7136\u7EBF\u4E0A\u5DF2\u7ECF\u8FD9\u4E48\u653E\u98DE\u81EA\u6211\u4E86\uFF0C\u4E0D\u5982\u7EBF\u4E0B\u4E5F\u7ED9\u5144\u5F1F\u4EEC\u5F00\u4E2A\u773C\uFF1F\u7A7F\u4E0A\u90A3\u4EF6\u9ED1\u767D\u5973\u4EC6\u88C5\uFF0C\u4F60\u5C31\u662F\u7FA4\u804A\u91CC\u6700\u4EAE\u773C\u7684\u90A3\u675F\u5149\u3002"}},straightTrait={title:"\u{1F6E1}\uFE0F \u6838\u5FC3\u7279\u5F81\uFF1A\u3010\u7EAF\u6B63\u7684\u94A2\u94C1\u3011",analysis:"\u7ECF\u8FC7\u7CFB\u7EDF\u4E25\u5BC6\u7684\u6570\u636E\u6BD4\u5BF9\uFF0C\u4F60\u7684\u6DF1\u5C42\u903B\u8F91\u4E2D\u4E0D\u5B58\u5728\u54EA\u6015\u4E00\u4E1D\u4E00\u6BEB\u7684\u67D4\u6027\u6295\u5C04\u3002\u4F60\u7684\u7CBE\u795E\u4E16\u754C\u6BD4\u627F\u91CD\u5899\u8FD8\u8981\u575A\u56FA\u3002",behavior:"\u6781\u7AEF\u7684\u5B9E\u7528\u4E3B\u4E49\u8005\uFF0C\u5BF9\u4E00\u5207\u53EF\u7231\u4E8B\u7269\u6BEB\u65E0\u6CE2\u6F9C\uFF0C\u751A\u81F3\u89C9\u5F97\u4E70\u4E2A\u5E26\u732B\u8033\u6735\u7684\u6C34\u676F\u662F\u667A\u5546\u7A0E\u3002\u4F60\u7684\u751F\u6D3B\u4E3B\u6253\u4E00\u4E2A\u5927\u5F00\u5927\u5408\u7684\u201C\u7CD9\u201D\u5B57\u3002",advice:"\u4E8C\u6B21\u5143\u7535\u6CE2\u548C\u67D4\u8F6F\u57FA\u56E0\u5728\u4F60\u7684\u9632\u5FA1\u7CFB\u7EDF\u9762\u524D\u7EDF\u7EDF\u5931\u6548\u3002\u4FDD\u6301\u4F60\u7684\u786C\u6C49\u672C\u8272\uFF01\u4E0D\u8FC7\u53CB\u60C5\u63D0\u793A\uFF0C\u592A\u76F4\u53EF\u80FD\u4F1A\u9519\u8FC7\u4E00\u4E9B\u522B\u6837\u7684\u98CE\u666F\u54E6\u3002"};let conclusion;if(displayScore>=230)conclusion={title:"\u{1F451} \u9690\u85CF\u795E\u7EA7\u5F62\u6001\uFF1A\u3010\u5929\u9009\u7537\u5A18\xB7\u4E16\u754C\u7EA7\u5B9D\u85CF\u3011",analysis:"\u68C0\u6D4B\u4EEA\u76F4\u63A5\u7206\u8868\uFF01\u4F60\u5DF2\u7ECF\u4E0D\u662F\u5355\u7EAF\u7684\u6F5C\u8D28\u95EE\u9898\u4E86\uFF0C\u8FD9\u662F\u523B\u5728DNA\u5E95\u5C42\u7684\u7EC8\u6781\u89C9\u9192\uFF01\u8FD9\u6D51\u7136\u5929\u6210\u7684\u5A07\u61A8\u4E0E\u6781\u54C1\u7EAF\u5EA6\uFF0C\u54EA\u6015\u662F\u6700\u786C\u7684\u94A2\u94C1\u76F4\u7537\u5728\u4F60\u9762\u524D\u4E5F\u4F1A\u77AC\u95F4\u878D\u5316\u3002\u4F60\u5C31\u662F\u4F20\u8BF4\u4E2D\u767E\u5E74\u96BE\u5F97\u4E00\u9047\u7684\u795E\u7EA7\u767D\u83DC\uFF01",behavior:"\u65E0\u8BBA\u662F\u4E3E\u624B\u6295\u8DB3\u7684\u5FAE\u8868\u60C5\uFF0C\u8FD8\u662F\u6F5C\u610F\u8BC6\u7684\u8111\u56DE\u8DEF\uFF0C\u90FD\u5DF2\u7ECF\u5B8C\u7F8E\u8DE8\u8D8A\u4E86\u6027\u522B\u7684\u6B21\u5143\u58C1\u3002\u5728\u61C2\u5F97\u6B23\u8D4F\u7684\u4EBA\u773C\u91CC\uFF0C\u4F60\u73B0\u5728\u7684\u6BCF\u4E00\u4E2A\u5C0F\u52A8\u4F5C\u90FD\u6563\u53D1\u7740\u81F4\u547D\u7684\u9B45\u60D1\u529B\u3002",advice:"\u8FD8\u6D4B\u4EC0\u4E48\u8BD5\uFF1F\u8D76\u7D27\u5F00\u64AD\uFF01\u5168\u5730\u7403\u7684\u5144\u5F1F\u4EEC\u90FD\u5728\u7B49\u7740\u4F60\u62EF\u6551\u4ED6\u4EEC\u7684\u5BA1\u7F8E\uFF01\u5FEB\u7A7F\u4E0A\u4E13\u95E8\u4E3A\u4F60\u51C6\u5907\u7684\u6218\u888D\uFF0C\u53BB\u5F81\u670D\u4E16\u754C\u5427\uFF01"};else if(displayScore<=105)conclusion=straightTrait;else{let mixSet=new Set([maxDim1,maxDim2]);mixSet.has("A")&&mixSet.has("B")?conclusion={title:"\u2728 \u7F55\u89C1\u53CC\u6838\u5FC3\uFF1A\u3010\u89C6\u89C9\u7CFB\u5A07\u5A18 + \u672C\u80FD\u7CFB\u8F6F\u59B9\u3011\u53CC\u91CD\u89C9\u9192",analysis:"\u4E0D\u4EC5\u5BF9\u7C89\u5AE9\u53EF\u7231\u7684\u4E8B\u7269\u6709\u7740\u672C\u80FD\u7684\u72C2\u70ED\u8FFD\u6C42\uFF0C\u8FDE\u8EAB\u4F53\u7684\u808C\u8089\u8BB0\u5FC6\u90FD\u5DF2\u7ECF\u5B8C\u7F8E\u540C\u6B65\u3002\u8FD9\u79CD\u7531\u5185\u800C\u5916\u7684\u77E5\u884C\u5408\u4E00\u662F\u6781\u5176\u7F55\u89C1\u7684\uFF01\u4F60\u7684\u5927\u8111\u548C\u8EAB\u4F53\u5DF2\u7ECF\u8FBE\u6210\u4E86\u9AD8\u5EA6\u7684\u4E00\u81F4\u3002",behavior:"\u4F60\u53EF\u80FD\u4E00\u8FB9\u901B\u7740\u9A6C\u5361\u9F99\u8272\u7CFB\u7684\u8D2D\u7269\u7F51\u9875\uFF0C\u4E00\u8FB9\u4E0B\u610F\u8BC6\u5730\u5939\u7D27\u53CC\u817F\u3001\u54AC\u7740\u7B14\u76D6\u3002\u4F60\u7684\u5B58\u5728\u672C\u8EAB\u5C31\u662F\u4E00\u4EF6\u4EE4\u4EBA\u8D4F\u5FC3\u60A6\u76EE\u7684\u827A\u672F\u54C1\u3002",advice:"\u522B\u72B9\u8C6B\u4E86\uFF0C\u4F60\u7684\u51FA\u5382\u8BBE\u7F6E\u81EA\u5E26\u6D51\u7136\u5929\u6210\uFF0C\u6839\u672C\u4E0D\u9700\u8981\u4EFB\u4F55\u540E\u5929\u4FEE\u9970\uFF0C\u5FEB\u628A\u8D2D\u7269\u8F66\u91CC\u7684\u53EF\u7231\u5C0F\u88D9\u5B50\u5E26\u56DE\u5BB6\u5427\uFF01"}:mixSet.has("C")&&mixSet.has("D")?conclusion={title:"\u2728 \u7F55\u89C1\u53CC\u6838\u5FC3\uFF1A\u3010\u7075\u9B42\u7CFB\u5171\u60C5 + \u73AF\u5883\u7CFB\u540C\u5316\u3011\u793E\u6050\u5C0F\u5929\u4F7F",analysis:"\u4F60\u62E5\u6709\u6781\u5176\u67D4\u8F6F\u654F\u611F\u7684\u7075\u9B42\uFF0C\u540C\u65F6\u4E5F\u6DF1\u8C19\u4E8C\u6B21\u5143\u7F51\u7EDC\u4E9A\u6587\u5316\u7684\u7CBE\u9AD3\u3002\u8FD9\u9020\u5C31\u4E86\u4F60\u5982\u540C\u201C\u793E\u6050\u5C0F\u5929\u4F7F\u201D\u822C\u7684\u5947\u5999\u4F53\u8D28\uFF1A\u7EBF\u4E0A\u91CD\u62F3\u51FA\u51FB\uFF0C\u7EBF\u4E0B\u8F6F\u840C\u6613\u63A8\u5012\u3002",behavior:"\u7FA4\u804A\u91CC\u4F60\u662F\u8001\u516C\u8001\u5A46\u6EE1\u5929\u98DE\u7684\u201C\u61C2\u54E5\u201D\uFF0C\u73B0\u5B9E\u4E2D\u88AB\u5F00\u4E2A\u73A9\u7B11\u5C31\u5BB9\u6613\u7EA2\u7740\u8138\u4E0D\u77E5\u6240\u63AA\u3002\u8FD9\u79CD\u6781\u81F4\u7684\u53CD\u5DEE\u840C\u5177\u6709\u6BC1\u706D\u7EA7\u7684\u6740\u4F24\u529B\u3002",advice:"\u4FDD\u62A4\u597D\u8FD9\u9897\u654F\u611F\u53C8\u6E29\u67D4\u7684\u5FC3\uFF0C\u7EE7\u7EED\u5728\u8D5B\u535A\u7A7A\u95F4\u91CC\u91CA\u653E\u5929\u6027\u5427\uFF01\u5982\u679C\u6709\u4FE1\u5F97\u8FC7\u7684\u670B\u53CB\uFF0C\u8BD5\u7740\u5728\u7EBF\u4E0B\u4E5F\u5378\u4E0B\u9632\u5907\u6492\u4E2A\u5A07\uFF1F"}:conclusion=traits[maxDim1]}document.getElementById("dom-trait-title").innerText=conclusion.title,document.getElementById("trait-analysis").innerText=conclusion.analysis,document.getElementById("trait-behavior").innerText=conclusion.behavior,document.getElementById("trait-advice").innerText=conclusion.advice}function drawRadar(scores){radarChartInstance&&radarChartInstance.destroy();const isDark=document.body.classList.contains("dark-mode"),gridColor=window.spamStatus>0?"rgba(255, 0, 0, 0.5)":isDark?"rgba(255, 255, 255, 0.2)":"rgba(0, 0, 0, 0.1)",labelColor=window.spamStatus>0?"#ff0000":isDark?"#eee":"#666",ctx=document.getElementById("radarChart").getContext("2d");radarChartInstance=new Chart(ctx,{type:"radar",data:{labels:["\u5BA1\u7F8E","\u884C\u4E3A","\u5FC3\u7406","\u793E\u4EA4"],datasets:[{label:"\u80FD\u529B\u503C",data:[scores.A/dimMaxScores.A*100,scores.B/dimMaxScores.B*100,scores.C/dimMaxScores.C*100,scores.D/dimMaxScores.D*100],backgroundColor:window.spamStatus>0?"rgba(255, 0, 0, 0.4)":"rgba(255, 92, 138, 0.3)",borderColor:window.spamStatus>0?"#ff0000":"#ff5c8a",borderWidth:2,pointBackgroundColor:window.spamStatus>0?["#ff0000","#000","#ff0000","#000"]:["#ff8fab","#a8e6cf","#d8b4fe","#ffd700"],pointBorderColor:window.spamStatus>0?"#ff0000":"#fff",pointBorderWidth:2,pointRadius:5,pointHoverRadius:7}]},options:{scales:{r:{min:0,max:100,ticks:{display:!1},grid:{color:gridColor},angleLines:{color:gridColor},pointLabels:{color:labelColor,font:{size:14,weight:"bold"}}}},plugins:{legend:{display:!1}}}})}function downloadResult(){const btn=document.getElementById("btn-download"),oldText=btn.innerText;btn.innerText="\u751F\u6210\u622A\u56FE\u4E2D...",btn.style.pointerEvents="none";const originalButtons=document.querySelectorAll("#page-result .btn-main");originalButtons.forEach(b=>b.style.display="none");const activePage=document.querySelector(".page.active");activePage.style.animation="none",activePage.style.opacity="1";const isDarkMode=document.body.classList.contains("dark-mode");html2canvas(document.querySelector(".container"),{scale:2,useCORS:!0,backgroundColor:isDarkMode?"#1a1a2e":"#ffc2d1"}).then(canvas=>{originalButtons.forEach(b=>b.style.display="block"),btn.innerText=oldText,btn.style.pointerEvents="auto",activePage.style.animation="";let link=document.createElement("a");link.download="\u7537\u5A18\u6F5C\u8D28\u9274\u5B9A\u62A5\u544A.png",link.href=canvas.toDataURL("image/png"),link.click()})}function toggleDarkMode(){const isDark=document.body.classList.toggle("dark-mode"),btn=document.getElementById("dark-mode-toggle");if(btn.innerText=isDark?"\u2600\uFE0F":"\u{1F319}",typeof radarChartInstance!="undefined"&&radarChartInstance){const gridColor=isDark?"rgba(255, 255, 255, 0.2)":"rgba(0, 0, 0, 0.1)",labelColor=isDark?"#eee":"#666";radarChartInstance.options.scales.r&&(radarChartInstance.options.scales.r.grid||(radarChartInstance.options.scales.r.grid={}),radarChartInstance.options.scales.r.angleLines||(radarChartInstance.options.scales.r.angleLines={}),radarChartInstance.options.scales.r.pointLabels||(radarChartInstance.options.scales.r.pointLabels={}),radarChartInstance.options.scales.r.grid.color=gridColor,radarChartInstance.options.scales.r.angleLines.color=gridColor,radarChartInstance.options.scales.r.pointLabels.color=labelColor,radarChartInstance.update())}}function nativeShare(){navigator.share?navigator.share({title:"\u7537\u5A18\u6F5C\u8D28\u7EFC\u5408\u8BC4\u4F30\u91CF\u8868",text:"\u6211\u521A\u6D4B\u4E86\u81EA\u5DF1\u7684\u7537\u5A18\u6F5C\u8D28\uFF0C\u5FEB\u6765\u6D4B\u6D4B\u4F60\u79BB\u5317\u671D\u8FD8\u6709\u591A\u8FDC\uFF1F",url:window.location.href}).catch(e=>console.log("\u5206\u4EAB\u53D6\u6D88\u6216\u5931\u8D25",e)):alert("\u5F53\u524D\u6D4F\u89C8\u5668\u4E0D\u652F\u6301\u539F\u751F\u5206\u4EAB\uFF0C\u8BF7\u4F7F\u7528\u6D4F\u89C8\u5668\u81EA\u5E26\u5206\u4EAB\u529F\u80FD\u54E6~")}function stopGlitch(){document.getElementById("page-result").classList.remove("spam-punish-effect"),document.getElementById("btn-stop-glitch").style.display="none"}
+</script>
+
+</body>
+</html>

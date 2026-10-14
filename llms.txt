@@ -1,0 +1,21 @@
+﻿# LegspCpd Blog
+> LegspCpd 的个人博客，记录我的学习和生活点滴,分享我的技术经验和见解。
+
+## Key Pages
+- [主页](https://blog.legspcpd.top/)
+- [归档](https://blog.legspcpd.top/archive/)
+- [关于我](https://blog.legspcpd.top/about/)
+- [友链](https://blog.legspcpd.top/friends/): 这里是我的朋友们，欢迎互相访问交流
+- [留言](https://blog.legspcpd.top/guestbook/): 欢迎在这里留下你的足迹，分享你的想法和建议
+
+## Recent Posts
+- [在 Termux 上配置 Cloudflare Wrangler，并上传已有 Worker 与 D1 数据库](https://blog.legspcpd.top/posts/fuwari-termux-cloudflare-wrangler-guide/): 适合新手的 Termux + Ubuntu + Wrangler 教程：从零安装 Cloudflare Wrangler，登录 Cloudflare，连接已经创建好的 Worker 和 D1，并完成 SQLite/SQL 数据库导入与 Worker 部署。
+- [Cloudreve也能部署到Cloudflare Worker上面了？！](https://blog.legspcpd.top/posts/cloudreve-worker/): Cloudreve-Worker 使用与部署完整指南。需要 R2 存储（开通需绑卡），支持多数据库主备容灾。推荐 fork 仓库后在 Cloudflare 面板手动部署，部署后务必绑定自定义域名。
+- [仅需10分钟即可制作出一个Cloudflare的优选域名](https://blog.legspcpd.top/posts/cf-cname/): 本文介绍如何通过 DNSPod 按运营商线路划分（电信/联通/移动）配置 CDN 优选 CNAME 或 IP，实现国内网络访问加速。
+- [有限生命里的无限当下](https://blog.legspcpd.top/posts/day/yxdsm/)
+- [EdgeOne优选教程，让EdgeOne在国内更快更稳](https://blog.legspcpd.top/posts/eo-ys/): EdgeOne优选教程，教你如何手动调整DNS解析和路由规则，让腾讯云EdgeOne在国内外访问更快更稳，包含A/AAAA记录优选、边缘函数路由、多IP优选等完整方案。
+- [Cloudflare优选教程，让Cloudflare在国内不再是减速器](https://blog.legspcpd.top/posts/cf-ys/)
+- [日记](https://blog.legspcpd.top/posts/day/)
+- [Firefly Wiki Link 内部链接示例](https://blog.legspcpd.top/posts/guide/firefly-wiki-link/): 在 Firefly 文章中使用 Obsidian 风格的 Wiki Link 内部链接，并自动生成文章链接卡片。
+- [Markdown PlantUML 图表](https://blog.legspcpd.top/posts/markdown-plantuml/): 用于验证 Firefly 中 PlantUML 插件渲染、主题切换与交互能力的示例文章。
+- [记录](https://blog.legspcpd.top/posts/qilu/)
