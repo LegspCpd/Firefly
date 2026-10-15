@@ -1,53 +1,15 @@
-# robots.txt - LegspCpd Blog
-# https://blog.legspcpd.top
+# robots.txt（纯静态构建兜底版本）[generated-by-prepare-static-build]
+# 动态版 robots.txt 会按请求 Host 判定：仅 legspcpd.top / www.legspcpd.top /
+# blog.legspcpd.top 允许收录，其它镜像主机整站 Disallow。
+# 纯静态平台没有动态路由，这里放行全部，避免误伤。
 
-# ============================================
-# 通用规则 - 适用于所有爬虫
-# ============================================
 User-agent: *
-
 Allow: /
 
-# 屏蔽无需收录的内部路径（刻意不含 /_astro/ 与 /search/）
 Disallow: /api/
 Disallow: /og/
 Disallow: /gh/
 Disallow: /ftp/
-Disallow: /yandex_
-Disallow: /baidu_verify_
 Disallow: /404
 
-# 屏蔽会产出重复内容的分页与筛选参数
-Disallow: /*?page=
-Disallow: /*?tag=
-Disallow: /*?category=
-
-# ============================================
-# 特定爬虫优化
-# ============================================
-
-# Bingbot 支持并遵循 Crawl-delay
-User-agent: Bingbot
-Crawl-delay: 1
-Allow: /
-
-User-agent: Baiduspider
-Crawl-delay: 2
-Allow: /
-
-# ============================================
-# 屏蔽体积型文件，节省爬虫带宽
-# ============================================
-
-User-agent: *
-Disallow: /*.pdf$
-Disallow: /*.zip$
-Disallow: /*.gz$
-Disallow: /*.7z$
-Disallow: /*.rar$
-Disallow: /*.tar$
-
-# ============================================
-# Sitemap
-# ============================================
 Sitemap: https://blog.legspcpd.top/sitemap-index.xml
