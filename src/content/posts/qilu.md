@@ -10,7 +10,9 @@ Github反向代理：[https://v-gh.legspcpd.de5.net/](https://v-gh.legspcpd.de5.
 
 ## WPS
 #### WPS2023 激活密钥
+```bash
 694BF-YUDBG-EAR69-BPRGB-ATQXH
+```
 
 或者是
 
