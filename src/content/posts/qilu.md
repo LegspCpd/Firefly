@@ -8,7 +8,7 @@ draft: false
 
 Github反向代理：[https://v-gh.legspcpd.de5.net/](https://v-gh.legspcpd.de5.net/)
 
-## WPS
+# WPS
 #### WPS2023 激活密钥
 ```bash
 694BF-YUDBG-EAR69-BPRGB-ATQXH
@@ -43,3 +43,11 @@ hosts里面加入这个也可以解决激活码过期的问题
 #### WPS Office简单去广告方法：
 首先打开控制面板，假装要卸载wps.然后卸载，wps会问你卸载原因。这时候你就选择广告太多。这时候会弹出
 彻底关闭广告的弹窗。
+
+#### WPS Office 2019党政机关（政府版）专业增强版使用技巧
+把那行xxxx单位的字去了的方法：
+```bash
+\Program Files (x86)\Kingsoft\WPS Office\11.8.2.8053\oem
+```
+
+
