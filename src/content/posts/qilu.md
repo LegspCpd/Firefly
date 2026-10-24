@@ -23,6 +23,11 @@ hosts里面加入这个也可以解决激活码过期的问题
 
 ```bash
 127.0.0.1 cloudservice7.kingsoft-office-service.com
+127.0.0.1 cloudservice13.kingsoft-office-service.com
+127.0.0.1 cloudservice14.kingsoft-office-service.com
+127.0.0.1 cloudservice27.kingsoft-office-service.com
+127.0.0.1 cloudservice29.kingsoft-office-service.com
+127.0.0.1 cloudservice22.kingsoft-office-service.com
 ```
 
 #### 党政机关版激活密钥
