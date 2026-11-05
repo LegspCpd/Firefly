@@ -6,8 +6,6 @@ category: 日记
 draft: false
 ---
 
-感觉有点累啊...
-
 ---
 
 推荐歌曲:
